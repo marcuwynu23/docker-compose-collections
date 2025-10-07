@@ -1,0 +1,12 @@
+services:
+  archiso-builder:
+    image: archlinux:latest
+    container_name: archiso-builder
+    privileged: true # required for archiso
+    stdin_open: true # -i
+    tty: true # -t
+    network_mode: host # use host network instead of Docker bridge
+    volumes:
+      - ./build:/build # mount ./build folder into /build inside container
+    working_dir: /build
+    command: bash
