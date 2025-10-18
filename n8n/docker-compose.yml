@@ -8,6 +8,9 @@ services:
     # 🔁 Automatically restart n8n if it crashes or the host reboots
     restart: unless-stopped
 
+    # set user root
+    user: root
+
     environment:
       # 🕒 Timezone used for workflow schedules and logs
       - TZ=Asia/Manila
@@ -81,7 +84,7 @@ services:
     # 💾 Mount persistent data (workflows, credentials, database)
     # This ensures your n8n data survives container restarts or updates
     volumes:
-      - data:/home/node/.n8n
+      - data:/root/.n8n
 
     # 🌐 Expose the n8n web interface on port 5678
     # Accessible at: https://n8n.cloudmateria.com or http://<your-server-ip>:5678
