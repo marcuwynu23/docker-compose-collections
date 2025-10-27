@@ -3,8 +3,13 @@ services:
     image: redis:7
     container_name: activepieces-redis
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     volumes:
-      - ./data/redis:/data
+      - redis_data:/data
 
   db:
     image: postgres:16
@@ -14,16 +19,23 @@ services:
       POSTGRES_USER: activepieces
       POSTGRES_PASSWORD: activepieces
       POSTGRES_DB: activepieces
-    # ✅ use named volume (avoids permission issues on host bind mounts)
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U activepieces"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    # ✅ Use named volume instead of NTFS bind mount (prevents permission errors)
     volumes:
-      - ./data/postgres:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
 
   activepieces:
     image: activepieces/activepieces:latest
     container_name: activepieces
     depends_on:
-      - redis
-      - db
+      redis:
+        condition: service_healthy
+      db:
+        condition: service_healthy
     ports:
       - "8080:80"
     environment:
@@ -45,11 +57,11 @@ services:
       AP_JWT_SECRET: supersecretjwtkey
       AP_TELEMETRY_ENABLED: false
       AP_SYNC_PIECES_ON_STARTUP: false
-
     volumes:
-      - ./data/data:/root/.activepieces
+      - activepieces_data:/root/.activepieces
     restart: unless-stopped
 
 volumes:
   postgres_data:
   redis_data:
+  activepieces_data:
