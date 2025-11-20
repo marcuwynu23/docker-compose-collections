@@ -3,6 +3,7 @@ services:
     image: jenkins/jenkins:lts
     container_name: jenkins
     restart: always
+    user: root # use docker host root
     ports:
       - "8082:8080"
       - "50000:50000"
@@ -10,5 +11,7 @@ services:
       - ./data:/var/jenkins_home
       - ./plugins.txt:/usr/share/jenkins/ref/plugins.txt:ro
       - /<home>/.ssh:/var/jenkins_home/.ssh:ro
+      - /var/run/docker.sock:/var/run/docker.sock  # use docker host
+      - /usr/bin/docker:/usr/bin/docker # use docker host
     environment:
       - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
