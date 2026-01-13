@@ -1,0 +1,28 @@
+services:
+  woodpecker-server:
+    image: woodpeckerci/woodpecker-server:latest
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+      - "9000:9000"
+    volumes:
+      - ./data:/var/lib/woodpecker
+    environment:
+      WOODPECKER_OPEN: "true"
+      WOODPECKER_HOST: # https://woodpecker-ci.example.com
+      WOODPECKER_GRPC_ADDR: :9000
+      WOODPECKER_GITHUB: "true"
+      WOODPECKER_GITHUB_CLIENT: # ex. Ov23libuGLluaix5T9Pa
+      WOODPECKER_GITHUB_SECRET: # ex. 58b90db86502022d4325c43dd6cec6625a39fd68
+      WOODPECKER_AGENT_SECRET: super-secret-agent-key
+
+  woodpecker-agent:
+    image: woodpeckerci/woodpecker-agent:latest
+    restart: unless-stopped
+    depends_on:
+      - woodpecker-server
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      WOODPECKER_SERVER: woodpecker-server:9000
+      WOODPECKER_AGENT_SECRET: super-secret-agent-key
