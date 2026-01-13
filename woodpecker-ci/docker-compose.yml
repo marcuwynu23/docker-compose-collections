@@ -1,23 +1,24 @@
 services:
   woodpecker-server:
-    image: woodpeckerci/woodpecker-server:latest
+    image: woodpeckerci/woodpecker-server:next-6e6e9c4166
     restart: unless-stopped
     ports:
       - "8000:8000"
       - "9000:9000"
     volumes:
-      - ./data:/var/lib/woodpecker
+      # - ./data:/var/lib/woodpecker
+      - woodpecker-server-data:/var/lib/woodpecker
     environment:
       WOODPECKER_OPEN: "true"
-      WOODPECKER_HOST: # https://woodpecker-ci.example.com
+      WOODPECKER_HOST: https://ci.marcuwynu.space
       WOODPECKER_GRPC_ADDR: :9000
       WOODPECKER_GITHUB: "true"
-      WOODPECKER_GITHUB_CLIENT: # ex. Ov23libuGLluaix5T9Pa
-      WOODPECKER_GITHUB_SECRET: # ex. 58b90db86502022d4325c43dd6cec6625a39fd68
+      WOODPECKER_GITHUB_CLIENT: # Ov23libuGLluaix5T9Ka
+      WOODPECKER_GITHUB_SECRET: # 286a6df3abe90812f097285a9906273c16e61331
       WOODPECKER_AGENT_SECRET: super-secret-agent-key
 
   woodpecker-agent:
-    image: woodpeckerci/woodpecker-agent:latest
+    image: woodpeckerci/woodpecker-agent:next-6e6e9c4166
     restart: unless-stopped
     depends_on:
       - woodpecker-server
@@ -26,3 +27,6 @@ services:
     environment:
       WOODPECKER_SERVER: woodpecker-server:9000
       WOODPECKER_AGENT_SECRET: super-secret-agent-key
+
+volumes:
+  woodpecker-server-data:
