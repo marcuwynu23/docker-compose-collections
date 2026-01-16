@@ -3,3 +3,5 @@ build/
 **/data/
 .env
 token.txt
+
+!.env.example
