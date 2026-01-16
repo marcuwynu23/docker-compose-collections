@@ -6,8 +6,8 @@ services:
       - "9000:9000" # S3 API endpoint
       - "9001:9001" # Web console
     environment:
-      MINIO_ROOT_USER: admin # change this
-      MINIO_ROOT_PASSWORD: admin123 # change this
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:admin} # change this
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:admin} # change this
     command: server /data --console-address ":9001"
     volumes:
       - ./data:/data

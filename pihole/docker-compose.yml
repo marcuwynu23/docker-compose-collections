@@ -4,10 +4,10 @@ services:
     container_name: pihole
     hostname: pihole
     environment:
-      TZ: "Asia/Manila"
-      WEBPASSWORD: "Password123"
-      DNS1: 1.1.1.1
-      DNS2: 8.8.8.8
+      TZ: ${TZ:"Asia/Manila"}
+      WEBPASSWORD: ${WEBPASSWORD:"Password123"}
+      DNS1: ${DNS1:1.1.1.1}
+      DNS2: ${DNS2:8.8.8.8}
     volumes:
       - ./data/etc-pihole:/etc/pihole
       - ./data/etc-dnsmasq.d:/etc/dnsmasq.d

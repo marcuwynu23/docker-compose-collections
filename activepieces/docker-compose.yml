@@ -16,15 +16,14 @@ services:
     container_name: activepieces-db
     restart: unless-stopped
     environment:
-      POSTGRES_USER: activepieces
-      POSTGRES_PASSWORD: activepieces
-      POSTGRES_DB: activepieces
+      POSTGRES_USER: ${AP_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${AP_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${AP_POSTGRES_DATABASE}
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U activepieces"]
+      test: ["CMD-SHELL", "pg_isready -U ${AP_POSTGRES_USER}"]
       interval: 5s
       timeout: 5s
       retries: 5
-    # ✅ Use named volume instead of NTFS bind mount (prevents permission errors)
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
@@ -39,24 +38,25 @@ services:
     ports:
       - "8080:80"
     environment:
-      # Redis config
-      AP_REDIS_HOST: redis
-      AP_REDIS_PORT: 6379
+      # Redis
+      AP_REDIS_HOST: ${AP_REDIS_HOST}
+      AP_REDIS_PORT: ${AP_REDIS_PORT}
 
-      # PostgreSQL config
-      AP_DATABASE_TYPE: postgres
-      AP_POSTGRES_HOST: db
-      AP_POSTGRES_PORT: 5432
-      AP_POSTGRES_USERNAME: activepieces
-      AP_POSTGRES_PASSWORD: activepieces
-      AP_POSTGRES_DATABASE: activepieces
+      # Database
+      AP_DATABASE_TYPE: ${AP_DATABASE_TYPE}
+      AP_POSTGRES_HOST: ${AP_POSTGRES_HOST}
+      AP_POSTGRES_PORT: ${AP_POSTGRES_PORT}
+      AP_POSTGRES_USERNAME: ${AP_POSTGRES_USER}
+      AP_POSTGRES_PASSWORD: ${AP_POSTGRES_PASSWORD}
+      AP_POSTGRES_DATABASE: ${AP_POSTGRES_DATABASE}
 
-      # General app config
-      AP_FRONTEND_URL: http://localhost:8080
-      AP_ENCRYPTION_KEY: 703ee45e7a485db357aa8517a2793ddf
-      AP_JWT_SECRET: supersecretjwtkey
-      AP_TELEMETRY_ENABLED: false
-      AP_SYNC_PIECES_ON_STARTUP: false
+      # App config
+      AP_FRONTEND_URL: ${AP_FRONTEND_URL}
+      AP_ENCRYPTION_KEY: ${AP_ENCRYPTION_KEY}
+      AP_JWT_SECRET: ${AP_JWT_SECRET}
+      AP_TELEMETRY_ENABLED: ${AP_TELEMETRY_ENABLED}
+      AP_SYNC_PIECES_ON_STARTUP: ${AP_SYNC_PIECES_ON_STARTUP}
+
     volumes:
       - activepieces_data:/root/.activepieces
     restart: unless-stopped

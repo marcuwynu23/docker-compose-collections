@@ -3,8 +3,8 @@ services:
     image: gitea/gitea:latest
     container_name: gitea
     environment:
-      - USER_UID=1000
-      - USER_GID=1000
+      USER_UID: ${USER_UID:1000}
+      USER_GID: ${USER_UID:1000}
     restart: always
     volumes:
       - "./data/gitea:/data"
