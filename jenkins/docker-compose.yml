@@ -11,7 +11,7 @@ services:
       - ./data:/var/jenkins_home
       - ./plugins.txt:/usr/share/jenkins/ref/plugins.txt:ro
       - /<home>/.ssh:/var/jenkins_home/.ssh:ro
-      - /var/run/docker.sock:/var/run/docker.sock  # use docker host
+      - /var/run/docker.sock:/var/run/docker.sock # use docker host
       - /usr/bin/docker:/usr/bin/docker # use docker host
     environment:
-      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
+      JAVA_OPTS: ${JAVA_OPTS:-"-Djenkins.install.runSetupWizard=false"}

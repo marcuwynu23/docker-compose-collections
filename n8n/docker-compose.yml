@@ -1,98 +1,68 @@
 services:
   n8n:
-    # ✅ Official n8n Docker image
-    # Use ":latest" to always pull the newest version when you run `docker compose pull`
     image: docker.n8n.io/n8nio/n8n:latest
     container_name: n8n
-
-    # 🔁 Automatically restart n8n if it crashes or the host reboots
     restart: unless-stopped
-
-    # set user root
     user: root
 
     environment:
-      # 🕒 Timezone used for workflow schedules and logs
-      - TZ=Asia/Manila
+      # Timezone used for workflow schedules and logs
+      TZ: ${TZ}
 
-      # 🗃 SQLite database connection pool size (affects performance for concurrent users)
-      - DB_SQLITE_POOL_SIZE=5
+      # SQLite database connection pool size
+      DB_SQLITE_POOL_SIZE: ${DB_SQLITE_POOL_SIZE}
 
-      # ⚙️ Enable workflow runners (improves performance for concurrent executions)
-      - N8N_RUNNERS_ENABLED=true
+      # Enable workflow runners (improves performance)
+      N8N_RUNNERS_ENABLED: ${N8N_RUNNERS_ENABLED}
 
-      # 🧱 Allow environment variable access inside nodes (set to false for security)
-      - N8N_BLOCK_ENV_ACCESS_IN_NODE=false
+      # Allow environment variable access inside nodes
+      N8N_BLOCK_ENV_ACCESS_IN_NODE: ${N8N_BLOCK_ENV_ACCESS_IN_NODE}
 
-      # 🧬 Prevent git nodes from creating bare repositories internally
-      - N8N_GIT_NODE_DISABLE_BARE_REPOS=true
+      # Prevent git nodes from creating bare repos internally
+      N8N_GIT_NODE_DISABLE_BARE_REPOS: ${N8N_GIT_NODE_DISABLE_BARE_REPOS}
 
-      # 🧩 Disable installation of community nodes for tighter security
-      - N8N_COMMUNITY_NODES_ENABLED=false
+      # Disable community nodes for tighter security
+      N8N_COMMUNITY_NODES_ENABLED: ${N8N_COMMUNITY_NODES_ENABLED}
 
-      # 🚫 Disable diagnostics reporting (privacy & compliance)
-      - N8N_DIAGNOSTICS_ENABLED=false
+      # Disable diagnostics and telemetry
+      N8N_DIAGNOSTICS_ENABLED: ${N8N_DIAGNOSTICS_ENABLED}
+      N8N_TELEMETRY_ENABLED: ${N8N_TELEMETRY_ENABLED}
 
-      # 🚫 Disable telemetry (no anonymous usage stats)
-      - N8N_TELEMETRY_ENABLED=false
+      # Default workflow HTTP timeout
+      N8N_DEFAULT_TIMEOUT: ${N8N_DEFAULT_TIMEOUT}
 
-      # ⏱ Default timeout for HTTP requests inside workflows (in ms)
-      - N8N_DEFAULT_TIMEOUT=120000 # 120 seconds
+      # Base hostname and URLs
+      N8N_HOST: ${N8N_HOST}
+      N8N_PROTOCOL: ${N8N_PROTOCOL}
+      N8N_WEBHOOK_URL: ${N8N_WEBHOOK_URL}
+      N8N_EDITOR_BASE_URL: ${N8N_EDITOR_BASE_URL}
+      N8N_WEBHOOK_TUNNEL_URL: ${N8N_WEBHOOK_TUNNEL_URL}
 
-      # 🌐 Base hostname where your n8n instance is reachable
-      - N8N_HOST=n8n.cloudmateria.com
+      # API & proxy settings
+      N8N_PUBLIC_API_DISABLED: ${N8N_PUBLIC_API_DISABLED}
+      N8N_TRUST_PROXY: ${N8N_TRUST_PROXY}
+      N8N_TRUSTED_PROXIES: ${N8N_TRUSTED_PROXIES}
+      N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: ${N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS}
+      WEBHOOK_URL: ${WEBHOOK_URL}
 
-      # 🔒 Protocol used (http or https)
-      - N8N_PROTOCOL=https
+      # User management
+      N8N_USER_MANAGEMENT_DISABLED: ${N8N_USER_MANAGEMENT_DISABLED}
+      N8N_BASIC_AUTH_ACTIVE: ${N8N_BASIC_AUTH_ACTIVE}
+      N8N_SECURE_COOKIE: ${N8N_SECURE_COOKIE}
 
-      # 🌍 Base public URL for webhooks
-      - N8N_WEBHOOK_URL=https://n8n.cloudmateria.com
+      # Optional SMTP config (uncomment and add in .env if needed)
+      # N8N_SMTP_HOST: ${N8N_SMTP_HOST}
+      # N8N_SMTP_PORT: ${N8N_SMTP_PORT}
+      # N8N_SMTP_USER: ${N8N_SMTP_USER}
+      # N8N_SMTP_PASS: ${N8N_SMTP_PASS}
+      # N8N_SMTP_SENDER: ${N8N_SMTP_SENDER}
 
-      # 🧑‍💻 URL for the editor UI (the frontend interface)
-      - N8N_EDITOR_BASE_URL=https://n8n.cloudmateria.com
-
-      # 🌉 URL used by internal webhook tunneling (when workflows call themselves)
-      - N8N_WEBHOOK_TUNNEL_URL=https://n8n.cloudmateria.com
-
-      # 🔓 Enable the public API for programmatic access to workflows and executions
-      - N8N_PUBLIC_API_DISABLED=false
-
-      # 🛡️ Enable proxy trust (needed when behind Cloudflare or Nginx reverse proxy)
-      - N8N_TRUST_PROXY=true
-
-      # 🧾 Trusted proxy IPs (loopback for local proxy and IPv6 localhost)
-      - N8N_TRUSTED_PROXIES=127.0.0.1,::1
-
-      # 🔐 Enforce strict permission settings on the n8n config files (security)
-      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
-
-      # 🌎 Alternative base webhook URL for internal use
-      - WEBHOOK_URL=https://n8n.cloudmateria.com
-
-      # 👥 (optional, recommended) Enable multi-user login and admin control
-      - N8N_USER_MANAGEMENT_DISABLED=false
-      - N8N_BASIC_AUTH_ACTIVE=false
-      - N8N_SECURE_COOKIE=false
-
-      # 📧 (optional) SMTP configuration for sending user invites / notifications
-      # - N8N_SMTP_HOST=smtp.gmail.com
-      # - N8N_SMTP_PORT=465
-      # - N8N_SMTP_USER=youremail@gmail.com
-      # - N8N_SMTP_PASS=app_password_here
-      # - N8N_SMTP_SENDER=youremail@gmail.com
-
-    # 💾 Mount persistent data (workflows, credentials, database)
-    # This ensures your n8n data survives container restarts or updates
     volumes:
       - data:/root/.n8n
 
-    # 🌐 Expose the n8n web interface on port 5678
-    # Accessible at: https://n8n.cloudmateria.com or http://<your-server-ip>:5678
     ports:
       - "5678:5678"
 
 volumes:
-  # 💽 Named Docker volume to persist n8n data
-  # Stored under /var/lib/docker/volumes/data/_data
   data:
     driver: local
