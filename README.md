@@ -24,11 +24,13 @@ This repository acts as a toolbox for developers and sysadmins who frequently ne
 2. Navigate to the service folder you want to use.
 3. Run:
    ```bash
-   docker-compose up -d
+   docker compose up -d
+   # with .environment variables
+   docker compose up -d  --env-file .env
    ```
 4. Stop when finished:
    ```bash
-   docker-compose down
+   docker compose down
    ```
 
 ---
