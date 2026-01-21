@@ -1,0 +1,20 @@
+services:
+  jenkins-agent:
+    image: jenkins/inbound-agent:latest
+    container_name: jenkins-agent
+    restart: always
+    environment:
+      - JENKINS_URL=https://jenkins.cloudmateria.com
+      - JENKINS_AGENT_NAME=onprem-docker-01
+      - JENKINS_SECRET=REPLACE_WITH_NODE_SECRET
+      - JENKINS_WEB_SOCKET=true
+      - JENKINS_AGENT_WORKDIR=/home/jenkins/agent
+    volumes:
+      - agent_workdir:/home/jenkins/agent
+      - /var/run/docker.sock:/var/run/docker.sock
+      # Optional: mount docker CLI if it's at /usr/bin/docker on the host
+      - /usr/bin/docker:/usr/bin/docker
+    # Optional but often helpful if you run into permission issues:
+    user: root
+volumes:
+  agent_workdir:

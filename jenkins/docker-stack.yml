@@ -1,0 +1,54 @@
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    user: "0:0" # root
+    ports:
+    - target: 8080
+      published: 8082
+      protocol: tcp
+      mode: ingress
+    - target: 50000
+      published: 50000
+      protocol: tcp
+      mode: ingress
+
+    environment:
+      # Swarm doesn't support env var default expansion like ${VAR:-default} reliably.
+      # Set JAVA_OPTS explicitly or use an .env file when deploying.
+      JAVA_OPTS: "-Djenkins.install.runSetupWizard=true"
+
+    volumes:
+    # Jenkins home (recommended: named volume for Swarm, works on the node it's scheduled to)
+    - jenkins_home:/var/jenkins_home
+
+    # Your plugins.txt (bind mount)
+    - type: bind
+      source: ./plugins.txt
+      target: /usr/share/jenkins/ref/plugins.txt
+      read_only: true
+
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 5s
+        max_attempts: 0
+        window: 60s
+      update_config:
+        order: start-first
+        parallelism: 1
+        delay: 10s
+      rollback_config:
+        order: stop-first
+        parallelism: 1
+
+      # Optional but HIGHLY recommended when using host binds:
+      # pin the service to a specific node that has /<home>/.ssh, /usr/bin/docker, etc.
+      placement:
+        constraints:
+        - node.role == manager
+
+volumes:
+  jenkins_home:
+    driver: local
