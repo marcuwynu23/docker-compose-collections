@@ -1,8 +1,47 @@
-git
+# ===== Core Pipeline =====
 workflow-aggregator
 pipeline-stage-view
-credentials-binding
-ssh-credentials
+pipeline-github-lib
+
+# ===== Git & GitHub Integration =====
+git
+git-client
+github
 github-branch-source
-matrix-auth
+ssh-credentials
+credentials
+credentials-binding
+
+# ===== Multibranch / SCM =====
+scm-api
+branch-api
+
+# ===== Docker Support =====
+docker-workflow
+docker-plugin
+
+# ===== Agents / Nodes =====
+ssh-slaves
+command-launcher
+
+# ===== UI / UX =====
+blueocean
+dashboard-view
+timestamper
+ansiColor
+
+# ===== Build Reliability =====
+ws-cleanup
+rebuild
+throttle-concurrents
+
+# ===== Notifications =====
+mailer
 email-ext
+
+# ===== Security / Auth Helpers =====
+matrix-auth
+role-strategy
+
+# ===== Utilities =====
+configuration-as-code
