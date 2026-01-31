@@ -1,6 +1,6 @@
 services:
   jenkins-agent:
-    image: jenkins/inbound-agent:latest
+    build: .
     container_name: jenkins-agent
     restart: always
     environment:
