@@ -1,17 +1,20 @@
-services:
   jenkins:
-    image: jenkins/jenkins:lts
+    image: jenkins/jenkins:latest-jdk21
     container_name: jenkins
     restart: always
-    user: root # use docker host root
+    user: root
     ports:
       - "8082:8080"
       - "50000:50000"
     volumes:
       - ./data:/var/jenkins_home
       - ./plugins.txt:/usr/share/jenkins/ref/plugins.txt:ro
-      - /<home>/.ssh:/var/jenkins_home/.ssh:ro
-      - /var/run/docker.sock:/var/run/docker.sock # use docker host  (Docker-outside-of-Docker)
-      - /usr/bin/docker:/usr/bin/docker # use docker host
+
+      # ✅ Allow Jenkins to talk to host Docker (Docker-outside-of-Docker)
+      - /var/run/docker.sock:/var/run/docker.sock
+
+      # ✅ Optional but useful: docker CLI inside container (quick win)
+      - /usr/bin/docker:/usr/bin/docker
     environment:
-      JAVA_OPTS: ${JAVA_OPTS:-"-Djenkins.install.runSetupWizard=true"}
+      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
+      - TZ=Asia/Manila

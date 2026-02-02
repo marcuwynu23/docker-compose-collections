@@ -1,4 +1,4 @@
-FROM jenkins:latest-jdk17
+FROM jenkins/inbound-agent:latest-jdk21
 
 LABEL maintainer="Mark Wayne <marcuwynu23@gmail.com>"
 LABEL description="Jenkins Inbound Agent with JDK17"
