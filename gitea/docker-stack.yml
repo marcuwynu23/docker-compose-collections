@@ -1,0 +1,27 @@
+services:
+  gitea-server:
+    image: gitea/gitea:latest
+    container_name: gitea
+    ports:
+      - target: 3000
+        published: 3000
+        protocol: tcp
+        mode: ingress
+      - target: 22
+        published: 2222
+        protocol: tcp
+        mode: ingress
+    environment:
+      USER_UID: ${USER_UID:1000}
+      USER_GID: ${USER_UID:1000}
+    volumes:
+      - "./data/gitea:/data"
+    deploy:
+      replicas: 4
+      restart_policy:
+        condition: any
+      placement:
+        constraints:
+          - node.role == manager
+
+
