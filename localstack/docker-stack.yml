@@ -1,5 +1,5 @@
 services:
-  minio:
+  localstack:
     image: localstack/localstack:latest
     ports:
       - target: 4566
