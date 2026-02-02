@@ -1,0 +1,31 @@
+services:
+  minio:
+    image: localstack/localstack:latest
+    ports:
+      - target: 4566
+        published: 4566
+        protocol: tcp
+        mode: ingress
+      - target: 4571
+        published: 4571
+        protocol: tcp
+        mode: ingress
+    environment:
+      - SERVICES=s3,dynamodb,sqs,lambda,iam,ec2,cloudwatch,route53 # List of services to start, you can customize this as needed
+      - DEBUG=1
+      - AWS_DEFAULT_REGION=us-east-1
+      - DATA_DIR=/var/lib/localstack/data
+    volumes:
+      - localstack_data:/var/lib/localstack
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: any
+      placement:
+        constraints:
+          - node.role == manager
+
+volumes:
+  localstack_data:
+    driver: local
