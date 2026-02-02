@@ -1,0 +1,31 @@
+services:
+  minio:
+    image: minio/minio:latest
+    ports:
+      - target: 9000
+        published: 9000
+        protocol: tcp
+        mode: ingress
+      - target: 9001
+        published: 9001
+        protocol: tcp
+        mode: ingress
+    environment:
+      # Swarm doesn't support docker-compose style ${VAR:default} reliably.
+      # Set these via an .env file or `--env-file`, or export them before deploy.
+      MINIO_ROOT_USER: "${MINIO_ROOT_USER}"
+      MINIO_ROOT_PASSWORD: "${MINIO_ROOT_PASSWORD}"
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio_data:/data
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+      placement:
+        constraints:
+          - node.role == manager
+
+volumes:
+  minio_data:
+    driver: local
