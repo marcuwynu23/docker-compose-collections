@@ -1,0 +1,16 @@
+[Unit]
+Description=Jenkins Agent Docker Container
+After=docker.service
+Requires=docker.service
+
+[Service]
+Restart=always
+User=root
+WorkingDirectory=/opt/jenkins-agent
+ExecStart=/usr/bin/docker compose up
+ExecStop=/usr/bin/docker compose down
+TimeoutStartSec=0
+
+[Install]
+WantedBy=multi-user.target
+
