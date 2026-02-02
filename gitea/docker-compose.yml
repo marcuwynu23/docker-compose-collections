@@ -1,13 +1,15 @@
 services:
-  server:
+  gitea-server:
     image: gitea/gitea:latest
     container_name: gitea
-    environment:
-      USER_UID: ${USER_UID:1000}
-      USER_GID: ${USER_UID:1000}
-    restart: always
-    volumes:
-      - "./data/gitea:/data"
+
     ports:
       - "3000:3000" # Web UI
       - "2222:22" # SSH (use custom port to avoid conflict with host's SSH)
+    environment:
+      USER_UID: ${USER_UID:1000}
+      USER_GID: ${USER_UID:1000}
+    volumes:
+      - "./data/gitea:/data"
+    restart: always
+
