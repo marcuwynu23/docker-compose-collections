@@ -1,6 +1,9 @@
   jenkins:
     image: jenkins/jenkins:latest-jdk21
     container_name: jenkins
+    # build:
+    #   context: ./ 
+    #   dockerfile: Dockerfile  # Optional if you customized Dockerfile or create your own image 
     restart: always
     user: root
     ports:
