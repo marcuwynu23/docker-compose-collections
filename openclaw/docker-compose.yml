@@ -1,0 +1,17 @@
+services:
+  openclaw:
+    image: ghcr.io/openclaw/openclaw:main-slim-amd64
+    container_name: openclaw
+    restart: unless-stopped
+    ports:
+      - "18789:18789"
+      - "18791:18791"
+    volumes:
+      - ./data:/home/node/.openclaw
+    environment:
+      OPENCLAW_GATEWAY_CONTROLUI_ALLOWEDORIGINS: "http://localhost:18791,http://127.0.0.1:18791"
+      OPENCLAW_CONTROLUI_BIND: "0.0.0.0"
+    command: >
+      sh -c "
+        rm -f /home/node/.openclaw/gateway.lock /home/node/.openclaw/gateway.pid &&
+        openclaw gateway --allow-unconfigured --bind lan"
