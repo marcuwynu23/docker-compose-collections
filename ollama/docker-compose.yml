@@ -1,0 +1,14 @@
+services:
+  ollama:
+    image: ollama/ollama
+    volumes:
+      - ./data:/root/.ollama
+    ports:
+      - "11434:11434"
+    restart: unless-stopped
+    networks:
+      - ollama_network
+
+networks:
+  ollama_network:
+    driver: bridge
