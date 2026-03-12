@@ -1,0 +1,17 @@
+[Unit]
+Description=Ollama AI Service
+After=network.target docker.service
+Requires=docker.service
+
+[Service]
+# Use your Docker Compose path
+WorkingDirectory=/opt/ollama
+# Make sure docker-compose is installed and available
+ExecStart=/usr/bin/docker compose up
+ExecStop=/usr/bin/docker compose down
+Restart=always
+RestartSec=5s
+EnvironmentFile=/opt/ollama/.env
+
+[Install]
+WantedBy=multi-user.target
