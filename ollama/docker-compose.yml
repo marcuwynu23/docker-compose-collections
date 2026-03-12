@@ -1,6 +1,43 @@
+# Optional: Pull models inside the running container using docker exec
+# Example:
+#   docker exec -it ollama-ollama-1 /bin/sh
+#   ollama pull <model-name>
+
+    # API endpoints:
+    # POST http://localhost:11434/api/chat
+    # {
+    #   "model": "<model-name>",
+    #   "prompt": "Hello, Ollama!",
+    #   "stream": false
+    # }
+    #
+    # POST http://localhost:11434/api/generate
+    # {
+    #   "model": "<model-name>",
+    #   "prompt": "Write a short poem",
+    #   "stream": true
+    # }
+
 services:
   ollama:
     image: ollama/ollama
+    command: serve
+    environment:
+      - OLLAMA_DATA=/root/.ollama
+      - OLLAMA_DEBUG=INFO
+      - OLLAMA_HOST=0.0.0.0:11434
+      - OLLAMA_MODELS=/root/.ollama/models
+      - OLLAMA_NO_CLOUD=true
+      - OLLAMA_KEEP_ALIVE=5m
+      - OLLAMA_MAX_LOADED_MODELS=0
+      - OLLAMA_MAX_QUEUE=512
+      - OLLAMA_NUM_PARALLEL=1
+      - OLLAMA_LOAD_TIMEOUT=5m
+      - OLLAMA_ORIGINS=http://localhost,http://127.0.0.1,http://0.0.0.0
+      - OLLAMA_FLASH_ATTENTION=auto
+      - OLLAMA_KV_CACHE_TYPE=f16
+    # env_file:
+    #   - .env  # in case you want to override any of the above settings with a .env file in line with docker-compose best practices
     volumes:
       - ./data:/root/.ollama
     ports:
@@ -8,6 +45,8 @@ services:
     restart: unless-stopped
     networks:
       - ollama_network
+
+
 
 networks:
   ollama_network:
