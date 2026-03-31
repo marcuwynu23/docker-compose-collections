@@ -6,3 +6,5 @@ token.txt
 
 !.env.example
 *.db
+results/
+*.log

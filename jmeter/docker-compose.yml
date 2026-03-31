@@ -1,0 +1,11 @@
+services:
+  jmeter:
+    image: justb4/jmeter:latest
+    container_name: jmeter
+    working_dir: /tests
+    environment:
+      JAVA_TOOL_OPTIONS: "-Djava.awt.headless=true"
+    volumes:
+      - ./tests:/tests
+      - ./results:/results
+    command: ["-n", "-t", "/tests/test-plan.jmx", "-l", "/results/results.jtl"]
