@@ -1,0 +1,14 @@
+services:
+  dozzle:
+    image: amir20/dozzle:latest
+    container_name: dozzle
+    restart: unless-stopped
+    ports:
+      - "${DOZZLE_PORT:-8088}:8080"
+    volumes:
+      # Host socket source examples:
+      # - Docker: /var/run/docker.sock
+      # - Podman (rootful): /run/podman/podman.sock
+      # - Podman (rootless): /run/user/1000/podman/podman.sock
+      # Inside container, always mount as Docker socket path:
+      - ${DOZZLE_SOCKET:-/run/podman/podman.sock}:/var/run/docker.sock:ro
