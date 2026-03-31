@@ -1,0 +1,45 @@
+services:
+  semaphore-db:
+    image: postgres:16
+    container_name: semaphore-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${SEMAPHORE_DB_NAME:-semaphore}
+      POSTGRES_USER: ${SEMAPHORE_DB_USER:-semaphore}
+      POSTGRES_PASSWORD: ${SEMAPHORE_DB_PASSWORD:-semaphore}
+    volumes:
+      - semaphore_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${SEMAPHORE_DB_USER:-semaphore} -d ${SEMAPHORE_DB_NAME:-semaphore}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  semaphore:
+    image: semaphoreui/semaphore:latest
+    container_name: semaphore
+    restart: unless-stopped
+    depends_on:
+      semaphore-db:
+        condition: service_healthy
+    ports:
+      - "${SEMAPHORE_PORT:-3001}:3000"
+    environment:
+      SEMAPHORE_DB_DIALECT: postgres
+      SEMAPHORE_DB_HOST: semaphore-db
+      SEMAPHORE_DB_PORT: 5432
+      SEMAPHORE_DB_USER: ${SEMAPHORE_DB_USER:-semaphore}
+      SEMAPHORE_DB_PASS: ${SEMAPHORE_DB_PASSWORD:-semaphore}
+      SEMAPHORE_DB: ${SEMAPHORE_DB_NAME:-semaphore}
+      SEMAPHORE_PLAYBOOK_PATH: /tmp/semaphore/playbooks
+      SEMAPHORE_ADMIN: ${SEMAPHORE_ADMIN:-admin}
+      SEMAPHORE_ADMIN_PASSWORD: ${SEMAPHORE_ADMIN_PASSWORD:-admin}
+      SEMAPHORE_ADMIN_NAME: ${SEMAPHORE_ADMIN_NAME:-Admin}
+      SEMAPHORE_ADMIN_EMAIL: ${SEMAPHORE_ADMIN_EMAIL:-admin@example.com}
+      SEMAPHORE_ACCESS_KEY_ENCRYPTION: ${SEMAPHORE_ACCESS_KEY_ENCRYPTION:-change-this-to-32-plus-chars}
+    volumes:
+      - semaphore_data:/var/lib/semaphore
+
+volumes:
+  semaphore_db_data:
+  semaphore_data:
