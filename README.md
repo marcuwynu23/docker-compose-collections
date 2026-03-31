@@ -56,6 +56,44 @@ podman compose down
 
 Note: stacks that require `/var/run/docker.sock` may need Docker-compatible socket configuration when running on Podman.
 
+## Available Stacks
+
+| Stack | Description | Primary Use Case |
+|---|---|---|
+| `activepieces` | Workflow automation platform with Redis/PostgreSQL backend. | Build no-code/low-code business automations. |
+| `adminer` | Lightweight web database management UI. | Quick SQL/admin tasks across supported databases. |
+| `authentik` | Open-source IdP and SSO platform. | Central authentication and SSO for internal apps. |
+| `code-server` | VS Code in the browser. | Remote development environment accessible via web. |
+| `custom-linux-distr-base-arch` | Arch Linux container for custom distro/ISO work. | Build and test custom Linux base images/ISOs. |
+| `devpi` | Private Python package index and cache. | Cache and publish internal Python packages. |
+| `elasticsearch` | Search and analytics engine (single-node setup). | Full-text search, logs indexing, and analytics. |
+| `gitea` | Lightweight self-hosted Git service. | Internal source control hosting. |
+| `gitea+jenkins` | Combined Git hosting and CI stack. | End-to-end local Git + build pipeline flow. |
+| `jenkins` | Automation server for CI/CD pipelines. | Build, test, and deploy pipelines. |
+| `jmeter` | Apache JMeter headless load testing. | API/web performance and load testing. |
+| `localstack` | Local AWS service emulation. | Develop/test cloud integrations offline. |
+| `miniio` | S3-compatible object storage server. | Local object storage for apps and backups. |
+| `n8n` | Workflow automation with local storage. | Event-driven integrations and process automation. |
+| `n8n+postgresql` | n8n with PostgreSQL persistence. | More reliable n8n deployment for larger workloads. |
+| `nessus` | Vulnerability scanning platform. | Security assessment and host vulnerability scans. |
+| `nginx-proxy-manager` | Reverse proxy manager with UI and SSL support. | Route domains to services with easy TLS setup. |
+| `ollama` | Local LLM serving API. | Run and test local AI models privately. |
+| `openclaw` | OpenClaw gateway/control UI stack. | Local AI gateway and control interface experiments. |
+| `pihole` | Network-wide DNS ad/tracker blocker. | Block ads and trackers for all network devices. |
+| `portainer` | Docker management UI. | Visual container/stack management. |
+| `prometheus-grafana` | Prometheus + Grafana monitoring baseline. | Metrics collection and dashboard visualization. |
+| `prometheus-grafana-kubenetes` | Prometheus + Grafana for Kubernetes metrics targets. | Kubernetes node/cAdvisor monitoring. |
+| `prometheus-grafana-proxmox` | Prometheus + Grafana + Proxmox exporter stack. | Proxmox cluster observability. |
+| `prometheus-opentelemetry-jaegerui` | Metrics/traces observability stack. | End-to-end telemetry and trace visualization. |
+| `rabbitmq` | Message broker with management UI. | Asynchronous messaging between services. |
+| `sonarqube` | Code quality and security analysis platform. | Static analysis and quality gates in CI. |
+| `twake` | Twake Drive collaboration/storage stack. | Self-hosted file collaboration and sharing. |
+| `uptime-kuma` | Uptime monitoring and status pages. | Service health checks and incident visibility. |
+| `vault` | HashiCorp Vault (dev-mode stack). | Secrets management and secure token workflows. |
+| `verdaccio` | Private npm registry and proxy cache. | Publish/cache JavaScript packages internally. |
+| `woodpecker-ci` | Lightweight self-hosted CI server and agent. | Git-based CI pipelines with Docker runner. |
+| `xampp` | PHP + MySQL local web stack. | Legacy PHP app development/testing environment. |
+
 ## Contributing
 
 Contributions are welcome.  
