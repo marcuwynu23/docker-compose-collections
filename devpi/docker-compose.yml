@@ -1,0 +1,10 @@
+services:
+  devpi:
+    image: muccg/devpi:latest
+    container_name: devpi
+    restart: unless-stopped
+    ports:
+      - "${DEVPI_PORT:-3141}:3141"
+    volumes:
+      - ./data:/data
+    command: ["devpi"]
