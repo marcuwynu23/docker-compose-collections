@@ -66,12 +66,16 @@ Note: stacks that require `/var/run/docker.sock` may need Docker-compatible sock
 | `code-server` | VS Code in the browser. | Remote development environment accessible via web. |
 | `custom-linux-distr-base-arch` | Arch Linux container for custom distro/ISO work. | Build and test custom Linux base images/ISOs. |
 | `devpi` | Private Python package index and cache. | Cache and publish internal Python packages. |
+| `dozzle` | Lightweight live container log viewer UI. | Quickly inspect runtime logs across containers. |
 | `elasticsearch` | Search and analytics engine (single-node setup). | Full-text search, logs indexing, and analytics. |
+| `grafana-loki-promtail` | Centralized log stack with Grafana and Loki. | Collect, query, and visualize logs in one place. |
 | `gitea` | Lightweight self-hosted Git service. | Internal source control hosting. |
 | `gitea+jenkins` | Combined Git hosting and CI stack. | End-to-end local Git + build pipeline flow. |
+| `harbor` | Container registry platform scaffold and setup docs. | Enterprise-style private image registry workflows. |
 | `jenkins` | Automation server for CI/CD pipelines. | Build, test, and deploy pipelines. |
 | `jmeter` | Apache JMeter headless load testing. | API/web performance and load testing. |
 | `localstack` | Local AWS service emulation. | Develop/test cloud integrations offline. |
+| `mailpit` | Local SMTP testing server with inbox UI. | Validate app email flows without external SMTP. |
 | `miniio` | S3-compatible object storage server. | Local object storage for apps and backups. |
 | `n8n` | Workflow automation with local storage. | Event-driven integrations and process automation. |
 | `n8n+postgresql` | n8n with PostgreSQL persistence. | More reliable n8n deployment for larger workloads. |
@@ -86,7 +90,10 @@ Note: stacks that require `/var/run/docker.sock` may need Docker-compatible sock
 | `prometheus-grafana-proxmox` | Prometheus + Grafana + Proxmox exporter stack. | Proxmox cluster observability. |
 | `prometheus-opentelemetry-jaegerui` | Metrics/traces observability stack. | End-to-end telemetry and trace visualization. |
 | `rabbitmq` | Message broker with management UI. | Asynchronous messaging between services. |
+| `registry` | Private OCI/Docker registry service. | Store and distribute container images internally. |
 | `sonarqube` | Code quality and security analysis platform. | Static analysis and quality gates in CI. |
+| `traefik` | Dynamic reverse proxy and ingress controller. | Route HTTP/HTTPS traffic to service stacks. |
+| `trivy` | Vulnerability scanning server with optional web UI. | Scan container images and filesystems for CVEs. |
 | `twake` | Twake Drive collaboration/storage stack. | Self-hosted file collaboration and sharing. |
 | `uptime-kuma` | Uptime monitoring and status pages. | Service health checks and incident visibility. |
 | `vault` | HashiCorp Vault (dev-mode stack). | Secrets management and secure token workflows. |
