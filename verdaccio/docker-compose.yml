@@ -1,0 +1,10 @@
+services:
+  verdaccio:
+    image: verdaccio/verdaccio:latest
+    container_name: verdaccio
+    restart: unless-stopped
+    ports:
+      - "${VERDACCIO_PORT:-4873}:4873"
+    volumes:
+      - ./data/storage:/verdaccio/storage
+      - ./data/conf:/verdaccio/conf
