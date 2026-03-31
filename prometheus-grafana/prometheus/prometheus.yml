@@ -9,8 +9,10 @@ scrape_configs:
 
   # App server metrics target:
   # - Expects your app to expose a Prometheus endpoint (commonly /metrics)
-  # - If your app runs in Docker Compose, use the service name + internal port
-  # - Example: api-server service on port 8080
+  # - If your app runs in Docker Compose, use service name + internal port
+  # - If your app runs on the host (outside container):
+  #   - Podman: host.containers.internal:<port>
+  #   - Docker Desktop: host.docker.internal:<port>
   - job_name: "api-server"
     static_configs:
-      - targets: ["api-server:8080"]
+      - targets: ["192.168.1.17:5000"]
