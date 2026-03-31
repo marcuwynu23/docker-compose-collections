@@ -1,0 +1,70 @@
+services:
+  postgresql:
+    image: postgres:16
+    container_name: authentik-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: ${AUTHENTIK_POSTGRES_PASSWORD:-authentik}
+      POSTGRES_USER: ${AUTHENTIK_POSTGRES_USER:-authentik}
+      POSTGRES_DB: ${AUTHENTIK_POSTGRES_DB:-authentik}
+    volumes:
+      - database:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    container_name: authentik-redis
+    restart: unless-stopped
+    volumes:
+      - redis:/data
+
+  authentik-server:
+    image: ghcr.io/goauthentik/server:latest
+    container_name: authentik-server
+    restart: unless-stopped
+    command: server
+    depends_on:
+      - postgresql
+      - redis
+    environment:
+      AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY:-please_change_this_to_a_long_random_string}
+      AUTHENTIK_BOOTSTRAP_USERNAME: ${AUTHENTIK_BOOTSTRAP_USERNAME:-akadmin}
+      AUTHENTIK_BOOTSTRAP_EMAIL: ${AUTHENTIK_BOOTSTRAP_EMAIL:-admin@example.com}
+      AUTHENTIK_BOOTSTRAP_PASSWORD: ${AUTHENTIK_BOOTSTRAP_PASSWORD:-ChangeMe123!}
+      AUTHENTIK_REDIS__HOST: redis
+      AUTHENTIK_POSTGRESQL__HOST: postgresql
+      AUTHENTIK_POSTGRESQL__USER: ${AUTHENTIK_POSTGRES_USER:-authentik}
+      AUTHENTIK_POSTGRESQL__NAME: ${AUTHENTIK_POSTGRES_DB:-authentik}
+      AUTHENTIK_POSTGRESQL__PASSWORD: ${AUTHENTIK_POSTGRES_PASSWORD:-authentik}
+    ports:
+      - "${AUTHENTIK_PORT:-9001}:9000"
+    volumes:
+      - media:/media
+      - custom-templates:/templates
+
+  authentik-worker:
+    image: ghcr.io/goauthentik/server:latest
+    container_name: authentik-worker
+    restart: unless-stopped
+    command: worker
+    depends_on:
+      - postgresql
+      - redis
+    environment:
+      AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY:-please_change_this_to_a_long_random_string}
+      AUTHENTIK_REDIS__HOST: redis
+      AUTHENTIK_POSTGRESQL__HOST: postgresql
+      AUTHENTIK_POSTGRESQL__USER: ${AUTHENTIK_POSTGRES_USER:-authentik}
+      AUTHENTIK_POSTGRESQL__NAME: ${AUTHENTIK_POSTGRES_DB:-authentik}
+      AUTHENTIK_POSTGRESQL__PASSWORD: ${AUTHENTIK_POSTGRES_PASSWORD:-authentik}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - media:/media
+      - certs:/certs
+      - custom-templates:/templates
+
+volumes:
+  database:
+  redis:
+  media:
+  certs:
+  custom-templates:
