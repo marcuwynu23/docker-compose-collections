@@ -1,0 +1,16 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["prometheus:9090"]
+
+  # App server metrics target:
+  # - Expects your app to expose a Prometheus endpoint (commonly /metrics)
+  # - If your app runs in Docker Compose, use the service name + internal port
+  # - Example: api-server service on port 8080
+  - job_name: "api-server"
+    static_configs:
+      - targets: ["api-server:8080"]
