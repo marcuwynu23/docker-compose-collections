@@ -1,0 +1,25 @@
+services:
+  trivy:
+    image: aquasec/trivy:0.56.2
+    container_name: trivy
+    restart: unless-stopped
+    ports:
+      - "${TRIVY_PORT:-4954}:4954"
+    command: server --listen 0.0.0.0:4954
+    volumes:
+      - trivy_cache:/root/.cache/trivy
+
+  trivy-ui:
+    image: pointvy/pointvy:latest
+    container_name: trivy-ui
+    restart: unless-stopped
+    environment:
+      TRIVY_SERVER: http://trivy:4954
+      PORT: 8085
+    ports:
+      - "${TRIVY_UI_PORT:-8085}:8085"
+    depends_on:
+      - trivy
+
+volumes:
+  trivy_cache:
