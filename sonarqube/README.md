@@ -1,4 +1,4 @@
-# SonarQube (Docker Compose)
+# SonarQube
 
 SonarQube is a code quality and security analysis platform.  
 It helps detect bugs, code smells, and vulnerabilities, and provides quality gates for CI/CD.

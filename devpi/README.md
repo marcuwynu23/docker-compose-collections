@@ -1,4 +1,4 @@
-# devpi (Docker Compose)
+# devpi
 
 devpi is a private Python package index and caching proxy for PyPI.
 

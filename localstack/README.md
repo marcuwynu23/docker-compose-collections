@@ -1,4 +1,4 @@
-# LocalStack (Docker Compose)
+# LocalStack
 
 LocalStack emulates AWS services locally for development and testing.  
 This stack starts selected AWS-like services behind one edge endpoint.

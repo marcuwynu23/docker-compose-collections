@@ -1,4 +1,4 @@
-# Gitea + Jenkins (Docker Compose)
+# Gitea + Jenkins
 
 This stack combines source control (Gitea) and CI automation (Jenkins) in one compose setup.  
 It is useful for local/self-hosted Git + pipeline workflows.

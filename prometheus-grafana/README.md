@@ -1,4 +1,4 @@
-# Prometheus + Grafana (Docker Compose)
+# Prometheus + Grafana
 
 This stack provides basic monitoring and visualization using Prometheus and Grafana.  
 Prometheus collects metrics and Grafana renders dashboards from Prometheus data.

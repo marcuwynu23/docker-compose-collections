@@ -1,4 +1,4 @@
-# Nginx Proxy Manager (Docker Compose)
+# Nginx Proxy Manager
 
 Nginx Proxy Manager is a web-based reverse proxy manager for routing domains to internal services with optional SSL/TLS automation.
 

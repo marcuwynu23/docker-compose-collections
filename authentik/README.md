@@ -1,4 +1,4 @@
-# authentik (Docker Compose)
+# authentik
 
 authentik is an open-source identity provider (IdP) and SSO platform for applications and internal services.
 

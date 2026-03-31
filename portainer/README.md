@@ -1,4 +1,4 @@
-# Portainer (Docker Compose)
+# Portainer
 
 Portainer is a lightweight web UI for managing Docker environments.  
 It provides a dashboard to view containers, images, volumes, networks, stacks, and logs without relying only on CLI commands.

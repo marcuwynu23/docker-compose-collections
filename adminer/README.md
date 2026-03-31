@@ -1,4 +1,4 @@
-# Adminer (Docker Compose)
+# Adminer
 
 Adminer is a lightweight web-based database management tool that supports MySQL, PostgreSQL, MariaDB, SQLite, and more.
 

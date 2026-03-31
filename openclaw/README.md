@@ -1,4 +1,4 @@
-# OpenClaw (Docker Compose)
+# OpenClaw
 
 OpenClaw is a self-hosted AI gateway/control UI stack.  
 This setup runs the OpenClaw gateway with persisted local state.

@@ -1,4 +1,4 @@
-# Verdaccio (Docker Compose)
+# Verdaccio
 
 Verdaccio is a lightweight private npm registry for package caching and internal package publishing.
 

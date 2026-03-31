@@ -1,4 +1,4 @@
-# Trivy Server + Web UI (Docker Compose)
+# Trivy Server + Web UI
 
 Trivy is an open-source vulnerability scanner for container images and filesystems.
 

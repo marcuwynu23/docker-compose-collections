@@ -1,4 +1,4 @@
-# Nessus (Docker Compose)
+# Nessus
 
 Nessus is a vulnerability scanner used for infrastructure and host security assessments.  
 This setup runs the official Nessus container with persistent scan/config data.

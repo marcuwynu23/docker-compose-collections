@@ -1,4 +1,4 @@
-# Jenkins Inbound Agent (Docker Compose)
+# Jenkins Inbound Agent
 
 This stack runs a Jenkins inbound agent container that connects to an existing Jenkins controller.  
 It is useful for adding a dedicated worker node with Docker build capability.

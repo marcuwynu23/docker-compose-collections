@@ -1,4 +1,4 @@
-# Elasticsearch (Docker Compose)
+# Elasticsearch
 
 Elasticsearch is a distributed search and analytics engine for structured and unstructured data.  
 This setup runs a single-node Elasticsearch instance for local/dev usage.

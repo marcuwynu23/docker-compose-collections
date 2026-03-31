@@ -1,4 +1,4 @@
-# Uptime Kuma (Docker Compose)
+# Uptime Kuma
 
 Uptime Kuma is a self-hosted uptime monitoring tool with a web UI, status pages, and alert notifications.  
 Use it to monitor websites, APIs, TCP ports, DNS, and other services.

@@ -1,4 +1,4 @@
-# Ollama (Docker Compose)
+# Ollama
 
 Ollama runs local large language models behind a simple HTTP API.  
 This stack starts the Ollama server and persists downloaded models.

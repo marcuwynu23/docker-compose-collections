@@ -1,4 +1,4 @@
-# Docker Registry (Docker Compose)
+# Docker Registry
 
 Distribution registry provides a private OCI/Docker image registry.
 

@@ -1,4 +1,4 @@
-# Traefik (Docker Compose)
+# Traefik
 
 Traefik is a modern reverse proxy and ingress controller with automatic service discovery.
 

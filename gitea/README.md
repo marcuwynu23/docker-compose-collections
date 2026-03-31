@@ -1,4 +1,4 @@
-# Gitea (Docker Compose)
+# Gitea
 
 Gitea is a lightweight self-hosted Git service with web UI and SSH access.  
 This stack runs a single Gitea server with persistent storage.

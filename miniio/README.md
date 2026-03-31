@@ -1,4 +1,4 @@
-# MinIO (Docker Compose)
+# MinIO
 
 MinIO is an S3-compatible object storage server for self-hosted environments.  
 This stack runs MinIO with local persistent data and web console access.

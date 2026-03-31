@@ -1,4 +1,4 @@
-# Dozzle (Docker Compose)
+# Dozzle
 
 Dozzle is a lightweight web UI for live container logs.
 

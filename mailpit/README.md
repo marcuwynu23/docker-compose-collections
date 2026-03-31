@@ -1,4 +1,4 @@
-# Mailpit (Docker Compose)
+# Mailpit
 
 Mailpit is a local SMTP testing server with web inbox UI.
 

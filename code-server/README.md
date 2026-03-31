@@ -1,4 +1,4 @@
-# code-server (Docker Compose)
+# code-server
 
 code-server runs VS Code in the browser for remote development.
 

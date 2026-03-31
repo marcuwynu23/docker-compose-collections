@@ -1,4 +1,4 @@
-# n8n + PostgreSQL (Docker Compose)
+# n8n + PostgreSQL
 
 This stack runs n8n with PostgreSQL as the workflow database backend.  
 It is suitable for more durable/self-hosted setups than SQLite-only deployments.

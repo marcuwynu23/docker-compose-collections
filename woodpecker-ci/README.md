@@ -1,4 +1,4 @@
-# Woodpecker CI (Docker Compose)
+# Woodpecker CI
 
 Woodpecker CI is a lightweight, self-hosted continuous integration system.  
 This setup runs a Woodpecker server plus one Docker-based build agent.

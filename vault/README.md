@@ -1,4 +1,4 @@
-# HashiCorp Vault (Docker Compose)
+# HashiCorp Vault
 
 Vault is a secrets management and data protection platform for securely storing and accessing sensitive information such as API keys, passwords, and certificates.
 

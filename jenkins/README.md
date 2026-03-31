@@ -1,4 +1,4 @@
-# Jenkins (Docker Compose)
+# Jenkins
 
 Jenkins is a self-hosted automation server for CI/CD pipelines.  
 This setup runs a Jenkins controller with persistent home data and Docker access.

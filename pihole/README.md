@@ -1,4 +1,4 @@
-# Pi-hole (Docker Compose)
+# Pi-hole
 
 Pi-hole is a network-level ad and tracker blocker.  
 Instead of installing ad blockers on every device, you point your devices/router to Pi-hole as DNS, and it blocks known ad/tracking domains for the whole network.

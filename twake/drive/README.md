@@ -1,4 +1,4 @@
-# Twake Drive (Docker Compose)
+# Twake Drive
 
 Twake Drive is a self-hosted file storage and collaboration platform.  
 This setup runs the backend node service, frontend web app, and MongoDB database.

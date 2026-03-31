@@ -1,4 +1,4 @@
-# RabbitMQ (Docker Compose)
+# RabbitMQ
 
 RabbitMQ is a message broker for asynchronous communication between services.  
 Producers publish messages to queues/exchanges, and consumers receive/process them.

@@ -1,4 +1,4 @@
-# XAMPP-like PHP + MySQL (Docker Compose)
+# XAMPP-like PHP + MySQL
 
 This stack provides a local PHP + MySQL development environment similar to a basic XAMPP workflow, but containerized with Docker Compose.
 

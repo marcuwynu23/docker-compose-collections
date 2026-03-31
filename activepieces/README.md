@@ -1,4 +1,4 @@
-# Activepieces (Docker Compose)
+# Activepieces
 
 Activepieces is an open-source workflow automation platform.  
 This setup runs Activepieces with Redis and PostgreSQL dependencies.

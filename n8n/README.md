@@ -1,4 +1,4 @@
-# n8n (Docker Compose)
+# n8n
 
 This stack runs n8n using local persistent storage (SQLite-based default setup).  
 It is simple to run for local automation and testing workflows.

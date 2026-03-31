@@ -1,4 +1,4 @@
-# JMeter (Docker Compose)
+# JMeter
 
 Apache JMeter is a load testing tool for APIs, web apps, and services.  
 This stack runs JMeter in non-GUI mode using Docker Compose.
