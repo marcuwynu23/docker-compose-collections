@@ -83,6 +83,69 @@ Example:
 docker compose exec sentry sentry reset-password marcuwynu23@gmail.com
 ```
 
+## Use Sentry in an Express.js app
+
+After logging into Sentry:
+
+1. Go to **Projects** -> **Create Project**.
+2. Choose **Node.js** and create the project.
+3. Copy the DSN from project settings.
+
+Install SDK (use latest major unless you need legacy compatibility):
+
+```bash
+npm install @sentry/node
+```
+
+Minimal Express example:
+
+```js
+const express = require("express");
+const Sentry = require("@sentry/node");
+
+const app = express();
+
+Sentry.init({
+  dsn: "http://<public_key>@localhost:9002/<project_id>",
+  tracesSampleRate: 1.0,
+});
+
+// Must be registered before routes
+app.use(Sentry.Handlers.requestHandler());
+app.use(Sentry.Handlers.tracingHandler());
+
+app.get("/", (req, res) => {
+  res.send("Hello from Express + Sentry");
+});
+
+// Error handler must be before any other error middleware
+app.use(Sentry.Handlers.errorHandler());
+
+app.use((err, req, res, next) => {
+  res.status(500).json({
+    message: "Internal Server Error",
+    eventId: res.sentry, // Sentry event id (if available)
+  });
+});
+
+app.listen(3000, () => {
+  console.log("App listening on http://localhost:3000");
+});
+```
+
+Trigger first event:
+
+```bash
+curl http://localhost:3000/debug-sentry
+```
+
+Then open Sentry UI (`http://localhost:9002`) and check the Issue Stream.
+
+### Docker/Podman networking notes
+
+- If your app runs on your host machine (outside containers), `localhost:9002` works for DSN host.
+- If your app runs in another container, do not use `localhost`; use a reachable host/service address instead (for example `host.docker.internal` or `host.containers.internal` depending on runtime).
+
 Useful commands:
 
 ```bash
