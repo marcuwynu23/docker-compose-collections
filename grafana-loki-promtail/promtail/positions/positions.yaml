@@ -1,0 +1,4 @@
+positions:
+  /var/log/dnf5.log: "508803"
+  /var/log/rhsm/rhsm.log: "213"
+  /var/log/rhsm/rhsmcertd.log: "738"
