@@ -1,0 +1,57 @@
+services:
+  # Collects traces and exports span metrics for Prometheus
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    container_name: otel-collector
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    volumes:
+      - ./otel-config.yaml:/etc/otel-collector-config.yaml:Z
+    ports:
+      - "4317:4317" # OTLP gRPC (Your app sends traces here)
+      - "8889:8889" # Prometheus scrapes here
+    networks:
+      - monitoring
+
+  # Generates synthetic traces so spanmetrics are produced
+  tracegen:
+    image: ghcr.io/open-telemetry/opentelemetry-collector-contrib/telemetrygen:latest
+    container_name: tracegen
+    command:
+      [
+        "traces",
+        "--otlp-insecure",
+        "--otlp-endpoint=otel-collector:4317",
+        "--service=otel-demo",
+        "--rate=5",
+        "--duration=inf"
+      ]
+    depends_on:
+      - otel-collector
+    networks:
+      - monitoring
+
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: jaeger
+    environment:
+      - METRICS_STORAGE_TYPE=prometheus
+      - PROMETHEUS_SERVER_URL=http://prometheus:9090
+      - PROMETHEUS_QUERY_SUPPORT_SPANMETRICS_CONNECTOR=true
+    ports:
+      - "16686:16686"
+    networks:
+      - monitoring
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yml:Z
+    ports:
+      - "9090:9090" # Access Prometheus directly on this port
+    networks:
+      - monitoring
+
+networks:
+  monitoring:
+    driver: bridge
