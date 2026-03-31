@@ -1,0 +1,58 @@
+services:
+  parse-db:
+    image: mongo:7
+    container_name: parse-db
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME:-root}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD:-root}
+    volumes:
+      - parse_db_data:/data/db
+    healthcheck:
+      test: ["CMD-SHELL", "echo 'db.runCommand({ ping: 1 })' | mongosh mongodb://${MONGO_ROOT_USERNAME:-root}:${MONGO_ROOT_PASSWORD:-root}@localhost:27017/admin --quiet"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+
+  parse-server:
+    image: parseplatform/parse-server:latest
+    container_name: parse-server
+    restart: unless-stopped
+    depends_on:
+      parse-db:
+        condition: service_healthy
+    environment:
+      PARSE_SERVER_APPLICATION_ID: ${PARSE_APP_ID:-myAppId}
+      PARSE_SERVER_MASTER_KEY: ${PARSE_MASTER_KEY:-myMasterKey}
+      PARSE_SERVER_DATABASE_URI: mongodb://${MONGO_ROOT_USERNAME:-root}:${MONGO_ROOT_PASSWORD:-root}@parse-db:27017/${PARSE_DB_NAME:-parsedb}?authSource=admin
+      PARSE_SERVER_SERVER_URL: ${PARSE_SERVER_URL:-http://localhost:1337/parse}
+      PARSE_SERVER_PUBLIC_SERVER_URL: ${PARSE_PUBLIC_SERVER_URL:-http://localhost:1337/parse}
+      PARSE_SERVER_MOUNT_PATH: /parse
+      PARSE_SERVER_ALLOW_CLIENT_CLASS_CREATION: ${PARSE_ALLOW_CLIENT_CLASS_CREATION:-true}
+      # Allow dashboard/container network IPs to use master key in local dev.
+      PARSE_SERVER_MASTER_KEY_IPS: ${PARSE_MASTER_KEY_IPS:-0.0.0.0/0,::/0}
+    ports:
+      - "${PARSE_SERVER_PORT:-1337}:1337"
+
+  parse-dashboard:
+    image: parseplatform/parse-dashboard:latest
+    container_name: parse-dashboard
+    restart: unless-stopped
+    depends_on:
+      parse-server:
+        condition: service_started
+    environment:
+      PARSE_DASHBOARD_ALLOW_INSECURE_HTTP: ${PARSE_DASHBOARD_ALLOW_INSECURE_HTTP:-true}
+      PARSE_DASHBOARD_APP_ID: ${PARSE_APP_ID:-myAppId}
+      PARSE_DASHBOARD_APP_NAME: ${PARSE_APP_NAME:-ParseServer}
+      PARSE_DASHBOARD_MASTER_KEY: ${PARSE_MASTER_KEY:-myMasterKey}
+      # Use a browser-reachable URL for Dashboard API calls.
+      PARSE_DASHBOARD_SERVER_URL: ${PARSE_DASHBOARD_SERVER_URL:-http://localhost:1337/parse}
+      PARSE_DASHBOARD_USER_ID: ${PARSE_DASHBOARD_USER:-admin}
+      PARSE_DASHBOARD_USER_PASSWORD: ${PARSE_DASHBOARD_PASS:-admin}
+      PARSE_DASHBOARD_PORT: 4040
+    ports:
+      - "${PARSE_DASHBOARD_PORT:-4040}:4040"
+
+volumes:
+  parse_db_data:

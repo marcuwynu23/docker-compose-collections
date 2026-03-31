@@ -84,6 +84,7 @@ Note: stacks that require `/var/run/docker.sock` may need Docker-compatible sock
 | [`nginx-proxy-manager`](nginx-proxy-manager/README.md)                             | Reverse proxy manager with UI and SSL support.              | Route domains to services with easy TLS setup.         |
 | [`ollama`](ollama/README.md)                                                       | Local LLM serving API.                                      | Run and test local AI models privately.                |
 | [`openclaw`](openclaw/README.md)                                                   | OpenClaw gateway/control UI stack.                          | Local AI gateway and control interface experiments.    |
+| [`parse-server+mongodb`](parse-server+mongodb/README.md)                           | Parse API backend with MongoDB and Dashboard.               | Build mobile/web backends with NoSQL-style data APIs.  |
 | [`pihole`](pihole/README.md)                                                       | Network-wide DNS ad/tracker blocker.                        | Block ads and trackers for all network devices.        |
 | [`portainer`](portainer/README.md)                                                 | Docker management UI.                                       | Visual container/stack management.                     |
 | [`prometheus-grafana`](prometheus-grafana/README.md)                               | Prometheus + Grafana monitoring baseline.                   | Metrics collection and dashboard visualization.        |
