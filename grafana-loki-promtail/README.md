@@ -1,4 +1,4 @@
-# Grafana + Loki + Promtail (Docker Compose)
+# Grafana + Loki + Promtail
 
 This stack provides centralized log collection and visualization.
 
