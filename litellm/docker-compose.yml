@@ -1,0 +1,39 @@
+
+services:
+  litellm:
+    image: ghcr.io/berriai/litellm:main-latest
+    container_name: litellm
+    ports:
+      - "${LITELLM_PORT:-4000}:4000"
+    environment:
+      LITELLM_MASTER_KEY: ${LITELLM_MASTER_KEY:-changeme}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+    command:
+      - "--config"
+      - "/app/config.yaml"
+      - "--host"
+      - "0.0.0.0"
+      - "--port"
+      - "4000"
+    volumes:
+      - ./litellm_config.yaml:/app/config.yaml
+    restart: unless-stopped
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:latest
+    container_name: open-webui
+    ports:
+      - "${OPEN_WEBUI_PORT:-8080}:8080"
+    environment:
+      - HOST=0.0.0.0
+      - OPENAI_API_BASE_URL=http://litellm:4000/v1
+      - OPENAI_API_KEY=${LITELLM_MASTER_KEY:-changeme}
+    depends_on:
+      - litellm
+    volumes:
+      - open-webui-data:/app/backend/data
+    restart: unless-stopped
+
+volumes:
+  open-webui-data:

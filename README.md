@@ -76,6 +76,7 @@ Note: stacks that require `/var/run/docker.sock` may need Docker-compatible sock
 | [`jenkins`](jenkins/README.md)                                                     | Automation server for CI/CD pipelines.                      | Build, test, and deploy pipelines.                     |
 | [`jmeter`](jmeter/README.md)                                                       | Apache JMeter headless load testing.                        | API/web performance and load testing.                  |
 | [`localstack`](localstack/README.md)                                               | Local AWS service emulation.                                | Develop/test cloud integrations offline.               |
+| [`litellm`](litellm/README.md)                                                     | OpenAI-compatible LLM proxy with optional web UI.           | Route and test LLM providers behind one API endpoint.  |
 | [`mailpit`](mailpit/README.md)                                                     | Local SMTP testing server with inbox UI.                    | Validate app email flows without external SMTP.        |
 | [`miniio`](miniio/README.md)                                                       | S3-compatible object storage server.                        | Local object storage for apps and backups.             |
 | [`n8n`](n8n/README.md)                                                             | Workflow automation with local storage.                     | Event-driven integrations and process automation.      |
