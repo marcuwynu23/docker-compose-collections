@@ -1,0 +1,80 @@
+services:
+  taiga-db:
+    image: postgres:13
+    container_name: taiga-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: taiga
+      POSTGRES_USER: taiga
+      POSTGRES_PASSWORD: taiga
+    volumes:
+      - taiga-db-data:/var/lib/postgresql/data
+
+  taiga-redis:
+    image: redis:7
+    container_name: taiga-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    volumes:
+      - taiga-redis-data:/data
+
+  taiga-back:
+    image: taigaio/taiga-back:latest
+    container_name: taiga-back
+    restart: unless-stopped
+    depends_on:
+      - taiga-db
+      - taiga-redis
+    environment:
+      TAIGA_SECRET_KEY: "1aa8176d5048cac0d3bac97609dc8001db39cafba143fc3c25b22e18c4ecc0f88deed5d14d36861fa3b2fcf2026b3163ac8bca2ffcb0c2a811f35dabe36d86d0"
+      POSTGRES_DB: taiga
+      POSTGRES_USER: taiga
+      POSTGRES_PASSWORD: taiga
+      POSTGRES_HOST: taiga-db
+      POSTGRES_PORT: 5432
+      CELERY_BROKER_URL: redis://taiga-redis:6379/0
+      CELERY_RESULT_BACKEND: redis://taiga-redis:6379/0
+
+      TAIGA_SITES_SCHEME: http
+      TAIGA_SITES_DOMAIN: localhost:8080
+
+      PUBLIC_REGISTER_ENABLED: "true"
+
+    volumes:
+      - taiga-media:/taiga-back/media
+    ports:
+      - "8000:8000"
+
+  taiga-async:
+    image: taigaio/taiga-back:latest
+    container_name: taiga-async
+    restart: unless-stopped
+    depends_on:
+      - taiga-back
+    command: celery worker -A taiga -l info
+    environment:
+      TAIGA_SECRET_KEY: "1aa8176d5048cac0d3bac97609dc8001db39cafba143fc3c25b22e18c4ecc0f88deed5d14d36861fa3b2fcf2026b3163ac8bca2ffcb0c2a811f35dabe36d86d0"
+      POSTGRES_DB: taiga
+      POSTGRES_USER: taiga
+      POSTGRES_PASSWORD: taiga
+      POSTGRES_HOST: taiga-db
+      POSTGRES_PORT: 5432
+      CELERY_BROKER_URL: redis://taiga-redis:6379/0
+      CELERY_RESULT_BACKEND: redis://taiga-redis:6379/0
+
+  taiga-front:
+    image: taigaio/taiga-front:latest
+    container_name: taiga-front
+    restart: unless-stopped
+    depends_on:
+      - taiga-back
+    ports:
+      - "8080:80"
+    environment:
+      TAIGA_URL: "http://localhost:8000"
+      WEBSOCKETS_URL: "ws://localhost:8000"
+
+volumes:
+  taiga-db-data:
+  taiga-redis-data:
+  taiga-media:
