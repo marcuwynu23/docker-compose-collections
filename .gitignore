@@ -9,3 +9,5 @@ token.txt
 results/
 *.log
 letsencrypt/
+
+logs/
