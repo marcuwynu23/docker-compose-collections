@@ -13,6 +13,6 @@ scrape_configs:
   # - If your app runs on the host (outside container):
   #   - Podman: host.containers.internal:<port>
   #   - Docker Desktop: host.docker.internal:<port>
-  - job_name: "api-server"
+  - job_name: "api_server"
     static_configs:
-      - targets: ["192.168.1.17:5000"]
+      - targets: ["192.168.1.37:5000"]
