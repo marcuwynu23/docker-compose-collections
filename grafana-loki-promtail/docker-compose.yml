@@ -1,4 +1,11 @@
 services:
+  app:
+    image: ghcr.io/marcuwynu23/express-typescript-sample:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - express-logs:/var/log/express
+    command: ["sh", "-c", "npm start >> /var/log/express/app.log 2>&1"]
   loki:
     image: grafana/loki:2.9.8
     container_name: loki
@@ -17,7 +24,7 @@ services:
     command: -config.file=/etc/promtail/promtail-config.yml
     volumes:
       - ./promtail/promtail-config.yml:/etc/promtail/promtail-config.yml
-      - /var/log:/var/log:ro
+      - express-logs:/var/log/express:ro
       - ./promtail/positions:/tmp
 
   grafana:
@@ -33,5 +40,6 @@ services:
       - grafana_data:/var/lib/grafana
 
 volumes:
+  express-logs:
   loki_data:
   grafana_data:
