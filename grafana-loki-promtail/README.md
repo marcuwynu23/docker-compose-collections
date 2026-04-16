@@ -102,27 +102,35 @@ You should see it “Adding target” for `/var/log/express/*.log` and “tail r
 
 ## Generate test traffic (Artillery)
 
-This repo includes an Artillery script at `artillery-config.yml` that generates HTTP traffic against the demo app (`http://localhost:3000`).
+This repo includes Artillery scripts under `artillery/` that generate HTTP traffic against the demo app (`http://localhost:3000`).
+
+### Basic test
+
+Use `artillery/basic.yml` for a quick sanity check.
 
 What it does:
 
 - Runs for **60 seconds**
 - Sends **~10 new users/second**
-- Hits:
-  - `GET /`
-  - `GET /api/health`
-
-Run it from the `grafana-loki-promtail` directory:
+- Hits `GET /` and `GET /api/health`
 
 ```bash
-npx -y artillery run artillery-config.yml
+npx -y artillery run artillery/basic.yml
 ```
 
-If you prefer a global install:
+### Stress test
+
+Use `artillery/stress.yml` to generate a larger burst (warm up → ramp up → sustain high load).
+
+```bash
+npx -y artillery run artillery/stress.yml
+```
+
+### Alternative: global install
 
 ```bash
 npm i -g artillery
-artillery run artillery-config.yml
+artillery run artillery/basic.yml
 ```
 
 While it’s running, open Grafana Explore and watch logs appear for `{job="express"}`.
