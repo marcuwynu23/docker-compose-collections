@@ -2,7 +2,7 @@ services:
   app:
     image: ghcr.io/marcuwynu23/express-typescript-sample:latest
     ports:
-      - "3000:3000"
+      - "3002:3000"
     volumes:
       - express-logs:/var/log/express
     command: ["sh", "-c", "npm start >> /var/log/express/app.log 2>&1"]
@@ -32,7 +32,7 @@ services:
     container_name: grafana-loki
     restart: unless-stopped
     ports:
-      - "${GRAFANA_PORT:-3001}:3000"
+      - "${GRAFANA_PORT:-3000}:3000"
     environment:
       GF_SECURITY_ADMIN_USER: ${GF_SECURITY_ADMIN_USER:-admin}
       GF_SECURITY_ADMIN_PASSWORD: ${GF_SECURITY_ADMIN_PASSWORD:-admin}

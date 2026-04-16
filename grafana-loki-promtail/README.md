@@ -21,14 +21,14 @@ It ships logs from an example app into Loki using Promtail, then lets you query 
 
 ## Stack details in this repo
 
-- **Grafana**: `http://<host-ip>:3001` (default)
+- **Grafana**: `http://<host-ip>:3000` (default)
 - **Loki**: `http://<host-ip>:3100` (default)
-- **App**: `http://<host-ip>:3000` (optional demo app)
+- **App**: `http://<host-ip>:3002` (optional demo app)
 - **Promtail**: runs as a sidecar shipper (no published port needed)
 
 Default ports/credentials come from `.env` (see `.env.example`):
 
-- `GRAFANA_PORT` (default `3001`)
+- `GRAFANA_PORT` (default `3000`)
 - `LOKI_PORT` (default `3100`)
 - `GF_SECURITY_ADMIN_USER` / `GF_SECURITY_ADMIN_PASSWORD` (default `admin` / `admin`)
 
@@ -67,12 +67,12 @@ podman compose up -d
 
 Open:
 
-- Grafana: `http://localhost:3001`
-- (Optional) App: `http://localhost:3000`
+- Grafana: `http://localhost:3000`
+- (Optional) App: `http://localhost:3002`
 
 ## Configure Grafana (add Loki datasource)
 
-1. Open Grafana: `http://localhost:3001`
+1. Open Grafana: `http://localhost:3000`
 2. Login (defaults): `admin` / `admin`
 3. Go to `Connections` → `Data sources` → `Add data source`
 4. Choose **Loki**
@@ -102,7 +102,7 @@ You should see it “Adding target” for `/var/log/express/*.log` and “tail r
 
 ## Generate test traffic (Artillery)
 
-This repo includes Artillery scripts under `artillery/` that generate HTTP traffic against the demo app (`http://localhost:3000`).
+This repo includes Artillery scripts under `artillery/` that generate HTTP traffic against the demo app (`http://localhost:3002`).
 
 ### Basic test
 
