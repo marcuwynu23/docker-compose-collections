@@ -1,0 +1,16 @@
+services:
+  bitbucket:
+    image: atlassian/bitbucket:10.2.2
+    container_name: bitbucket
+    ports:
+      - "7990:7990"
+      - "7999:7999"
+    environment:
+      # Explicitly setting JVM memory often fixes startup hangs
+      JVM_MINIMUM_MEMORY: 1g
+      JVM_MAXIMUM_MEMORY: 2g
+      # Add this to help the JVM handle container memory limits
+      CATALINA_OPTS: "-XX:MaxRAMPercentage=75.0"
+    volumes:
+      - ./data:/var/atlassian/application-data/bitbucket
+    restart: unless-stopped
