@@ -1,0 +1,7 @@
+services:
+  draw.io:
+    container_name: draw.io
+    image: jgraph/drawio
+    ports:
+      - 8080:8080
+      - 8443:8443
