@@ -15,4 +15,4 @@ scrape_configs:
   #   - Docker Desktop: host.docker.internal:<port>
   - job_name: "express-metrics"
     static_configs:
-      - targets: ["app:3002"]
+      - targets: ["app:3000"]
