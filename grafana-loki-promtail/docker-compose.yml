@@ -26,6 +26,18 @@ services:
       - ./promtail/promtail-config.yml:/etc/promtail/promtail-config.yml
       - express-logs:/var/log/express:ro
       - ./promtail/positions:/tmp
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    restart: always
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
 
   grafana:
     image: grafana/grafana:latest
@@ -42,4 +54,5 @@ services:
 volumes:
   express-logs:
   loki_data:
+  prometheus_data:
   grafana_data:

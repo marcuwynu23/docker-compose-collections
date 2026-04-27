@@ -13,7 +13,7 @@ scrape_configs:
     static_configs:
       - targets: [localhost]
         labels:
-          job: express
+          job: express-logs
           app: api
           __path__: /var/log/express/*.log
     pipeline_stages:
