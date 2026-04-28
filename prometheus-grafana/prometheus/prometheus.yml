@@ -15,4 +15,4 @@ scrape_configs:
   #   - Docker Desktop: host.docker.internal:<port>
   - job_name: "api_server"
     static_configs:
-      - targets: ["192.168.1.37:5000"]
+      - targets: ["app:5000"]
