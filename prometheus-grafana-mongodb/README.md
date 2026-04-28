@@ -1,6 +1,6 @@
-# Prometheus + Grafana + Mongodb
+# Prometheus + Grafana + MongoDB
 
-This stack provides basic monitoring and visualization using Prometheus and Grafana.  
+This stack provides basic monitoring and visualization using Prometheus and Grafana.
 Prometheus collects metrics and Grafana renders dashboards from Prometheus data.
 
 ## How it works
@@ -19,9 +19,75 @@ Prometheus collects metrics and Grafana renders dashboards from Prometheus data.
 - Persistent data:
   - `prometheus_data:/prometheus`
   - `grafana_data:/var/lib/grafana`
+
 - Mounted config:
   - `./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml`
   - `./grafana/provisioning:/etc/grafana/provisioning`
+
+## MongoDB Monitoring (Exporter)
+
+This stack uses **mongodb_exporter** to expose MongoDB metrics to Prometheus.
+
+No manual installation is required when using Docker Compose.
+
+```yaml id="3s0r6x"
+mongodb-exporter:
+  image: percona/mongodb_exporter:0.40
+  container_name: mongodb-exporter
+  restart: always
+  command:
+    - "--mongodb.uri=mongodb://192.168.1.10:27017"
+  ports:
+    - "9216:9216"
+```
+
+If MongoDB Requires Authentication
+
+```yml
+command:
+  - "--mongodb.uri=mongodb://username:password@192.168.1.10:27017/admin"
+```
+
+Example:
+
+```yml
+command:
+  - "--mongodb.uri=mongodb://root:secret123@192.168.1.10:27017/admin"
+```
+
+## Prometheus scrape config (MongoDB)
+
+Update `prometheus/prometheus.yml`:
+
+```yaml
+- job_name: "mongodb"
+  static_configs:
+    - targets: ["mongodb-exporter:9216"]
+```
+
+Guidelines:
+
+- Replace `mongodb-exporter` with actual host or container name.
+- Ensure port `9216` is reachable.
+- MongoDB exporter must be running and connected to MongoDB.
+- Restart Prometheus after config changes:
+
+```bash
+docker compose restart prometheus
+```
+
+## Recommended Grafana Dashboard
+
+Use this MongoDB monitoring dashboard:
+
+- Dashboard: [https://github.com/marcuwynu23/grafana-dashboard-collections/blob/main/mongodb-dashboard-and-monitoring/mongodb-dashboard-and-monitoring.json](https://github.com/marcuwynu23/grafana-dashboard-collections/blob/main/mongodb-dashboard-and-monitoring/mongodb-dashboard-and-monitoring.json)
+
+### How to import
+
+1. Open Grafana → Dashboards → Import
+2. Paste the JSON from the link above
+3. Select Prometheus datasource
+4. Click Import
 
 ## Environment variables
 
@@ -46,7 +112,7 @@ Open:
 - Prometheus: `http://localhost:9090`
 - Grafana: `http://localhost:3000`
 
-Useful commands:
+## Useful commands
 
 ```bash
 docker compose ps
@@ -55,28 +121,8 @@ docker compose restart
 docker compose down
 ```
 
-## Link app server metrics
-
-To scrape metrics from your app server, add a target in `prometheus/prometheus.yml`:
-
-```yaml
-- job_name: "api-server"
-  static_configs:
-    - targets: ["api-server:8080"]
-```
-
-Guidelines:
-
-- Ensure your app exposes a Prometheus endpoint (typically `/metrics`).
-- If your app is in Docker Compose, use the service name and container port (for example `api-server:8080`).
-- If your app runs outside Docker, use a reachable host/IP and port.
-- Restart Prometheus after config changes:
-
-```bash
-docker compose restart prometheus
-```
-
 ## Notes
 
 - Change default Grafana credentials before exposing this stack.
+- Ensure MongoDB exporter is secured (do not expose 9216 publicly).
 - You can add additional scrape targets in `prometheus/prometheus.yml`.
