@@ -1,18 +1,58 @@
 global:
+  # How often Prometheus collects metrics from all configured targets
   scrape_interval: 15s
+
+  # How often Prometheus evaluates alerting / recording rules
   evaluation_interval: 15s
 
 scrape_configs:
+
+  # ---------------------------------------------------
+  # Prometheus Self Monitoring
+  # ---------------------------------------------------
+  # This job monitors Prometheus itself.
+  #
+  # Useful for:
+  # - scrape performance
+  # - active targets health
+  # - TSDB metrics
+  # - memory and CPU usage
+  #
   - job_name: "prometheus"
     static_configs:
       - targets: ["prometheus:9090"]
 
-  # App server metrics target:
-  # - Expects your app to expose a Prometheus endpoint (commonly /metrics)
-  # - If your app runs in Docker Compose, use service name + internal port
-  # - If your app runs on the host (outside container):
-  #   - Podman: host.containers.internal:<port>
-  #   - Docker Desktop: host.docker.internal:<port>
+  # ---------------------------------------------------
+  # Express / Node.js App Metrics
+  # ---------------------------------------------------
+  # This job scrapes metrics from your application server.
+  #
+  # REQUIREMENTS:
+  # - Your app must expose a Prometheus-compatible /metrics endpoint
+  #
+  # COMMON SETUPS:
+  #
+  # Docker Compose:
+  #   Use service name + internal container port
+  #   Example: app:3000
+  #
+  # Host Machine (outside Docker):
+  #   Docker Desktop:
+  #     host.docker.internal:<port>
+  #
+  #   Podman:
+  #     host.containers.internal:<port>
+  #
+  # EXAMPLES OF METRICS:
+  # - HTTP request count
+  # - request latency
+  # - error rate
+  # - custom business metrics
+  #
+  # IMPORTANT:
+  # - Ensure /metrics endpoint exists
+  # - Ensure Prometheus can reach the service
+  #
   - job_name: "express-metrics"
     static_configs:
       - targets: ["app:3000"]
