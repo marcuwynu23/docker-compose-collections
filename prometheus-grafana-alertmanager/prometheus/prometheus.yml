@@ -1,0 +1,35 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+# -----------------------------
+# ALERTMANAGER CONNECTION
+# -----------------------------
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - "alertmanager:9093"
+
+# -----------------------------
+# RULE FILES (ALERTS)
+# -----------------------------
+rule_files:
+  - /etc/prometheus/alerts.yml
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["prometheus:9090"]
+
+  # -----------------------------
+  # API SERVER METRICS
+  # -----------------------------
+  - job_name: "express-app"
+    static_configs:
+      - targets: ["app:5000"]
+
+# -----------------------------
+# BASIC ALERT RULE EXAMPLE
+# (put in alerts.yml, not here)
+# -----------------------------

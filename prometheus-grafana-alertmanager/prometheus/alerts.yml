@@ -1,0 +1,11 @@
+groups:
+  - name: express-app-alerts
+    rules:
+      - alert: ExpressAppDown
+        expr: up{job="express-app"} == 0
+        for: 2s
+        labels:
+          severity: critical
+        annotations:
+          summary: "Express app is down"
+          description: "The express-app service (app:5000) is not reachable"
