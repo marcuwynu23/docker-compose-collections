@@ -41,7 +41,7 @@ services:
 
   grafana:
     image: grafana/grafana:latest
-    container_name: grafana-loki
+    container_name: grafana
     restart: unless-stopped
     ports:
       - "${GRAFANA_PORT:-3000}:3000"
