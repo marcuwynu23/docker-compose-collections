@@ -24,6 +24,23 @@ scrape_configs:
             time: time
             req: req
             res: res
+
+      - json:
+          source: req
+          expressions:
+            ip: remoteAddress
+            method: method
+            url: url
+
+      - json:
+          source: res
+          expressions:
+            status: statusCode
+
       - labels:
           level:
           app:
+          ip:
+          method:
+          url:
+          status:
