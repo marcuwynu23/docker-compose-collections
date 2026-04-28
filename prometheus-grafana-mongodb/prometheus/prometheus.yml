@@ -1,18 +1,101 @@
 global:
+  # How often Prometheus collects metrics from all configured targets
   scrape_interval: 15s
+
+  # How often Prometheus evaluates alerting / recording rules
   evaluation_interval: 15s
 
 scrape_configs:
+
+  # ---------------------------------------------------
+  # Prometheus Self Monitoring
+  # ---------------------------------------------------
+  # Monitors Prometheus itself
+  #
+  # Metrics include:
+  # - scrape duration
+  # - memory usage
+  # - TSDB health
+  # - active targets
   - job_name: "prometheus"
     static_configs:
       - targets: ["prometheus:9090"]
 
-  # App server metrics target:
-  # - Expects your app to expose a Prometheus endpoint (commonly /metrics)
-  # - If your app runs in Docker Compose, use service name + internal port
-  # - If your app runs on the host (outside container):
-  #   - Podman: host.containers.internal:<port>
-  #   - Docker Desktop: host.docker.internal:<port>
+  # ---------------------------------------------------
+  # App Server Metrics Guide
+  # ---------------------------------------------------
+  # Use when your application exposes /metrics
+  #
+  # Docker Compose Example:
+  #
+  # - job_name: "api-server"
+  #   static_configs:
+  #     - targets: ["api:8080"]
+  #
+  # Host Machine Example:
+  #
+  # Docker Desktop:
+  #   host.docker.internal:8080
+  #
+  # Podman:
+  #   host.containers.internal:8080
+  #
+  # Common metrics:
+  # - HTTP requests
+  # - response time
+  # - errors
+  # - custom business metrics
+
+  # ---------------------------------------------------
+  # MongoDB Monitoring
+  # ---------------------------------------------------
+  # Uses mongodb_exporter
+  #
+  # Exporter Default Port:
+  #   9216
+  #
+  # Metrics Endpoint:
+  #   http://mongodb-exporter:9216/metrics
+  #
+  # Includes:
+  # - connections
+  # - queries
+  # - memory usage
+  # - replication
+  # - opcounters
+  # - cache stats
+  #
+  # Ensure:
+  # - mongodb_exporter container is running
+  # - exporter can access MongoDB
+  # - Prometheus can access port 9216
+  #
   - job_name: "mongodb-server"
     static_configs:
       - targets: ["mongodb-exporter:9216"]
+
+  # ---------------------------------------------------
+  # Multiple MongoDB Exporters Example
+  # ---------------------------------------------------
+  #
+  # - job_name: "mongodb-cluster"
+  #   static_configs:
+  #     - targets:
+  #         - "mongo1:9216"
+  #         - "mongo2:9216"
+  #         - "mongo3:9216"
+
+  # ---------------------------------------------------
+  # Important Notes
+  # ---------------------------------------------------
+  # 1. Restart Prometheus after config changes:
+  #
+  #    docker compose restart prometheus
+  #
+  # 2. Verify targets:
+  #
+  #    http://localhost:9090/targets
+  #
+  # 3. Keep exporter internal/private if possible
+  #
+  # 4. Use Grafana dashboards for visualization
