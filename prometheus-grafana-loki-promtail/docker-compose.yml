@@ -2,7 +2,7 @@ services:
   app:
     image: ghcr.io/marcuwynu23/express-typescript-sample:latest
     ports:
-      - "3002:3000"
+      - "5000:5000"
     volumes:
       - express-logs:/var/log/express
     command: ["sh", "-c", "npm start >> /var/log/express/app.log 2>&1"]
