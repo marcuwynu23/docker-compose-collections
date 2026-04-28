@@ -1,4 +1,13 @@
 services:
+  app:
+    image: ghcr.io/marcuwynu23/express-typescript-sample:latest
+    ports:
+      - "5000:5000"
+    environment:
+      OPENTELEMETRY_URL: http://otel-collector:4317
+    networks:
+      - monitoring
+
   # Collects traces and exports span metrics for Prometheus
   otel-collector:
     image: otel/opentelemetry-collector-contrib:latest
@@ -12,23 +21,6 @@ services:
     networks:
       - monitoring
 
-  # Generates synthetic traces so spanmetrics are produced
-  tracegen:
-    image: ghcr.io/open-telemetry/opentelemetry-collector-contrib/telemetrygen:latest
-    container_name: tracegen
-    command:
-      [
-        "traces",
-        "--otlp-insecure",
-        "--otlp-endpoint=otel-collector:4317",
-        "--service=otel-demo",
-        "--rate=5",
-        "--duration=inf"
-      ]
-    depends_on:
-      - otel-collector
-    networks:
-      - monitoring
 
   jaeger:
     image: jaegertracing/all-in-one:latest
