@@ -1,6 +1,7 @@
 services:
   app:
     image: ghcr.io/marcuwynu23/express-typescript-sample:latest
+    container_name: app
     ports:
       - "5000:5000"
   prometheus:
