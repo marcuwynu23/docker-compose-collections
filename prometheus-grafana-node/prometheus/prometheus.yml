@@ -1,0 +1,101 @@
+global:
+  # How often Prometheus collects metrics from targets
+  scrape_interval: 15s
+
+  # How often Prometheus evaluates alert rules
+  evaluation_interval: 15s
+
+scrape_configs:
+
+  # ---------------------------------------------------
+  # Prometheus Self Monitoring
+  # ---------------------------------------------------
+  # Monitors Prometheus itself
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["prometheus:9090"]
+
+  # ---------------------------------------------------
+  # App Server Metrics
+  # ---------------------------------------------------
+  # Use when your application exposes /metrics
+  #
+  # Docker Compose:
+  #   service-name:port
+  #
+  # Examples:
+  #   api:8080
+  #   backend:3001
+  #
+  # Host Machine:
+  #   Docker Desktop:
+  #     host.docker.internal:<port>
+  #
+  #   Podman:
+  #     host.containers.internal:<port>
+  #
+  # Example:
+  #
+  # - job_name: "api-server"
+  #   static_configs:
+  #     - targets: ["api:8080"]
+
+  # ---------------------------------------------------
+  # VPS / VM Monitoring (Node Exporter)
+  # ---------------------------------------------------
+  # Use Node Exporter for:
+  # - CPU
+  # - RAM
+  # - Disk
+  # - Network
+  # - Load Average
+  #
+  # Standard Port:
+  #   9100
+  #
+  # Example HTTP:
+  #
+  # - job_name: "vps-server"
+  #   static_configs:
+  #     - targets: ["192.168.1.10:9100"]
+
+  # ---------------------------------------------------
+  # VPS / VM Monitoring via HTTPS + Basic Auth
+  # ---------------------------------------------------
+  # Use when Node Exporter is behind:
+  # - Nginx
+  # - Apache
+  # - Reverse Proxy
+  # - TLS / SSL
+  #
+  # Example:
+  - job_name: "vps-server-https"
+    scheme: https
+
+    basic_auth:
+      username: <username>
+      password: <password>
+
+    static_configs:
+      - targets: ["node-exporter.<domain>"]
+
+  # ---------------------------------------------------
+  # Multiple Servers Example
+  # ---------------------------------------------------
+  # - job_name: "all-vps"
+  #   static_configs:
+  #     - targets:
+  #         - "server1:9100"
+  #         - "server2:9100"
+  #         - "server3:9100"
+
+  # ---------------------------------------------------
+  # Important Notes
+  # ---------------------------------------------------
+  # 1. Ensure firewalls allow Prometheus access
+  # 2. Use HTTPS for public targets
+  # 3. Use authentication for internet-facing exporters
+  # 4. Keep exporters private when possible
+  # 5. Restart Prometheus after config changes:
+  #
+  # docker compose restart prometheus
