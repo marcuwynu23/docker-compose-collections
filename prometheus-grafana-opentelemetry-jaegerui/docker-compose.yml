@@ -1,6 +1,7 @@
 services:
   app:
     image: ghcr.io/marcuwynu23/express-typescript-sample:latest
+    container_name: application
     ports:
       - "5000:5000"
     environment:
@@ -38,11 +39,31 @@ services:
     container_name: prometheus
     volumes:
       - ./prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml:Z
+      - prometheus_data:/prometheus
     ports:
       - "9090:9090" # Access Prometheus directly on this port
+    networks:
+      - monitoring
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
     networks:
       - monitoring
 
 networks:
   monitoring:
     driver: bridge
+
+volumes:
+  grafana_data:
+  prometheus_data:
