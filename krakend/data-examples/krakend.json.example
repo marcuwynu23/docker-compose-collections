@@ -1,0 +1,76 @@
+{
+  "version": 3,
+  "name": "krakend-gateway",
+  "port": 8080,
+  "timeout": "5s",
+  "endpoints": [
+    {
+      "endpoint": "/github",
+      "method": "GET",
+      "backend": [
+        {
+          "host": ["https://api.github.com"],
+          "url_pattern": "/",
+          "extra_config": {
+            "backend/http": {
+              "headers": {
+                "User-Agent": ["KrakenD-Gateway"]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "endpoint": "/github/user",
+      "method": "GET",
+      "backend": [
+        {
+          "host": ["https://api.github.com"],
+          "url_pattern": "/users/octocat",
+          "extra_config": {
+            "backend/http": {
+              "headers": {
+                "User-Agent": ["KrakenD-Gateway"]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "endpoint": "/github/repos",
+      "method": "GET",
+      "backend": [
+        {
+          "host": ["https://api.github.com"],
+          "url_pattern": "/repos/kubernetes/kubernetes",
+          "extra_config": {
+            "backend/http": {
+              "headers": {
+                "User-Agent": ["KrakenD-Gateway"]
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "endpoint": "/health",
+      "method": "GET",
+      "backend": [
+        {
+          "host": ["https://api.github.com"],
+          "url_pattern": "/rate_limit",
+          "extra_config": {
+            "backend/http": {
+              "headers": {
+                "User-Agent": ["KrakenD-Gateway"]
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
