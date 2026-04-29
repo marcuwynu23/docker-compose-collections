@@ -1,4 +1,4 @@
-# KrakenD API Gateway Stack
+# KrakenD API Gateway
 
 This stack provides a lightweight API Gateway using KrakenD for routing, aggregation, and API composition.
 
@@ -10,26 +10,23 @@ This stack provides a lightweight API Gateway using KrakenD for routing, aggrega
 
 ## Stack details in this repo
 
-* Services:
+- Services:
+  - `krakend` (`devopsfaith/krakend:latest`)
 
-  * `krakend` (`devopsfaith/krakend:latest`)
+- Ports:
+  - KrakenD Gateway: `http://localhost:8080`
 
-* Ports:
+- Config:
+  - `data/krakend.json` mounted into the container as `/etc/krakend/krakend.json`
 
-  * KrakenD Gateway: `http://localhost:8080`
-
-* Config:
-
-  * `data/krakend.json` mounted into the container as `/etc/krakend/krakend.json`
-
-* No persistent storage required (stateless gateway)
+- No persistent storage required (stateless gateway)
 
 ## Environment variables
 
 This setup is mostly configuration-driven, but optional environment variables can be used for:
 
-* External API keys (if your backends require auth)
-* Docker runtime configuration overrides
+- External API keys (if your backends require auth)
+- Docker runtime configuration overrides
 
 Recommended to use `.env` for sensitive values if extending the gateway.
 
@@ -87,17 +84,17 @@ curl http://localhost:8080/github
 
 ## Notes
 
-* KrakenD is stateless and fully config-driven
-* All routing logic lives in `data/krakend.json`
-* Backends must be reachable from the container network
-* External APIs may require headers (e.g., User-Agent for GitHub)
+- KrakenD is stateless and fully config-driven
+- All routing logic lives in `data/krakend.json`
+- Backends must be reachable from the container network
+- External APIs may require headers (e.g., User-Agent for GitHub)
 
 ---
 
 ## Recommended Next Steps
 
-* Add JWT authentication layer
-* Enable rate limiting per endpoint
-* Add caching layer for backend responses
-* Introduce multiple environments (dev/staging/prod)
-* Add observability (Prometheus + Grafana)
+- Add JWT authentication layer
+- Enable rate limiting per endpoint
+- Add caching layer for backend responses
+- Introduce multiple environments (dev/staging/prod)
+- Add observability (Prometheus + Grafana)
