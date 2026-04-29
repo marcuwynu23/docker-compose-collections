@@ -1,0 +1,11 @@
+
+services:
+  krakend:
+    image: devopsfaith/krakend:latest
+    container_name: krakend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data/krakend.json:/etc/krakend/krakend.json:ro
+    command: ["run", "-c", "/etc/krakend/krakend.json"]
+    restart: unless-stopped
