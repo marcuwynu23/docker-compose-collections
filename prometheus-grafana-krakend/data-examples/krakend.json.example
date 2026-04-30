@@ -1,0 +1,82 @@
+{
+  "version": 3,
+  "name": "krakend-gateway",
+  "port": 8080,
+  "timeout": "5s",
+
+  "extra_config": {
+    "telemetry/logging": {
+      "level": "INFO",
+      "prefix": "[KRAKEND]",
+      "syslog": false,
+      "stdout": true
+    },
+
+    "telemetry/opentelemetry": {
+      "service_name": "krakend-gateway",
+      "exporters": {
+        "prometheus": [
+          {
+            "name": "local_prometheus",
+            "port": 9091,
+            "process_metrics": true,
+            "go_metrics": true
+          }
+        ]
+      }
+    }
+  },
+
+  "endpoints": [
+    {
+      "endpoint": "/github/user",
+      "method": "GET",
+
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "https://your-auth-server/.well-known/jwks.json",
+          "cache": true,
+          "cache_duration": 3600,
+          "operation_debug": true
+        },
+
+        "qos/ratelimit/router": {
+          "max_rate": 10,
+          "capacity": 20
+        }
+      },
+
+      "backend": [
+        {
+          "host": ["https://api.github.com", "https://api.github.com"],
+          "url_pattern": "/users/octocat",
+
+          "extra_config": {
+            "backend/http": {
+              "headers": {
+                "User-Agent": ["KrakenD-Gateway"]
+              }
+            },
+
+            "qos/ratelimit/proxy": {
+              "max_rate": 5,
+              "capacity": 10
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "endpoint": "/health",
+      "method": "GET",
+      "backend": [
+        {
+          "host": ["https://api.github.com"],
+          "url_pattern": "/rate_limit"
+        }
+      ]
+    }
+  ]
+}
