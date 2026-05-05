@@ -1,0 +1,23 @@
+filebeat.inputs:
+  - type: filestream
+    id: express-app
+    paths:
+      - /var/log/express/app.log
+    parsers:
+      - ndjson:
+          overwrite_keys: true
+          add_error_key: true
+
+processors:
+  - decode_json_fields:
+      fields: ["message"]
+      target: ""
+      overwrite_keys: true
+
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+
+setup.kibana:
+  host: "http://kibana:5601"
+
+filebeat.registry.path: /usr/share/filebeat/data/registry
