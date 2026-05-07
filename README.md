@@ -22,6 +22,97 @@ Each folder contains a service stack you can run quickly and customize for your 
 - Service-specific README files with setup, usage, and operational notes
 - Configurations that are easy to adapt for local labs and small deployments
 
+## Available Stacks
+
+### AI & Machine Learning
+
+- [litellm](./litellm)
+- [ollama](./ollama)
+
+### Automation & Workflow
+
+- [activepieces](./activepieces)
+- [n8n](./n8n)
+- [n8n+postgresql](./n8n+postgresql)
+
+### CI/CD & DevOps
+
+- [gitea](./gitea)
+- [gitea+jenkins](./gitea+jenkins)
+- [jenkins](./jenkins)
+- [semaphore](./semaphore)
+- [sonarqube](./sonarqube)
+- [woodpecker-ci](./woodpecker-ci)
+
+### Collaboration & Project Management
+
+- [atlassian-jira](./atlassian-jira)
+- [bitbucket](./bitbucket)
+- [bugzilla](./bugzilla)
+- [openproject](./openproject)
+- [plane](./plane)
+- [taiga](./taiga)
+- [twake](./twake)
+
+### Databases & Storage
+
+- [adminer](./adminer)
+- [couchdb](./couchdb)
+- [elasticsearch](./elasticsearch)
+- [elasticsearch-kibana-filebeat](./elasticsearch-kibana-filebeat)
+- [miniio](./miniio)
+- [parse-server+mongodb](./parse-server+mongodb)
+- [rabbitmq](./rabbitmq)
+- [supabase](./supabase)
+
+### Development Tools
+
+- [code-server](./code-server)
+- [devpi](./devpi)
+- [jmeter](./jmeter)
+- [localstack](./localstack)
+- [registry](./registry)
+- [verdaccio](./verdaccio)
+- [xampp](./xampp)
+
+### Infrastructure & Security
+
+- [authentik](./authentik)
+- [dvwa](./dvwa)
+- [juice-shop](./juice-shop)
+- [krakend](./krakend)
+- [nessus](./nessus)
+- [nginx-proxy-manager](./nginx-proxy-manager)
+- [pihole](./pihole)
+- [portainer](./portainer)
+- [traefik](./traefik)
+- [trivy](./trivy)
+- [vault](./vault)
+
+### Monitoring & Observability
+
+- [alertmanager](./alertmanager)
+- [dozzle](./dozzle)
+- [prometheus-grafana](./prometheus-grafana)
+- [prometheus-grafana-alertmanager](./prometheus-grafana-alertmanager)
+- [prometheus-grafana-krakend](./prometheus-grafana-krakend)
+- [prometheus-grafana-kubenetes](./prometheus-grafana-kubenetes)
+- [prometheus-grafana-loki-promtail](./prometheus-grafana-loki-promtail)
+- [prometheus-grafana-mongodb](./prometheus-grafana-mongodb)
+- [prometheus-grafana-node](./prometheus-grafana-node)
+- [prometheus-grafana-opentelemetry-jaegerui](./prometheus-grafana-opentelemetry-jaegerui)
+- [prometheus-grafana-proxmox](./prometheus-grafana-proxmox)
+- [uptime-kuma](./uptime-kuma)
+
+### Other Services
+
+- [custom-linux-distr-base-arch](./custom-linux-distr-base-arch)
+- [draw.io](./draw.io)
+- [mailpit](./mailpit)
+- [openclaw](./openclaw)
+- [sentry](./sentry)
+- [wordpress](./wordpress)
+
 ## Quick Start
 
 1. Clone the repository:
