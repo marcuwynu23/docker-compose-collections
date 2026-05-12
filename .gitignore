@@ -11,3 +11,4 @@ results/
 letsencrypt/
 
 logs/
+node_modules/
