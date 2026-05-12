@@ -1,0 +1,24 @@
+{
+  "name": "kafka-examples",
+  "version": "1.0.0",
+  "description": "Kafka JavaScript examples using KafkaJS",
+  "main": "index.js",
+  "scripts": {
+    "topics": "node kafka-topics.js",
+    "producer": "node kafka-console-producer.js",
+    "consumer": "node kafka-console-consumer.js",
+    "create-topic": "node kafka-topics.js create",
+    "list-topics": "node kafka-topics.js list"
+  },
+  "dependencies": {
+    "kafkajs": "^2.2.4"
+  },
+  "keywords": [
+    "kafka",
+    "javascript",
+    "messaging",
+    "streaming"
+  ],
+  "author": "",
+  "license": "MIT"
+}
