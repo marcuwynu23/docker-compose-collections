@@ -1,14 +1,10 @@
 services:
   rabbitmq:
     image: rabbitmq:3-management
-    container_name: rabbitmq
-    hostname: rabbitmq
+    container_name: rabbitmq-server
     ports:
-      - "5672:5672"
-      - "15672:15672"
+      - "5672:5672" # RabbitMQ port
+      - "15672:15672" # Management UI
     environment:
-      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
-      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-    restart: unless-stopped
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
