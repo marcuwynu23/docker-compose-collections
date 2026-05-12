@@ -17,8 +17,6 @@ Producers publish messages to queues/exchanges, and consumers receive/process th
 - Hostname: `rabbitmq`
 - AMQP port: `5672`
 - Management UI: `http://<host-ip>:15672`
-- Extra host mapping:
-  - `host.docker.internal:host-gateway`
 
 ## Environment variables
 
