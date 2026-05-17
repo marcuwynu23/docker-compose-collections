@@ -1,0 +1,85 @@
+# ---------------------------------------------------
+# Promtail Configuration
+# ---------------------------------------------------
+# Promtail is responsible for:
+# - Reading log files
+# - Parsing log structure
+# - Sending logs to Loki
+# ---------------------------------------------------
+
+server:
+  # Promtail internal HTTP server (metrics/debugging)
+  http_listen_port: 9080
+
+  # gRPC disabled (not required for Loki push model)
+  grpc_listen_port: 0
+
+# ---------------------------------------------------
+# Position Tracking
+# ---------------------------------------------------
+# Stores last read offset for each log file
+# Prevents duplicate log ingestion after restart
+positions:
+  filename: /tmp/positions.yaml
+
+# ---------------------------------------------------
+# Loki Client Configuration
+# ---------------------------------------------------
+clients:
+  - url: http://loki:3100/loki/api/v1/push
+
+# ---------------------------------------------------
+# Log Scraping Configuration
+# ---------------------------------------------------
+scrape_configs:
+
+  - job_name: express-logs
+
+    static_configs:
+      - targets: [localhost]
+
+        labels:
+          # Logical grouping of logs in Loki
+          job: express-logs
+          app: api
+
+          # Log file path pattern
+          __path__: /var/log/express/*.log
+
+    # ---------------------------------------------------
+    # Log Parsing Pipeline
+    # ---------------------------------------------------
+    pipeline_stages:
+
+      # Parse top-level JSON log
+      - json:
+          expressions:
+            level: level
+            msg: msg
+            time: time
+            req: req
+            res: res
+
+      # Parse nested request object
+      - json:
+          source: req
+          expressions:
+            ip: remoteAddress
+            method: method
+            url: url
+
+      # Parse response object
+      - json:
+          source: res
+          expressions:
+            status: statusCode
+
+      # Convert extracted fields into Loki labels
+      # (used for filtering and querying logs)
+      - labels:
+          level:
+          app:
+          ip:
+          method:
+          url:
+          status:
