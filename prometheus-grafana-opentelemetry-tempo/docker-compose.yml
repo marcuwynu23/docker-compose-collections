@@ -5,34 +5,19 @@ services:
     ports:
       - "5000:5000"
     environment:
-      OPENTELEMETRY_URL: otel-collector:4317
-    networks:
-      - monitoring
-
-  loki:
-    image: grafana/loki:2.9.8
-    container_name: loki
-    restart: unless-stopped
-    ports:
-      - "${LOKI_PORT:-3100}:3100"
-    command: -config.file=/etc/loki/loki-config.yml
+      OPENTELEMETRY_URL: http://otel-collector:4317
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4318
+      OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: http://otel-collector:4318/v1/traces
+      OTEL_EXPORTER_OTLP_PROTOCOL: http/protobuf
+      OTEL_METRICS_EXPORTER: none
+      OTEL_LOGS_EXPORTER: none
+      OTEL_LOG_LEVEL: debug
     volumes:
-      - ./loki/loki-config.yml:/etc/loki/loki-config.yml
-      - loki_data:/loki
+      - express-logs:/var/log/express
     networks:
       - monitoring
-
-  promtail:
-    image: grafana/promtail:2.9.8
-    container_name: promtail
-    restart: unless-stopped
-    command: -config.file=/etc/promtail/promtail-config.yml
-    volumes:
-      - ./promtail/promtail-config.yml:/etc/promtail/promtail-config.yml
-      - express-logs:/var/log/express:ro
-      - ./promtail/positions:/tmp
-    networks:
-      - monitoring
+    depends_on:
+      - otel-collector
 
   otel-collector:
     image: otel/opentelemetry-collector-contrib:latest
@@ -41,10 +26,13 @@ services:
     volumes:
       - ./opentelemetry/otel-config.yaml:/etc/otel-collector-config.yaml:Z
     ports:
-      - "4317:4317" # OTLP gRPC
-      - "8889:8889" # Prometheus metrics endpoint
+      - "4317:4317"
+      - "4318:4318"
+      - "8889:8889"
     networks:
       - monitoring
+    depends_on:
+      - tempo
 
   tempo:
     image: grafana/tempo:latest
@@ -54,19 +42,7 @@ services:
       - ./tempo/tempo.yaml:/etc/tempo.yaml
       - tempo_data:/tmp/tempo
     ports:
-      - "3200:3200" # Tempo API
-      - "4318:4318" # OTLP HTTP
-    networks:
-      - monitoring
-
-  prometheus:
-    image: prom/prometheus:latest
-    container_name: prometheus
-    volumes:
-      - ./prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml:Z
-      - prometheus_data:/prometheus
-    ports:
-      - "9090:9090"
+      - "3200:3200"
     networks:
       - monitoring
 
@@ -84,6 +60,9 @@ services:
       - ./grafana/provisioning:/etc/grafana/provisioning
     networks:
       - monitoring
+    depends_on:
+      - tempo
+      - otel-collector
 
 networks:
   monitoring:
@@ -91,7 +70,5 @@ networks:
 
 volumes:
   grafana_data:
-  prometheus_data:
-  loki_data:
   tempo_data:
-  express-logs:    
+  express-logs:
