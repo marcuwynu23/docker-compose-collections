@@ -1,4 +1,4 @@
-# Prometheus + Grafana (Proxmox Monitoring)
+# Grafana + Prometheus + (Proxmox Monitoring)
 
 This stack monitors Proxmox VE using Prometheus and Grafana.  
 A Proxmox exporter exposes metrics, Prometheus scrapes them, and Grafana visualizes the data.
@@ -46,7 +46,7 @@ Defaults for Grafana are shown in `.env.example`.
 From the repository root:
 
 ```bash
-cd prometheus-grafana-proxmox
+cd grafana-prometheus-proxmox
 cp .env.example .env
 # Fill in Proxmox values in .env before starting
 docker compose up -d
