@@ -5,10 +5,19 @@ services:
     ports:
       - "5000:5000"
     environment:
-      OPENTELEMETRY_URL: otel-collector:4317
+      OPENTELEMETRY_URL: http://otel-collector:4317
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4318
+      OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: http://otel-collector:4318/v1/traces
+      OTEL_EXPORTER_OTLP_PROTOCOL: http/protobuf
+      OTEL_METRICS_EXPORTER: none
+      OTEL_LOGS_EXPORTER: none
+      OTEL_LOG_LEVEL: debug
+    volumes:
+      - express-logs:/var/log/express
     networks:
       - monitoring
-
+    depends_on:
+      - otel-collector
   loki:
     image: grafana/loki:2.9.8
     container_name: loki
@@ -41,10 +50,13 @@ services:
     volumes:
       - ./opentelemetry/otel-config.yaml:/etc/otel-collector-config.yaml:Z
     ports:
-      - "4317:4317" # OTLP gRPC
-      - "8889:8889" # Prometheus metrics endpoint
+      - "4317:4317"
+      - "4318:4318"
+      - "8889:8889"
     networks:
       - monitoring
+    depends_on:
+      - tempo
 
   tempo:
     image: grafana/tempo:latest
@@ -54,8 +66,7 @@ services:
       - ./tempo/tempo.yaml:/etc/tempo.yaml
       - tempo_data:/tmp/tempo
     ports:
-      - "3200:3200" # Tempo API
-      - "4318:4318" # OTLP HTTP
+      - "3200:3200"
     networks:
       - monitoring
 
