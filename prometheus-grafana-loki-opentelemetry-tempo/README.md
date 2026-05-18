@@ -54,7 +54,7 @@ Configured directly in `docker-compose.yml`:
 From the repository root:
 
 ```bash
-cd prometheus-grafana-loki-opentelemetry-tempo
+cd grafana-prometheus-loki-opentelemetry-tempo
 docker compose up -d
 ```
 
