@@ -8,22 +8,21 @@ receivers:
 
 processors:
   batch:
+    timeout: 1s
+    send_batch_size: 1
 
 connectors:
   spanmetrics:
 
 exporters:
-  # Export traces to Jaeger
-  otlp:
-    endpoint: jaeger:4317
+  otlp/tempo:
+    endpoint: tempo:3200
     tls:
       insecure: true
 
-  # Export metrics to Prometheus
   prometheus:
     endpoint: "0.0.0.0:8889"
 
-  # Print logs/metrics/traces to console (good for debugging)
   debug:
     verbosity: detailed
 
@@ -32,7 +31,7 @@ service:
     traces:
       receivers: [otlp]
       processors: [batch]
-      exporters: [otlp, spanmetrics, debug]
+      exporters: [otlp/tempo, spanmetrics, debug]
     metrics:
       receivers: [spanmetrics]
       processors: [batch]
