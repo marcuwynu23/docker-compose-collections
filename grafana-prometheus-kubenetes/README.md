@@ -1,4 +1,4 @@
-# Prometheus + Grafana (Kubernetes Metrics)
+# Grafana + Prometheus (Kubernetes Metrics)
 
 This stack provides monitoring and visualization for Kubernetes-related metrics.  
 Prometheus collects and stores metrics, while Grafana reads from Prometheus and renders dashboards.
@@ -36,7 +36,7 @@ Set via `.env` (copy from `.env.example`):
 From the repository root:
 
 ```bash
-cd prometheus-grafana-kubenetes
+cd grafana-prometheus-kubenetes
 cp .env.example .env
 docker compose up -d
 ```
