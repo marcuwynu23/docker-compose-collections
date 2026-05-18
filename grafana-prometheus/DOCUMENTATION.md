@@ -1,13 +1,13 @@
-# Prometheus Documentation (prometheus-grafana)
+# Prometheus Documentation (grafana-prometheus)
 
-This guide explains how to use Prometheus in the `prometheus-grafana` stack, including common PromQL queries such as `up` and practical monitoring examples.
+This guide explains how to use Prometheus in the `grafana-prometheus` stack, including common PromQL queries such as `up` and practical monitoring examples.
 
 ## Access Prometheus
 
 After starting the stack:
 
 ```bash
-cd prometheus-grafana
+cd grafana-prometheus
 docker compose up -d
 ```
 
