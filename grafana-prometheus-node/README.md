@@ -1,4 +1,4 @@
-# Prometheus + Grafana + Node (VPS or VMs)
+# Grafana + Prometheus + Node (VPS or VMs)
 
 This stack provides basic monitoring and visualization using Prometheus and Grafana.
 Prometheus collects metrics and Grafana renders dashboards from Prometheus data.
@@ -56,7 +56,7 @@ Copy `.env.example` to `.env`:
 From the repository root:
 
 ```bash
-cd prometheus-grafana
+cd grafana-prometheus-node
 cp .env.example .env
 docker compose up -d
 ```
