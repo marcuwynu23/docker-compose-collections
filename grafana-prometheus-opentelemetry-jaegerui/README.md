@@ -1,4 +1,4 @@
-# Prometheus + OpenTelemetry + Jaeger UI + Grafana
+# Grafana + Prometheus + OpenTelemetry + Jaeger UI
 
 This project runs a minimal **full observability stack** with:
 
