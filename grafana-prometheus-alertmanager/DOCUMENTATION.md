@@ -1,13 +1,13 @@
-# Prometheus Documentation (prometheus-grafana)
+# Prometheus Documentation (grafana-prometheus-alertmanager)
 
-This guide explains how to use Prometheus in the `prometheus-grafana` stack, including common PromQL queries such as `up` and practical monitoring examples.
+This guide explains how to use Prometheus in the `grafana-prometheus-alertmanager` stack, including common PromQL queries such as `up` and practical monitoring examples.
 
 ## Access Prometheus
 
 After starting the stack:
 
 ```bash
-cd prometheus-grafana
+cd grafana-prometheus-alertmanager
 docker compose up -d
 ```
 

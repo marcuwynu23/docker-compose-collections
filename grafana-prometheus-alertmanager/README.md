@@ -1,4 +1,4 @@
-# Prometheus + Grafana
+# Grafana + Prometheus + AlertManager
 
 This stack provides basic monitoring and visualization using Prometheus and Grafana.  
 Prometheus collects metrics and Grafana renders dashboards from Prometheus data.
@@ -36,7 +36,7 @@ Copy `.env.example` to `.env`:
 From the repository root:
 
 ```bash
-cd prometheus-grafana
+cd grafana-prometheus-alertmanager
 cp .env.example .env
 docker compose up -d
 ```
