@@ -1,4 +1,4 @@
-# Prometheus + Grafana + KrakenD API Gateway
+# Grafana + Prometheus + KrakenD API Gateway
 
 This stack provides a production-ready API Gateway using KrakenD with observability via Prometheus and Grafana.
 
