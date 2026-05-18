@@ -94,3 +94,4 @@ volumes:
   prometheus_data:
   loki_data:
   tempo_data:
+  express-logs:    
