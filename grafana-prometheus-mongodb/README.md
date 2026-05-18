@@ -102,7 +102,7 @@ Copy `.env.example` to `.env`:
 From the repository root:
 
 ```bash
-cd prometheus-grafana
+cd grafana-prometheus-mongodb
 cp .env.example .env
 docker compose up -d
 ```
