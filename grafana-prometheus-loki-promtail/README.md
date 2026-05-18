@@ -40,7 +40,7 @@ Persistent data:
 
 ## Before you start
 
-- Install **Docker Compose** *or* **Podman + podman-compose**.
+- Install **Docker Compose** _or_ **Podman + podman-compose**.
 - Make sure your engine is running:
   - Docker Desktop: start Docker Desktop
   - Podman: `podman machine start` (if you’re using a Podman VM)
@@ -52,7 +52,7 @@ From the repository root:
 ### Docker
 
 ```bash
-cd grafana-loki-promtail
+cd grafana-prometheus-loki-promtail
 cp .env.example .env
 docker compose up -d
 ```
@@ -60,7 +60,7 @@ docker compose up -d
 ### Podman
 
 ```bash
-cd grafana-loki-promtail
+cd grafana-prometheus-loki-promtail
 cp .env.example .env
 podman compose up -d
 ```
