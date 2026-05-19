@@ -1,6 +1,7 @@
 services:
-  app:
+  application:
     image: portabase/portabase:latest
+    container_name: application
     ports:
       - '8887:80'
     environment:
@@ -10,9 +11,8 @@ services:
     volumes:
       - portabase-data:/data
     depends_on:
-      db:
+      database:
         condition: service_healthy
-    container_name: portabase-app-prod
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://localhost/api/health"]
       interval: 30s
@@ -20,8 +20,9 @@ services:
       retries: 3
       start_period: 60s
 
-  db:
+  database:
     image: postgres:16-alpine
+    container_name: database
     ports:
       - "5433:5432"
     volumes:
