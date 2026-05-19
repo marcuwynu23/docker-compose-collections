@@ -1,0 +1,59 @@
+services:
+  agent:
+    image: portabase/agent:latest
+    container_name: agent
+    volumes:
+      - ./databases.json:/config/config.json
+    environment:
+      LOG: info
+      TTZ: "Asia/Manila"
+      EDGE_KEY: "eyJzZXJ2ZXJVcmwiOiJodHRwOi8vbG9jYWxob3N0Ojg4ODciLCJhZ2VudElkIjoiMzZkNjY4ZmUtNTc1Ny00ZTIzLTkzN2QtYTA5ZDY0NWI3ZTdkIiwibWFzdGVyS2V5QjY0IjoiSVpSZW5SVkJyTTVYY25tRy9iTllBS2tsdjI1cWlCdjI1bGdkU1ZJLzhwbz0ifQ=="
+    extra_hosts:
+      - "localhost:host-gateway"
+    networks:
+      - portabase
+
+  db-mongodb-auth:
+    container_name: db-mongodb-auth
+    image: mongo:latest
+    ports:
+      - "27082:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+      MONGO_INITDB_DATABASE: testdbauth
+    command: mongod --auth
+    networks:
+      - portabase
+    volumes:
+      - mongodb-data-auth:/data/db
+    healthcheck:
+      test: [ "CMD", "mongo", "--eval", "db.adminCommand('ping')" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  db-mongodb:
+    container_name: db-mongodb
+    image: mongo:latest
+    ports:
+      - "27083:27017"
+    volumes:
+      - mongodb-data:/data/db
+    healthcheck:
+      test: [ "CMD", "mongosh", "--eval", "db.adminCommand('ping')" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    environment:
+      MONGO_INITDB_DATABASE: testdb
+    networks:
+      - portabase
+
+volumes:
+  mongodb-data:
+  mongodb-data-auth:
+
+networks:
+  portabase:
+    driver: bridge
