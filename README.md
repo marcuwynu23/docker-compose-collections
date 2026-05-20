@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./banner.jpg" alt="Docker Compose Collections" style="width: 100%; max-width: 1200px;" />
+</p>
+
 <h1 align="center">Docker Compose Collections</h1>
 
 <p align="center">
