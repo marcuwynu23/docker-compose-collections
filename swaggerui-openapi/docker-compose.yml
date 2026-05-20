@@ -1,0 +1,37 @@
+
+services:
+  fileuploader:
+    image: ghcr.io/marcuwynu23/bucket-fileuploader:latest
+    container_name: fileuploader
+    environments:
+      BASE_URL: http://localhost:2424
+      ROUTE_PREFIX: /api/fileuploader
+      STORAGE_ENDPOINT: <storage endpoint>
+      STORAGE_ACCESS_KEY: admin
+      STORAGE_SECRET_KEY: admin123
+      STORAGE_BUCKET: fileuploads
+      FLASK_DEBUG: "true"
+    ports:
+      - 2424:2424
+
+  swagger-spec:
+    image: nginx:alpine
+    container_name: swagger_spec
+    restart: unless-stopped
+    volumes:
+      - ./specs:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "8081:80"
+
+  swagger:
+    image: swaggerapi/swagger-ui:latest
+    container_name: swagger_ui
+    restart: unless-stopped
+    depends_on:
+      - swagger-spec
+    environment:
+      URLS: "[{url:'http://localhost:8081/fileuploader.yaml',name:'File Uploader API'}]"
+      URLS_PRIMARY_NAME: "File Uploader API"
+    ports:
+      - "2425:8080"
