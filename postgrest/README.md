@@ -1,113 +1,110 @@
 # PostgREST
 
-**Overview**
+PostgREST exposes a PostgreSQL schema as a RESTful API, enabling direct HTTP access to your database without writing backend code.
+Clients send HTTP requests to PostgREST, which translates them into SQL queries and returns the results as JSON.
 
-- **Description**: PostgREST exposes a PostgreSQL schema as a RESTful API using the `postgrest` image.
-- **Purpose**: Example compose stack with a Postgres DB, PostgREST API and Swagger UI.
+## How PostgREST works
 
-**Files**
+1. Clients send HTTP requests (GET, POST, PATCH, DELETE) to the PostgREST API.
+2. PostgREST translates requests into SQL and executes them against PostgreSQL.
+3. Results are returned as JSON to the client.
+4. Swagger UI provides interactive API documentation and testing.
 
-- **Compose**: [postgrest/docker-compose.yml](postgrest/docker-compose.yml#L1-L40)
-- **Init SQL**: [postgrest/init.sql](postgrest/init.sql#L1-L200)
+```mermaid
+flowchart LR
+	Client["Client\n(curl / browser)"] -->|Open UI| Swagger["Swagger UI\nhttp://localhost:8080"]
+	Client -->|HTTP requests| PostgREST["PostgREST API\nhttp://localhost:3000"]
+	Swagger -->|API docs| PostgREST
+	PostgREST -->|SQL queries| DB["Postgres DB\npostgres:5432"]
+	Init["init.sql\n(seeds api.todos)"] -->|Seeds schema| DB
+```
 
-**Ports**
-
-- **Postgres**: `5432` (host -> container)
-- **PostgREST API**: `3000` (host -> container)
-- **Swagger UI**: `8080` (host -> container)
-
-**Quick start**
-PostgREST
-========
-
-PostgREST example stack (Postgres + PostgREST + Swagger UI).
-
-Overview
-
-- Exposes PostgreSQL schema `api` as a REST API using PostgREST.
-
-Stack details
+## Stack details in this repo
 
 - Image: `postgres:16-alpine`, container: `postgres_db`
 - Image: `postgrest/postgrest:v12.2.3`, container: `postgrest_api`
 - Image: `swaggerapi/swagger-ui:latest`, container: `swagger_ui`
+- Postgres port: `5432`
+- PostgREST API: `http://<host-ip>:3000`
+- Swagger UI: `http://<host-ip>:8080`
 
-Ports
+## Environment variables
 
-- Postgres: `5432`
-- PostgREST: `3000`
-- Swagger UI: `8080`
+Set via `docker-compose.yml`:
 
-Environment variables (see `docker-compose.yml`)
+- `POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD` — database credentials
+- `PGRST_DB_URI` — PostgREST connection string to Postgres
+- `PGRST_DB_SCHEMA` — schema to expose (default: `api`)
+- `PGRST_DB_ANON_ROLE` — role used for anonymous requests
 
-- `POSTGRES_DB`, `POSTGRES_USER`, `POSTGRES_PASSWORD` — DB credentials
-- `PGRST_DB_URI`, `PGRST_DB_SCHEMA`, `PGRST_DB_ANON_ROLE` — PostgREST config
+## How to run
 
-How to run
+From the repository root:
 
 ```bash
 cd postgrest
 docker compose up -d
 ```
 
-Open
+Open:
 
-- Swagger UI: http://localhost:8080
-- PostgREST API: http://localhost:3000
+- Swagger UI: `http://localhost:8080`
+- PostgREST API: `http://localhost:3000`
 
-Test with curl (CRUD)
-Base URL: http://localhost:3000
-
-- Create (POST)
+Useful commands:
 
 ```bash
-curl -s -X POST "http://localhost:3000/todos" \
-	-H "Content-Type: application/json" \
-	-H "Prefer: return=representation" \
-	-d '{"task":"Buy milk","done":false}' | jq
+docker compose ps
+docker compose logs -f postgrest_api
+docker compose restart postgrest_api
+docker compose down
 ```
 
-- Read all (GET)
+## Use it effectively
 
-```bash
-curl -s "http://localhost:3000/todos" | jq
-```
+Test with curl (base URL: `http://localhost:3000`):
 
-- Read single (GET)
+- **Create** (POST):
 
-```bash
-curl -s "http://localhost:3000/todos?id=eq.1" | jq
-```
+  ```bash
+  curl -s -X POST "http://localhost:3000/todos" \
+    -H "Content-Type: application/json" \
+    -H "Prefer: return=representation" \
+    -d '{"task":"Buy milk","done":false}' | jq
+  ```
 
-- Update (PATCH)
+- **Read all** (GET):
 
-```bash
-curl -s -X PATCH "http://localhost:3000/todos?id=eq.1" \
-	-H "Content-Type: application/json" \
-	-H "Prefer: return=representation" \
-	-d '{"done":true}' | jq
-```
+  ```bash
+  curl -s "http://localhost:3000/todos" | jq
+  ```
 
-- Delete (DELETE)
+- **Read single** (GET):
 
-```bash
-curl -s -X DELETE "http://localhost:3000/todos?id=eq.1"
-```
+  ```bash
+  curl -s "http://localhost:3000/todos?id=eq.1" | jq
+  ```
 
-Useful commands
+- **Update** (PATCH):
 
-- `docker compose ps`
-- `docker compose logs -f postgrest_api`
-- `docker compose restart postgrest_api`
-- `docker compose down`
+  ```bash
+  curl -s -X PATCH "http://localhost:3000/todos?id=eq.1" \
+    -H "Content-Type: application/json" \
+    -H "Prefer: return=representation" \
+    -d '{"done":true}' | jq
+  ```
 
-Notes
+- **Delete** (DELETE):
+  ```bash
+  curl -s -X DELETE "http://localhost:3000/todos?id=eq.1"
+  ```
 
-- `init.sql` seeds `api.todos` and grants `anon` read/write access.
-- Change DB passwords before exposing services externally.
+## Notes
 
-References
+- `init.sql` seeds the `api.todos` table and grants `anon` read/write access.
+- Change default DB credentials before exposing services externally.
+- PostgREST docs: https://postgrest.org
 
-- https://postgrest.org
-  **References**
+## References
+
 - PostgREST docs: https://postgrest.org
