@@ -66,19 +66,20 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [adminer](./adminer)
 - [couchdb](./couchdb)
 - [documentdb](./documentdb)
-- [elasticsearch](./elasticsearch)
-- [elasticsearch-kibana-filebeat](./elasticsearch-kibana-filebeat)
-- [kafka](./kafka)
 - [meilisearch](./meilisearch)
 - [miniio](./miniio)
 - [mongodb-replicaset](./mongodb-replicaset)
 - [mongodb-sharding-cluster](./mongodb-sharding-cluster)
 - [parse-server+mongodb](./parse-server+mongodb)
 - [postgrest](./postgrest)
-- [pulsar](./pulsar)
-- [rabbitmq](./rabbitmq)
 - [redis](./redis)
 - [supabase](./supabase)
+
+### Message Brokers & Queuing
+
+- [kafka](./kafka)
+- [pulsar](./pulsar)
+- [rabbitmq](./rabbitmq)
 
 ### Development Tools
 
@@ -97,27 +98,32 @@ Each folder contains a service stack you can run quickly and customize for your 
 ### Infrastructure & Security
 
 - [authentik](./authentik)
-- [caddy](./caddy)
 - [dvwa](./dvwa)
-- [envoy](./envoy)
-- [haproxy](./haproxy)
 - [juice-shop](./juice-shop)
 - [keycloak](./keycloak)
-- [kong](./kong)
-- [krakend](./krakend)
 - [nessus](./nessus)
-- [nginx-proxy-manager](./nginx-proxy-manager)
 - [pihole](./pihole)
 - [portainer](./portainer)
-- [traefik](./traefik)
 - [trivy](./trivy)
 - [snyk](./snyk)
 - [vault](./vault)
+
+### Load Balancers & Reverse Proxies
+
+- [caddy](./caddy)
+- [envoy](./envoy)
+- [haproxy](./haproxy)
+- [kong](./kong)
+- [krakend](./krakend)
+- [nginx-proxy-manager](./nginx-proxy-manager)
+- [traefik](./traefik)
 
 ### Monitoring & Observability
 
 - [alertmanager](./alertmanager)
 - [dozzle](./dozzle)
+- [elasticsearch](./elasticsearch)
+- [elasticsearch-kibana-filebeat](./elasticsearch-kibana-filebeat)
 - [fluentbit](./fluentbit)
 - [grafana-opentelemetry-tempo](./grafana-opentelemetry-tempo)
 - [grafana-prometheus](./grafana-prometheus)
