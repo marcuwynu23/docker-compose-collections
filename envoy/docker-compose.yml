@@ -1,0 +1,17 @@
+services:
+  envoy:
+    image: envoyproxy/envoy:v1.30-latest
+    container_name: envoy
+    ports:
+      - "8080:8080"
+      - "9901:9901"
+    volumes:
+      - ./envoy/envoy.yaml:/etc/envoy/envoy.yaml:ro
+    command: >
+      envoy -c /etc/envoy/envoy.yaml
+
+  app:
+    image: ghcr.io/marcuwynu23/express-typescript-sample:latest
+    container_name: app
+    expose:
+      - "5000"
