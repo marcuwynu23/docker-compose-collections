@@ -1,0 +1,27 @@
+services:
+  pulsar:
+    image: apachepulsar/pulsar:3.3.0
+    container_name: pulsar
+    command: bin/pulsar standalone
+    ports:
+      - "${PULSAR_BROKER_PORT:-6650}:6650"
+      - "${PULSAR_HTTP_PORT:-8080}:8080"
+    volumes:
+      - pulsar_data:/pulsar/data
+      - pulsar_conf:/pulsar/conf
+    restart: unless-stopped
+
+  pulsar-manager:
+    image: apachepulsar/pulsar-manager:latest
+    container_name: pulsar-manager
+    ports:
+      - "${PULSAR_MANAGER_PORT:-9527}:9527"
+    environment:
+      - SPRING_CONFIGURATION_FILE=/pulsar-manager/pulsar-manager/application.properties
+    depends_on:
+      - pulsar
+    restart: unless-stopped
+
+volumes:
+  pulsar_data:
+  pulsar_conf:
