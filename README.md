@@ -92,10 +92,13 @@ Each folder contains a service stack you can run quickly and customize for your 
 ### Infrastructure & Security
 
 - [authentik](./authentik)
+- [caddy](./caddy)
 - [dvwa](./dvwa)
 - [envoy](./envoy)
+- [haproxy](./haproxy)
 - [juice-shop](./juice-shop)
 - [keycloak](./keycloak)
+- [kong](./kong)
 - [krakend](./krakend)
 - [nessus](./nessus)
 - [nginx-proxy-manager](./nginx-proxy-manager)
