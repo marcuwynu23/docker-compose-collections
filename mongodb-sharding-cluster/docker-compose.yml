@@ -1,0 +1,101 @@
+version: "3.8"
+
+services:
+  # =========================
+  # CONFIG SERVER REPLICA SET
+  # =========================
+  configsvr1:
+    image: mongo:7
+    command: ["mongod", "--configsvr", "--replSet", "csrs", "--port", "27017", "--bind_ip_all"]
+    volumes: [ "cfg1:/data/db" ]
+
+  configsvr2:
+    image: mongo:7
+    command: ["mongod", "--configsvr", "--replSet", "csrs", "--port", "27017", "--bind_ip_all"]
+    volumes: [ "cfg2:/data/db" ]
+
+  configsvr3:
+    image: mongo:7
+    command: ["mongod", "--configsvr", "--replSet", "csrs", "--port", "27017", "--bind_ip_all"]
+    volumes: [ "cfg3:/data/db" ]
+
+  # =========================
+  # SHARD 1 REPLICA SET
+  # =========================
+  shard1a:
+    image: mongo:7
+    command: ["mongod", "--shardsvr", "--replSet", "shard1", "--port", "27017", "--bind_ip_all"]
+    volumes: [ "s1a:/data/db" ]
+
+  shard1b:
+    image: mongo:7
+    command: ["mongod", "--shardsvr", "--replSet", "shard1", "--port", "27017", "--bind_ip_all"]
+    volumes: [ "s1b:/data/db" ]
+
+  shard1c:
+    image: mongo:7
+    command: ["mongod", "--shardsvr", "--replSet", "shard1", "--port", "27017", "--bind_ip_all"]
+    volumes: [ "s1c:/data/db" ]
+
+  # =========================
+  # MONGOS ROUTER
+  # =========================
+  mongos:
+    image: mongo:7
+    depends_on:
+      - configsvr1
+      - configsvr2
+      - configsvr3
+      - shard1a
+      - shard1b
+      - shard1c
+    command: >
+      mongos
+      --configdb csrs/configsvr1:27017,configsvr2:27017,configsvr3:27017
+      --bind_ip_all
+    ports:
+      - "27017:27017"
+
+  # =========================
+  # INIT CONTAINER (auto setup)
+  # =========================
+  init:
+    image: mongo:7
+    depends_on:
+      - mongos
+    restart: "no"
+    entrypoint: >
+      bash -c "echo 'Waiting for services...' &&
+      sleep 10 &&
+      echo 'Init config replica set' &&
+      mongosh --host configsvr1:27017 --eval 'rs.initiate({
+        _id: \"csrs\",
+        configsvr: true,
+        members: [
+          { _id: 0, host: \"configsvr1:27017\" },
+          { _id: 1, host: \"configsvr2:27017\" },
+          { _id: 2, host: \"configsvr3:27017\" }
+        ]
+      })' &&
+      echo 'Init shard replica set' &&
+      mongosh --host shard1a:27017 --eval 'rs.initiate({
+        _id: \"shard1\",
+        members: [
+          { _id: 0, host: \"shard1a:27017\" },
+          { _id: 1, host: \"shard1b:27017\" },
+          { _id: 2, host: \"shard1c:27017\" }
+        ]
+      })' &&
+      echo 'Add shard to cluster' &&
+      mongosh --host mongos:27017 --eval 'sh.addShard(\"shard1/shard1a:27017,shard1b:27017,shard1c:27017\")' &&
+      echo 'Enable sharding on DB' &&
+      mongosh --host mongos:27017 --eval 'sh.enableSharding(\"appdb\")' &&
+      echo 'Sharded cluster ready!'"
+
+volumes:
+  cfg1:
+  cfg2:
+  cfg3:
+  s1a:
+  s1b:
+  s1c:
