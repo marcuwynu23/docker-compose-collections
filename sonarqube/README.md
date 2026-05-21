@@ -5,6 +5,14 @@ It helps detect bugs, code smells, and vulnerabilities, and provides quality gat
 
 ## How it works
 
+```mermaid
+flowchart LR
+    CI([CI / Scanner]) --> SQ[SonarQube :9000]
+    SQ --> PG[(PostgreSQL)]
+    Dev([Developer]) -->|:9000| SQ
+    SQ --> QG[Quality Gate]
+```
+
 1. SonarQube runs the web UI and analysis backend.
 2. PostgreSQL stores SonarQube metadata (projects, issues, users, settings).
 3. Your CI (or local scanner) sends analysis results to SonarQube.

@@ -5,6 +5,14 @@ Producers publish messages to topics, and consumers subscribe to topics to proce
 
 ## How Kafka works
 
+```mermaid
+flowchart LR
+    Producer([Producer]) -->|:9092| Broker[Kafka Broker]
+    Broker --> Topic[Topics / Partitions]
+    Topic --> Consumer([Consumer])
+    Admin([Admin]) -->|:8080| UI[Kafka UI]
+```
+
 1. Producers publish messages to Kafka topics.
 2. Kafka stores messages in partitions across brokers for scalability and fault tolerance.
 3. Consumers subscribe to topics and process messages from partitions.

@@ -18,7 +18,13 @@ This setup runs Bugzilla using Docker with a MySQL backend.
 
 ---
 
-## How Bugzilla works
+## How it works
+
+```mermaid
+flowchart LR
+    User([User]) -->|:8080| Bugzilla[Bugzilla Web]
+    Bugzilla --> DB[(MySQL)]
+```
 
 1. User opens the Bugzilla web interface in the browser.
 2. Bugzilla connects to a MySQL database container.

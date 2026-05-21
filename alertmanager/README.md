@@ -4,6 +4,14 @@ This stack provides Prometheus Alertmanager, which handles alert grouping, dedup
 
 ## How it works
 
+```mermaid
+flowchart LR
+    Prometheus([Prometheus]) -->|alerts| AM[Alertmanager :9093]
+    AM --> Email[Email]
+    AM --> Slack[Slack]
+    AM --> Webhook[Webhook]
+```
+
 1. `alertmanager` loads routing config from `alertmanager/alertmanager.yml`.
 2. Prometheus sends firing alerts to Alertmanager.
 3. Alertmanager groups alerts and forwards them to configured receivers (email, Slack, webhook, etc.).

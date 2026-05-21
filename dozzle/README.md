@@ -2,7 +2,14 @@
 
 Dozzle is a lightweight web UI for live container logs.
 
-## Stack details
+## How it works
+
+```mermaid
+flowchart LR
+    User([User]) -->|:8088| Dozzle[Dozzle UI]
+    Dozzle --> Socket[Docker Socket]
+    Socket --> Containers[Container Logs]
+```
 
 - Image: `amir20/dozzle:latest`
 - UI: `http://<host-ip>:8088`

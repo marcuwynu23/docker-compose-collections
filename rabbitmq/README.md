@@ -5,6 +5,14 @@ Producers publish messages to queues/exchanges, and consumers receive/process th
 
 ## How RabbitMQ works
 
+```mermaid
+flowchart LR
+    Producer([Producer]) -->|:5672| Exchange[Exchange]
+    Exchange --> Queue[Queue]
+    Queue --> Consumer([Consumer])
+    Admin([Admin]) -->|:15672| UI[Management UI]
+```
+
 1. Producers publish messages to RabbitMQ.
 2. RabbitMQ routes messages to queues based on exchange/binding rules.
 3. Consumers subscribe to queues and process messages.

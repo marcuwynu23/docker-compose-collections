@@ -4,6 +4,12 @@ Adminer is a lightweight web-based database management tool that supports MySQL,
 
 ## How it works
 
+```mermaid
+flowchart LR
+    User([User]) -->|:8081| Adminer[Adminer UI]
+    Adminer --> DB[(Database Server)]
+```
+
 1. Adminer runs as a single web application container.
 2. You open the Adminer UI and provide DB connection details.
 3. Adminer connects directly to your database server.

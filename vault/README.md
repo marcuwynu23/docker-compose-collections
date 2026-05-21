@@ -4,6 +4,14 @@ Vault is a secrets management and data protection platform for securely storing 
 
 ## How it works
 
+```mermaid
+flowchart LR
+    App([Application]) -->|token request| Vault[Vault :18200]
+    Vault --> Secrets[(Secret Store)]
+    Vault --> Policy[Access Policies]
+    CLI([vault CLI]) --> Vault
+```
+
 1. Vault starts as a secure secrets API service.
 2. Applications authenticate to Vault using supported auth methods.
 3. Vault enforces policy-based access control for secrets.

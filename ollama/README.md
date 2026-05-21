@@ -5,6 +5,12 @@ This stack starts the Ollama server and persists downloaded models.
 
 ## How it works
 
+```mermaid
+flowchart LR
+    Client([Client]) -->|:11434| Ollama[Ollama API]
+    Ollama --> Models[(./data models)]
+```
+
 1. `ollama serve` starts the inference API on port `11434`.
 2. Models are stored in the mounted `./data` directory.
 3. Clients call `/api/generate` or `/api/chat` to run prompts.

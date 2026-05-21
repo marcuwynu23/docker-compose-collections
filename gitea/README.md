@@ -5,6 +5,14 @@ This stack runs a single Gitea server with persistent storage.
 
 ## How it works
 
+```mermaid
+flowchart LR
+    User([User]) -->|:3000| Gitea[Gitea Web]
+    Dev([Developer]) -->|:2222| SSH[Gitea SSH]
+    Gitea --> Data[(./data/gitea)]
+    SSH --> Data
+```
+
 1. Gitea service starts and exposes web + SSH endpoints.
 2. Repository data and configuration are stored under `./data/gitea`.
 3. Users interact via browser (UI/API) or git over SSH/HTTP.

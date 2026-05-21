@@ -5,6 +5,14 @@ Instead of installing ad blockers on every device, you point your devices/router
 
 ## How Pi-hole works
 
+```mermaid
+flowchart LR
+    Device([Device]) -->|:53| PiHole[Pi-hole DNS]
+    PiHole -->|blocked| Null[Block Response]
+    PiHole -->|allowed| Upstream[Upstream DNS]
+    Admin([Admin]) -->|:8080| UI[Pi-hole Admin]
+```
+
 1. A device asks for a domain (for example, `ads.example.com`).
 2. Pi-hole checks its blocklists.
 3. If the domain is blocked, Pi-hole returns a non-routable/empty response.

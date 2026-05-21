@@ -5,6 +5,13 @@ This setup runs Activepieces with Redis and PostgreSQL dependencies.
 
 ## How it works
 
+```mermaid
+flowchart LR
+    User([User]) -->|:8080| AP[Activepieces]
+    AP --> Redis[(Redis)]
+    AP --> PG[(PostgreSQL)]
+```
+
 1. Redis provides cache/queue support.
 2. PostgreSQL stores application/workflow data.
 3. Activepieces starts after both dependencies are healthy.

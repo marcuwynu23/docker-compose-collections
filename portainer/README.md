@@ -5,6 +5,15 @@ It provides a dashboard to view containers, images, volumes, networks, stacks, a
 
 ## How Portainer works
 
+```mermaid
+flowchart LR
+    Admin([Admin]) -->|:9443| Portainer[Portainer UI]
+    Portainer --> Docker[Docker Engine]
+    Docker --> Containers[Containers]
+    Docker --> Volumes[Volumes]
+    Docker --> Networks[Networks]
+```
+
 1. The Portainer container starts and connects to your local Docker Engine through `docker.sock`.
 2. It reads container/runtime state from Docker and shows it in the web UI.
 3. Actions from the UI (start/stop/redeploy/remove) are sent back to Docker via that socket.

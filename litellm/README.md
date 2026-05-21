@@ -4,6 +4,16 @@ This stack provides a local LLM gateway using LiteLLM (OpenAI-compatible API) an
 
 ## How it works
 
+```mermaid
+flowchart LR
+    Client([Client]) -->|:4000| LiteLLM[LiteLLM Proxy]
+    LiteLLM --> OpenAI[OpenAI]
+    LiteLLM --> Anthropic[Anthropic]
+    LiteLLM --> Other[Other Providers]
+    User([User]) -->|:8080| WebUI[Open WebUI]
+    WebUI --> LiteLLM
+```
+
 1. `litellm` runs the LiteLLM proxy and exposes an OpenAI-compatible API (Chat Completions, etc.).
 2. `open-webui` is a web UI that connects to LiteLLM using the OpenAI API format.
 3. Provider API keys (OpenAI/Anthropic/etc.) are passed to LiteLLM via environment variables and referenced in `litellm_config.yaml`.

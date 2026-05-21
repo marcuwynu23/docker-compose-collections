@@ -4,6 +4,14 @@ Trivy is an open-source vulnerability scanner for container images and filesyste
 
 ## How it works
 
+```mermaid
+flowchart LR
+    Client([Client]) -->|:4954| Trivy[Trivy Server]
+    Trivy --> VulnDB[(Vulnerability DB)]
+    User([User]) -->|:8085| UI[Trivy Web UI]
+    UI --> Trivy
+```
+
 1. Trivy server runs as a long-lived scanner API.
 2. Trivy UI provides a browser-based interface for scanning.
 3. Vulnerability DB/cache is stored in persistent volume.

@@ -4,6 +4,15 @@ authentik is an open-source identity provider (IdP) and SSO platform for applica
 
 ## How it works
 
+```mermaid
+flowchart LR
+    User([User]) -->|:9001| Server[authentik Server]
+    Server --> Worker[authentik Worker]
+    Server --> PG[(PostgreSQL)]
+    Server --> Redis[(Redis)]
+    App([Application]) -->|OIDC/SAML| Server
+```
+
 1. `authentik-server` provides the UI/API.
 2. `authentik-worker` runs background jobs and outposts.
 3. PostgreSQL stores configuration and identity data.

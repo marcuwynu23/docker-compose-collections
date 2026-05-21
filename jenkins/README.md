@@ -5,6 +5,14 @@ This setup runs a Jenkins controller with persistent home data and Docker access
 
 ## How it works
 
+```mermaid
+flowchart LR
+    Dev([Developer]) -->|:8082| Jenkins[Jenkins UI]
+    Jenkins --> Docker[Docker Engine]
+    Jenkins --> Data[(./data)]
+    Agent([Agent]) -->|:50000| Jenkins
+```
+
 1. Jenkins container starts and serves the web UI.
 2. Pipeline/job configuration is stored in mounted `./data`.
 3. Jenkins can run Docker-based builds through mounted `docker.sock`.

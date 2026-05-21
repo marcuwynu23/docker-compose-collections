@@ -4,6 +4,15 @@ Nginx Proxy Manager is a web-based reverse proxy manager for routing domains to 
 
 ## How it works
 
+```mermaid
+flowchart LR
+    Client([Client]) -->|:80/:443| NPM[Nginx Proxy Manager]
+    NPM --> Service1[Service A]
+    NPM --> Service2[Service B]
+    NPM --> LE[LetsEncrypt]
+    Admin([Admin]) -->|:81| NPM
+```
+
 1. Nginx Proxy Manager exposes HTTP/HTTPS entrypoints.
 2. You configure proxy hosts from the admin UI.
 3. Requests are routed to target services/containers.

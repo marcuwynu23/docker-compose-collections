@@ -4,6 +4,12 @@ code-server runs VS Code in the browser for remote development.
 
 ## How it works
 
+```mermaid
+flowchart LR
+    Dev([Developer]) -->|:8449| CS[code-server]
+    CS --> Config[(config volume)]
+```
+
 1. The container starts a web-based VS Code server.
 2. You authenticate using the configured password.
 3. Projects are stored in the mounted `config` volume.

@@ -5,6 +5,14 @@ It integrates into your workflow to find and fix issues early.
 
 ## How Snyk works
 
+```mermaid
+flowchart LR
+    Project([Project Files]) --> Snyk[Snyk Scanner]
+    Docker([Docker Images]) --> Snyk
+    Snyk -->|API| Cloud[Snyk Platform]
+    Cloud --> Report[Vulnerability Report]
+```
+
 1. Snyk authenticates using your personal or service account token.
 2. It scans your project files, container images, or IaC configs for known vulnerabilities.
 3. Results are reported with severity, affected package, and remediation advice.

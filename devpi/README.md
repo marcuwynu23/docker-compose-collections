@@ -4,6 +4,15 @@ devpi is a private Python package index and caching proxy for PyPI.
 
 ## How it works
 
+```mermaid
+flowchart LR
+    Dev([Developer]) -->|pip install| Devpi[devpi :3141]
+    Devpi -->|cache/proxy| PyPI[Public PyPI]
+    Devpi --> Storage[(./data)]
+    CI([CI/CD]) -->|pip install| Devpi
+    Dev -->|twine upload| Devpi
+```
+
 1. devpi-server starts and serves package index APIs.
 2. You can mirror public PyPI packages and host private packages.
 3. Python clients install/publish packages through devpi endpoints.

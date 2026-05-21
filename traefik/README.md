@@ -4,6 +4,15 @@ Traefik is a modern reverse proxy and ingress controller with automatic service 
 
 ## How it works
 
+```mermaid
+flowchart LR
+    Client([Client]) -->|:80/:443| Traefik[Traefik]
+    Traefik -->|auto-discovery| Docker[Docker / Podman]
+    Traefik --> ServiceA[Service A]
+    Traefik --> ServiceB[Service B]
+    Admin([Admin]) -->|:8080| Dashboard[Traefik Dashboard]
+```
+
 1. Traefik watches Docker/Podman labels on running containers.
 2. Routes are created dynamically based on labels.
 3. HTTP/HTTPS traffic is forwarded to target services.

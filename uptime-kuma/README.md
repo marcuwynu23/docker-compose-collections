@@ -5,6 +5,15 @@ Use it to monitor websites, APIs, TCP ports, DNS, and other services.
 
 ## How it works
 
+```mermaid
+flowchart LR
+    User([User]) -->|:3001| Kuma[Uptime Kuma]
+    Kuma --> HTTP[HTTP Checks]
+    Kuma --> TCP[TCP Checks]
+    Kuma --> Ping[Ping Checks]
+    Kuma --> Alerts[Alert Channels]
+```
+
 1. Uptime Kuma starts a web interface and monitoring scheduler.
 2. You add monitors (HTTP, ping, TCP, etc.) from the UI.
 3. Kuma runs checks at configured intervals.

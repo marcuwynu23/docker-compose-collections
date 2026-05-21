@@ -4,6 +4,12 @@ DVWA is a PHP/MySQL web application that is damn vulnerable. Its main goals are 
 
 ## How it works
 
+```mermaid
+flowchart LR
+    User([User]) -->|:8080| DVWA[DVWA Web]
+    DVWA --> DB[(MySQL)]
+```
+
 1 The DVWA container and its required MySQL database start.
 
 2. The web interface is exposed on port 8080.

@@ -5,6 +5,14 @@ It is simple to run for local automation and testing workflows.
 
 ## How it works
 
+```mermaid
+flowchart LR
+    User([User]) -->|:5678| N8N[n8n]
+    N8N --> Webhooks[Webhooks]
+    N8N --> Data[(SQLite)]
+    N8N --> Services[External Services]
+```
+
 1. n8n container starts and loads config from environment variables.
 2. Workflow/editor service is exposed on port `5678`.
 3. Data is persisted in mounted n8n storage volume.

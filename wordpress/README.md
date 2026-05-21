@@ -4,6 +4,12 @@ This setup runs a single-node WordPress instance paired with a MySQL 8 database 
 
 ## How it works
 
+```mermaid
+flowchart LR
+    User([User]) -->|:8080| WP[WordPress]
+    WP --> DB[(MySQL)]
+```
+
 1. The db container initializes the MySQL database.
 
 2. The wordpress container starts and waits for the database to be ready.

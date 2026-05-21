@@ -5,6 +5,12 @@ This setup runs a single-node Elasticsearch instance for local/dev usage.
 
 ## How it works
 
+```mermaid
+flowchart LR
+    Client([Client]) -->|:9200| ES[Elasticsearch]
+    ES --> Index[(Index Data)]
+```
+
 1. Elasticsearch node starts with configuration from environment variables.
 2. HTTP API is exposed on port `9200`.
 3. Transport port `9300` is available for node communication use cases.
