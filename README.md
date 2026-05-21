@@ -41,6 +41,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 
 ### CI/CD & DevOps
 
+- [floci](./floci)
 - [gitea](./gitea)
 - [gitea+jenkins](./gitea+jenkins)
 - [jenkins](./jenkins)
@@ -64,8 +65,10 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [couchdb](./couchdb)
 - [elasticsearch](./elasticsearch)
 - [elasticsearch-kibana-filebeat](./elasticsearch-kibana-filebeat)
+- [kafka](./kafka)
 - [miniio](./miniio)
 - [parse-server+mongodb](./parse-server+mongodb)
+- [postgrest](./postgrest)
 - [rabbitmq](./rabbitmq)
 - [supabase](./supabase)
 
@@ -73,9 +76,12 @@ Each folder contains a service stack you can run quickly and customize for your 
 
 - [code-server](./code-server)
 - [devpi](./devpi)
+- [it-tools](./it-tools)
 - [jmeter](./jmeter)
 - [localstack](./localstack)
+- [portabase](./portabase)
 - [registry](./registry)
+- [swaggerui-openapi](./swaggerui-openapi)
 - [verdaccio](./verdaccio)
 - [xampp](./xampp)
 
@@ -91,21 +97,24 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [portainer](./portainer)
 - [traefik](./traefik)
 - [trivy](./trivy)
+- [snyk](./snyk)
 - [vault](./vault)
 
 ### Monitoring & Observability
 
 - [alertmanager](./alertmanager)
 - [dozzle](./dozzle)
-- [prometheus-grafana](./prometheus-grafana)
-- [prometheus-grafana-alertmanager](./prometheus-grafana-alertmanager)
-- [prometheus-grafana-krakend](./prometheus-grafana-krakend)
-- [prometheus-grafana-kubenetes](./prometheus-grafana-kubenetes)
-- [prometheus-grafana-loki-promtail](./prometheus-grafana-loki-promtail)
-- [prometheus-grafana-mongodb](./prometheus-grafana-mongodb)
-- [prometheus-grafana-node](./prometheus-grafana-node)
-- [prometheus-grafana-opentelemetry-jaegerui](./prometheus-grafana-opentelemetry-jaegerui)
-- [prometheus-grafana-proxmox](./prometheus-grafana-proxmox)
+- [grafana-opentelemetry-tempo](./grafana-opentelemetry-tempo)
+- [grafana-prometheus](./grafana-prometheus)
+- [grafana-prometheus-alertmanager](./grafana-prometheus-alertmanager)
+- [grafana-prometheus-krakend](./grafana-prometheus-krakend)
+- [grafana-prometheus-kubenetes](./grafana-prometheus-kubenetes)
+- [grafana-prometheus-loki-opentelemetry-tempo](./grafana-prometheus-loki-opentelemetry-tempo)
+- [grafana-prometheus-loki-promtail](./grafana-prometheus-loki-promtail)
+- [grafana-prometheus-mongodb](./grafana-prometheus-mongodb)
+- [grafana-prometheus-node](./grafana-prometheus-node)
+- [grafana-prometheus-opentelemetry-jaegerui](./grafana-prometheus-opentelemetry-jaegerui)
+- [grafana-prometheus-proxmox](./grafana-prometheus-proxmox)
 - [uptime-kuma](./uptime-kuma)
 
 ### Other Services
