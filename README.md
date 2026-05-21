@@ -54,8 +54,10 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [atlassian-jira](./atlassian-jira)
 - [bitbucket](./bitbucket)
 - [bugzilla](./bugzilla)
+- [mattermost](./mattermost)
 - [openproject](./openproject)
 - [plane](./plane)
+- [rocket-chat](./rocket-chat)
 - [taiga](./taiga)
 - [twake](./twake)
 
