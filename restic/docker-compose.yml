@@ -1,0 +1,16 @@
+services:
+  restic:
+    image: restic/restic:latest
+    container_name: restic
+    hostname: restic
+    environment:
+      - RESTIC_REPOSITORY=${RESTIC_REPOSITORY:-/repo}
+      - RESTIC_PASSWORD=${RESTIC_PASSWORD:-changeme}
+    volumes:
+      - ./data:/data:ro
+      - restic_repo:/repo
+    entrypoint: ["restic"]
+    command: ["snapshots"]
+
+volumes:
+  restic_repo:
