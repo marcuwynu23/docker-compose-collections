@@ -45,7 +45,7 @@ docker compose up -d
 Connect with mongosh:
 
 ```bash
-mongosh "mongodb://admin:changeme@localhost:10260/?directConnection=true"
+mongosh "mongodb://admin:changeme@localhost:10260/?authSource=admin&directConnection=true&tls=true&tlsAllowInvalidCertificates=true&tlsAllowInvalidHostnames=true"
 ```
 
 Useful commands:
