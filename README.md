@@ -72,6 +72,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [meilisearch](./meilisearch)
 - [miniio](./miniio)
 - [mongodb-replicaset](./mongodb-replicaset)
+- [mongodb-sharding-cluster](./mongodb-sharding-cluster)
 - [parse-server+mongodb](./parse-server+mongodb)
 - [postgrest](./postgrest)
 - [pulsar](./pulsar)
