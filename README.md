@@ -70,6 +70,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [parse-server+mongodb](./parse-server+mongodb)
 - [postgrest](./postgrest)
 - [rabbitmq](./rabbitmq)
+- [redis](./redis)
 - [supabase](./supabase)
 
 ### Development Tools
