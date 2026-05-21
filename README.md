@@ -89,6 +89,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 
 - [authentik](./authentik)
 - [dvwa](./dvwa)
+- [envoy](./envoy)
 - [juice-shop](./juice-shop)
 - [krakend](./krakend)
 - [nessus](./nessus)
