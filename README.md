@@ -67,6 +67,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [elasticsearch](./elasticsearch)
 - [elasticsearch-kibana-filebeat](./elasticsearch-kibana-filebeat)
 - [kafka](./kafka)
+- [meilisearch](./meilisearch)
 - [miniio](./miniio)
 - [parse-server+mongodb](./parse-server+mongodb)
 - [postgrest](./postgrest)
