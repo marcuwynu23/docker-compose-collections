@@ -63,6 +63,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 
 - [adminer](./adminer)
 - [couchdb](./couchdb)
+- [documentdb](./documentdb)
 - [elasticsearch](./elasticsearch)
 - [elasticsearch-kibana-filebeat](./elasticsearch-kibana-filebeat)
 - [kafka](./kafka)
