@@ -123,13 +123,16 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [grafana-prometheus-proxmox](./grafana-prometheus-proxmox)
 - [uptime-kuma](./uptime-kuma)
 
+### Backups
+
+- [restic](./restic)
+
 ### Other Services
 
 - [custom-linux-distr-base-arch](./custom-linux-distr-base-arch)
 - [draw.io](./draw.io)
 - [mailpit](./mailpit)
 - [openclaw](./openclaw)
-- [restic](./restic)
 - [sentry](./sentry)
 - [wordpress](./wordpress)
 
