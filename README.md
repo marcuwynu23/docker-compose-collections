@@ -75,6 +75,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 
 ### Development Tools
 
+- [backstage](./backstage)
 - [code-server](./code-server)
 - [devpi](./devpi)
 - [it-tools](./it-tools)
