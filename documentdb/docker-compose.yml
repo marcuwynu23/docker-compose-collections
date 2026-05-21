@@ -1,0 +1,10 @@
+services:
+  documentdb:
+    image: ghcr.io/documentdb/documentdb/documentdb-local:latest
+    container_name: documentdb
+    ports:
+      - "${DOCUMENTDB_PORT:-10260}:10260"
+    command: >
+      --username ${DOCUMENTDB_USERNAME:-admin}
+      --password ${DOCUMENTDB_PASSWORD:-changeme}
+    restart: unless-stopped
