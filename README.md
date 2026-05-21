@@ -71,6 +71,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [kafka](./kafka)
 - [meilisearch](./meilisearch)
 - [miniio](./miniio)
+- [mongodb-replicaset](./mongodb-replicaset)
 - [parse-server+mongodb](./parse-server+mongodb)
 - [postgrest](./postgrest)
 - [pulsar](./pulsar)
