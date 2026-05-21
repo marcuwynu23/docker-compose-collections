@@ -110,6 +110,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 
 - [alertmanager](./alertmanager)
 - [dozzle](./dozzle)
+- [fluentbit](./fluentbit)
 - [grafana-opentelemetry-tempo](./grafana-opentelemetry-tempo)
 - [grafana-prometheus](./grafana-prometheus)
 - [grafana-prometheus-alertmanager](./grafana-prometheus-alertmanager)
