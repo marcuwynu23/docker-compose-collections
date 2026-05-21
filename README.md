@@ -69,6 +69,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [miniio](./miniio)
 - [parse-server+mongodb](./parse-server+mongodb)
 - [postgrest](./postgrest)
+- [pulsar](./pulsar)
 - [rabbitmq](./rabbitmq)
 - [redis](./redis)
 - [supabase](./supabase)
