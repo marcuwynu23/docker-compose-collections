@@ -1,0 +1,41 @@
+services:
+  mattermost:
+    image: mattermost/mattermost-team-edition:latest
+    container_name: mattermost
+    ports:
+      - "${MATTERMOST_PORT:-8065}:8065"
+    environment:
+      - MM_SQLSETTINGS_DRIVERNAME=postgres
+      - MM_SQLSETTINGS_DATASOURCE=postgres://${POSTGRES_USER:-mattermost}:${POSTGRES_PASSWORD:-changeme}@db:5432/${POSTGRES_DB:-mattermost}?sslmode=disable
+    volumes:
+      - mattermost_data:/mattermost/data
+      - mattermost_logs:/mattermost/logs
+      - mattermost_config:/mattermost/config
+      - mattermost_plugins:/mattermost/plugins
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: postgres:16-alpine
+    container_name: mattermost-db
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:-mattermost}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-changeme}
+      - POSTGRES_DB=${POSTGRES_DB:-mattermost}
+    volumes:
+      - mattermost_db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-mattermost}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  mattermost_data:
+  mattermost_logs:
+  mattermost_config:
+  mattermost_plugins:
+  mattermost_db:
