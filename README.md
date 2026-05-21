@@ -125,6 +125,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [draw.io](./draw.io)
 - [mailpit](./mailpit)
 - [openclaw](./openclaw)
+- [restic](./restic)
 - [sentry](./sentry)
 - [wordpress](./wordpress)
 
