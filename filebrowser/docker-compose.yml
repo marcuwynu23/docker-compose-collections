@@ -3,8 +3,13 @@ services:
     image: filebrowser/filebrowser:latest
     container_name: filebrowser
     ports:
-      - "${FILEBROWSER_PORT:-8080}:80"
+      - "${FILEBROWSER_PORT:-8080}:8080"
     volumes:
       - ./data:/srv
-      - ./filebrowser.db:/database/filebrowser.db
+      - filebrowser_db:/database
+    environment:
+      - FB_PORT=8080
     restart: unless-stopped
+
+volumes:
+  filebrowser_db:

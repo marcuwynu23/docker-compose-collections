@@ -24,7 +24,7 @@ flowchart LR
 - Web UI: `http://<host-ip>:8080`
 - Persistent data:
   - `./data:/srv` (served files)
-  - `./filebrowser.db:/database/filebrowser.db` (user/config database)
+  - `filebrowser_db:/database` (user/config database)
 
 ## Environment variables
 
@@ -40,7 +40,6 @@ From the repository root:
 cd filebrowser
 cp .env.example .env
 mkdir -p data
-touch filebrowser.db
 docker compose up -d
 ```
 
@@ -74,6 +73,6 @@ docker compose down
 ## Notes
 
 - Change the default admin password before exposing externally.
-- The `filebrowser.db` file must exist before first start (use `touch filebrowser.db`).
+- The database is stored in a named Docker volume (`filebrowser_db`).
 - Mount any directory you want to manage as `/srv` inside the container.
 - See [File Browser docs](https://filebrowser.org/) for full configuration reference.
