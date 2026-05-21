@@ -76,6 +76,23 @@ docker compose down
 
 ## Use it effectively
 
+- Sample data is seeded automatically on `docker compose up` (the `seed` container indexes movies and exits).
+- Run manual searches after startup:
+
+```bash
+# Search with typo tolerance
+curl "http://localhost:7700/indexes/movies/search" \
+  -H "Authorization: Bearer changeme" \
+  -H "Content-Type: application/json" \
+  -d '{"q": "interstllar"}'
+
+# Filter by genre
+curl "http://localhost:7700/indexes/movies/search" \
+  -H "Authorization: Bearer changeme" \
+  -H "Content-Type: application/json" \
+  -d '{"q": "", "filter": "genre = action"}'
+```
+
 - Use the SDKs (JavaScript, Python, Go, PHP, etc.) for easy integration.
 - Configure searchable attributes, ranking rules, and stop words per index.
 - Enable faceted search for category/filter UIs.

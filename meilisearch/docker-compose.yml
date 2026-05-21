@@ -9,7 +9,38 @@ services:
       - MEILI_ENV=${MEILI_ENV:-development}
     volumes:
       - meili_data:/meili_data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7700/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
     restart: unless-stopped
+
+  seed:
+    image: curlimages/curl:latest
+    container_name: meilisearch-seed
+    depends_on:
+      meilisearch:
+        condition: service_healthy
+    volumes:
+      - ./sample:/sample:ro
+    entrypoint: ["sh", "-c"]
+    command:
+      - |
+        echo "Seeding Meilisearch with sample data..."
+        curl -s -X POST http://meilisearch:7700/indexes/movies/documents \
+          -H "Authorization: Bearer $${MEILI_MASTER_KEY:-changeme}" \
+          -H "Content-Type: application/json" \
+          --data-binary @/sample/movies.json
+        echo ""
+        sleep 2
+        curl -s -X PATCH http://meilisearch:7700/indexes/movies/settings \
+          -H "Authorization: Bearer $${MEILI_MASTER_KEY:-changeme}" \
+          -H "Content-Type: application/json" \
+          -d '{"filterableAttributes":["genre","year"],"sortableAttributes":["year"]}'
+        echo ""
+        echo "Seed complete. Try: curl http://localhost:7700/indexes/movies/search -H 'Authorization: Bearer changeme' -d '{\"q\":\"matrix\"}'"
+    restart: "no"
 
 volumes:
   meili_data:

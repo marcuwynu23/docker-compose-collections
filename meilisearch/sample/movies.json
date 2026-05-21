@@ -1,0 +1,22 @@
+[
+  {"id": 1, "title": "The Matrix", "genre": "sci-fi", "year": 1999},
+  {"id": 2, "title": "Inception", "genre": "sci-fi", "year": 2010},
+  {"id": 3, "title": "Interstellar", "genre": "sci-fi", "year": 2014},
+  {"id": 4, "title": "The Dark Knight", "genre": "action", "year": 2008},
+  {"id": 5, "title": "Pulp Fiction", "genre": "crime", "year": 1994},
+  {"id": 6, "title": "Fight Club", "genre": "drama", "year": 1999},
+  {"id": 7, "title": "Forrest Gump", "genre": "drama", "year": 1994},
+  {
+    "id": 8,
+    "title": "The Shawshank Redemption",
+    "genre": "drama",
+    "year": 1994
+  },
+  {"id": 9, "title": "Gladiator", "genre": "action", "year": 2000},
+  {
+    "id": 10,
+    "title": "The Lord of the Rings: The Fellowship of the Ring",
+    "genre": "fantasy",
+    "year": 2001
+  }
+]
