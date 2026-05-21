@@ -135,6 +135,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 
 - [custom-linux-distr-base-arch](./custom-linux-distr-base-arch)
 - [draw.io](./draw.io)
+- [filebrowser](./filebrowser)
 - [mailpit](./mailpit)
 - [openclaw](./openclaw)
 - [sentry](./sentry)
