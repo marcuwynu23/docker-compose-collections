@@ -87,3 +87,24 @@ docker compose down
 - Data persists across restarts via named volumes.
 - For applications running inside Docker, use container names (`mongo1:27017`) instead of `localhost`.
 - No authentication is configured by default; add `--keyFile` for production use.
+
+## Replica Set vs Sharding Cluster
+
+| Feature                | Replica Set                                | Sharding Cluster                              |
+| ---------------------- | ------------------------------------------ | --------------------------------------------- |
+| Purpose                | High availability & failover               | Horizontal scaling & data distribution        |
+| Nodes                  | 3 (1 primary + 2 secondaries)              | 7+ (config servers + shard nodes + router)    |
+| Data distribution      | All nodes hold the same data               | Data split across shards by shard key         |
+| Write scaling          | Single primary handles all writes          | Writes distributed across shard primaries     |
+| Read scaling           | Read from secondaries with read preference | Reads routed to relevant shard                |
+| Failover               | Automatic (secondary promoted to primary)  | Per-shard automatic failover                  |
+| Use case               | Most applications, moderate traffic        | Large datasets, high throughput, multi-tenant |
+| Complexity             | Low                                        | High                                          |
+| Connection             | Direct to any node or replica set URI      | Always through mongos router                  |
+| Minimum for production | 3 nodes                                    | 9+ nodes (config RS + shard RS + mongos)      |
+
+**When to use Replica Set:** Your data fits on a single server and you need redundancy and automatic failover.
+
+**When to use Sharding:** Your data or write throughput exceeds what a single replica set can handle, or you need geographic data distribution.
+
+See also: [mongodb-sharding-cluster](../mongodb-sharding-cluster)

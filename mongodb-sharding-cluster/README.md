@@ -97,3 +97,24 @@ mongosh --host localhost:27017 --eval '
 - No authentication is configured by default; add `--keyFile` for production.
 - To add a second shard, duplicate the `shard1a/b/c` pattern as `shard2a/b/c` with a new replica set name.
 - For host access, `mongos` is exposed on `localhost:27017` — no hosts file changes needed since the router handles routing internally.
+
+## Sharding Cluster vs Replica Set
+
+| Feature                | Sharding Cluster                              | Replica Set                                |
+| ---------------------- | --------------------------------------------- | ------------------------------------------ |
+| Purpose                | Horizontal scaling & data distribution        | High availability & failover               |
+| Nodes                  | 7+ (config servers + shard nodes + router)    | 3 (1 primary + 2 secondaries)              |
+| Data distribution      | Data split across shards by shard key         | All nodes hold the same data               |
+| Write scaling          | Writes distributed across shard primaries     | Single primary handles all writes          |
+| Read scaling           | Reads routed to relevant shard                | Read from secondaries with read preference |
+| Failover               | Per-shard automatic failover                  | Automatic (secondary promoted to primary)  |
+| Use case               | Large datasets, high throughput, multi-tenant | Most applications, moderate traffic        |
+| Complexity             | High                                          | Low                                        |
+| Connection             | Always through mongos router                  | Direct to any node or replica set URI      |
+| Minimum for production | 9+ nodes (config RS + shard RS + mongos)      | 3 nodes                                    |
+
+**When to use Sharding:** Your data or write throughput exceeds what a single replica set can handle, or you need geographic data distribution.
+
+**When to use Replica Set:** Your data fits on a single server and you need redundancy and automatic failover.
+
+See also: [mongodb-replicaset](../mongodb-replicaset)
