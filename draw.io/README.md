@@ -5,6 +5,11 @@ This setup runs a single-instance Draw.io container for local usage.
 
 ## How it works
 
+```mermaid
+flowchart LR
+    User([User]) -->|:8080| DrawIO[Draw.io Web]
+```
+
 1 The Draw.io container starts.
 
 2. HTTP interface is exposed on port 8080.

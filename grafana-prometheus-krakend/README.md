@@ -6,6 +6,14 @@ This stack provides a production-ready API Gateway using KrakenD with observabil
 
 ## How it works
 
+```mermaid
+flowchart LR
+    Client([Client]) -->|:8080| KrakenD[KrakenD Gateway]
+    KrakenD --> Backend[Backend Services]
+    KrakenD -->|:9091 /metrics| Prometheus[Prometheus :9090]
+    Prometheus --> Grafana[Grafana :3000]
+```
+
 1. KrakenD runs as a stateless API Gateway
 2. Routes requests to backend services
 3. Exposes metrics at `/metrics` on port `9091`

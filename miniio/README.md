@@ -5,6 +5,13 @@ This stack runs MinIO with local persistent data and web console access.
 
 ## How it works
 
+```mermaid
+flowchart LR
+    App([Application]) -->|:9000 S3 API| MinIO[MinIO]
+    Admin([Admin]) -->|:9001| Console[MinIO Console]
+    MinIO --> Data[(./data)]
+```
+
 1. MinIO starts in standalone mode with `/data` as object storage path.
 2. S3-compatible API is exposed on port `9000`.
 3. Web console is exposed on port `9001`.

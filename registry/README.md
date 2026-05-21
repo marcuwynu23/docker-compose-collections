@@ -4,6 +4,12 @@ Distribution registry provides a private OCI/Docker image registry.
 
 ## How it works
 
+```mermaid
+flowchart LR
+    Docker([Docker/Podman]) -->|push/pull :5000| Registry[Registry]
+    Registry --> Storage[(./data)]
+```
+
 1. Registry serves image push/pull API on port `5000`.
 2. Images are stored in local filesystem storage.
 3. Docker/Podman clients can tag and push to this endpoint.

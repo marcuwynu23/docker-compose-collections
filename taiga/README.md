@@ -4,6 +4,15 @@ Taiga is an open-source agile project management platform (scrum/kanban, issues,
 
 ## How it works
 
+```mermaid
+flowchart LR
+    User([User]) -->|:8080| Front[Taiga Frontend]
+    Front --> API[Taiga Back :8000]
+    API --> PG[(PostgreSQL)]
+    API --> Redis[(Redis)]
+    Async[Taiga Async] --> Redis
+```
+
 1. Taiga Front serves the UI.
 2. Taiga Back provides the REST API and core application.
 3. Taiga Async runs background jobs via Celery.

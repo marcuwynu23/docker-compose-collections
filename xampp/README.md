@@ -4,6 +4,12 @@ This stack provides a local PHP + MySQL development environment similar to a bas
 
 ## How it works
 
+```mermaid
+flowchart LR
+    User([User]) -->|:8080| Web[PHP / Apache]
+    Web --> DB[(MySQL)]
+```
+
 1. `db` runs MySQL 8.0 and stores database data in a persistent volume.
 2. `web` builds from the local Dockerfile and serves PHP app files from `./app`.
 3. `web` waits for `db` health before starting.

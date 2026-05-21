@@ -5,41 +5,18 @@ Prometheus collects metrics and Grafana renders dashboards from Prometheus data.
 
 ## How it works
 
-1. Prometheus starts with local scrape config from `prometheus/prometheus.yml`.
-2. Prometheus stores time-series metrics in persistent storage.
-3. Grafana auto-loads a Prometheus datasource via provisioning.
-4. You query and visualize metrics in Grafana dashboards.
-
-## Stack details in this repo
-
-- Prometheus image: `prom/prometheus:latest`
-- Grafana image: `grafana/grafana:latest`
-- Prometheus UI: `http://<host-ip>:9090`
-- Grafana UI: `http://<host-ip>:3000`
-- Persistent data:
-  - `prometheus_data:/prometheus`
-  - `grafana_data:/var/lib/grafana`
-- Mounted config:
-  - `./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml`
-  - `./grafana/provisioning:/etc/grafana/provisioning`
-
-## Environment variables
-
-Copy `.env.example` to `.env`:
-
-- `GF_SECURITY_ADMIN_USER`
-- `GF_SECURITY_ADMIN_PASSWORD`
-- `GF_USERS_ALLOW_SIGN_UP`
-
-## How to run
-
-From the repository root:
-
-```bash
-cd grafana-prometheus-alertmanager
-cp .env.example .env
-docker compose up -d
+```mermaid
+flowchart LR
+    App([App / Exporter]) --> Prometheus[Prometheus :9090]
+    Prometheus --> AM[Alertmanager :9093]
+    Prometheus --> Data[(Time-Series DB)]
+    Grafana[Grafana :3000] --> Prometheus
+    User([User]) --> Grafana
 ```
+
+1. Prometheus starts with local scrape config from `prometheus/prometheus.yml`.
+
+````
 
 Open:
 
@@ -53,7 +30,7 @@ docker compose ps
 docker compose logs -f
 docker compose restart
 docker compose down
-```
+````
 
 ## Link app server metrics
 

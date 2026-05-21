@@ -5,6 +5,14 @@ It is useful for local/self-hosted Git + pipeline workflows.
 
 ## How it works
 
+```mermaid
+flowchart LR
+    Dev([Developer]) -->|:3000| Gitea[Gitea]
+    Dev -->|:2222| SSH[Gitea SSH]
+    Gitea -->|webhook| Jenkins[Jenkins :8080]
+    Jenkins --> Docker[Docker Engine]
+```
+
 1. Gitea hosts repositories and git access (HTTP + SSH).
 2. Jenkins runs CI jobs and can build using host Docker socket.
 3. Webhooks from Gitea can trigger Jenkins pipelines.

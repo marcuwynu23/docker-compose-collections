@@ -5,6 +5,18 @@ Prometheus collects metrics, Loki aggregates logs, Tempo stores traces, OpenTele
 
 ## How it works
 
+```mermaid
+flowchart LR
+    App([Application]) -->|OTLP| OTel[OTel Collector]
+    App -->|logs| Promtail[Promtail]
+    OTel --> Tempo[Tempo]
+    OTel -->|span metrics| Prometheus[Prometheus :9090]
+    Promtail --> Loki[Loki :3100]
+    Grafana[Grafana :3000] --> Prometheus
+    Grafana --> Loki
+    Grafana --> Tempo
+```
+
 1. The sample application sends traces to the OpenTelemetry Collector via OTLP.
 2. OpenTelemetry Collector processes traces and exports them to Tempo, while generating span metrics for Prometheus.
 3. Promtail reads application log files and pushes them to Loki.

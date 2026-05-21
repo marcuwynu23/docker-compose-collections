@@ -5,6 +5,14 @@ The OpenTelemetry Collector receives traces from applications, exports them to T
 
 ## How it works
 
+```mermaid
+flowchart LR
+    App([Application]) -->|OTLP| OTel[OTel Collector]
+    OTel --> Tempo[Tempo :3200]
+    OTel -->|span metrics :8889| Prometheus([Prometheus])
+    Tempo --> Grafana[Grafana :3000]
+```
+
 1. The sample application sends traces to the OpenTelemetry Collector via OTLP (gRPC/HTTP).
 2. OpenTelemetry Collector batches and exports traces to Tempo.
 3. The `spanmetrics` connector derives RED metrics (Rate, Errors, Duration) from traces.

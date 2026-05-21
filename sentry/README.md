@@ -4,6 +4,14 @@ This stack provides self-hosted Sentry for application error tracking and perfor
 
 ## How it works
 
+```mermaid
+flowchart LR
+    App([Application]) -->|DSN| Sentry[Sentry :9002]
+    Sentry --> PG[(PostgreSQL)]
+    Sentry --> Redis[(Redis)]
+    Worker[Sentry Worker] --> PG
+```
+
 1. `sentry-db` runs PostgreSQL for Sentry metadata.
 2. `sentry-redis` provides queue/cache backend for Sentry.
 3. `sentry-init` runs one-time DB initialization/migrations.

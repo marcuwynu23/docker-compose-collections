@@ -10,6 +10,14 @@ It collects logs from an Express application, ships them using Filebeat, stores 
 
 ## Architecture
 
+```mermaid
+flowchart LR
+    App([Express App]) -->|logs| Volume[Shared Volume]
+    Volume --> Filebeat[Filebeat]
+    Filebeat --> ES[Elasticsearch :9200]
+    ES --> Kibana[Kibana :5601]
+```
+
 ```
 [ Express App ]
       ↓ writes logs

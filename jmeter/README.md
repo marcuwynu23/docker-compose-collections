@@ -5,6 +5,13 @@ This stack runs JMeter in non-GUI mode using Docker Compose.
 
 ## How it works
 
+```mermaid
+flowchart LR
+    User([User]) -->|:8080| JMeter[JMeter]
+    JMeter -->|load test| Target[Target Service]
+    JMeter --> Results[(./results)]
+```
+
 1. Place your JMeter test plan (`.jmx`) in the `tests` folder.
 2. `jmeter` service stays running for ad-hoc commands.
 3. `jmeter-run` profile executes a test plan in headless mode.

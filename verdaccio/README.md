@@ -4,6 +4,13 @@ Verdaccio is a lightweight private npm registry for package caching and internal
 
 ## How it works
 
+```mermaid
+flowchart LR
+    NPM([npm/yarn/pnpm]) -->|:4873| Verdaccio[Verdaccio]
+    Verdaccio -->|proxy| NPMJS[npmjs.org]
+    Verdaccio --> Storage[(./data/storage)]
+```
+
 1. Verdaccio serves npm-compatible registry APIs.
 2. Teams can publish private packages and proxy npmjs.org.
 3. npm/yarn/pnpm clients point to Verdaccio registry URL.

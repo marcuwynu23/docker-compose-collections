@@ -5,6 +5,13 @@ This setup runs the backend node service, frontend web app, and MongoDB database
 
 ## How it works
 
+```mermaid
+flowchart LR
+    User([User]) -->|:8080| Frontend[Twake Frontend]
+    Frontend --> Node[tdrive_node API]
+    Node --> Mongo[(MongoDB)]
+```
+
 1. `frontend` serves the web interface.
 2. `tdrive_node` handles API/business logic and file operations.
 3. `mongo` stores application data/metadata.

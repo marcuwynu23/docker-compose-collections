@@ -5,6 +5,15 @@ This stack starts selected AWS-like services behind one edge endpoint.
 
 ## How it works
 
+```mermaid
+flowchart LR
+    App([Application]) -->|:4566| LS[LocalStack]
+    LS --> S3[S3]
+    LS --> DynamoDB[DynamoDB]
+    LS --> Lambda[Lambda]
+    LS --> SQS[SQS]
+```
+
 1. LocalStack starts service emulators defined in `SERVICES`.
 2. Client SDK/CLI requests go to LocalStack edge port `4566`.
 3. Service state is stored under the mounted local data directory.

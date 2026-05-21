@@ -4,6 +4,12 @@ Mailpit is a local SMTP testing server with web inbox UI.
 
 ## How it works
 
+```mermaid
+flowchart LR
+    App([Application]) -->|:1025 SMTP| Mailpit[Mailpit]
+    User([User]) -->|:8025| UI[Mailpit Web UI]
+```
+
 1. Apps send email to Mailpit SMTP port.
 2. Mailpit captures messages instead of sending externally.
 3. You inspect messages in web UI.
@@ -24,6 +30,7 @@ docker compose up -d
 ```
 
 Open:
+
 - UI: `http://localhost:8025`
 - SMTP host/port for apps: `localhost:1025`
 

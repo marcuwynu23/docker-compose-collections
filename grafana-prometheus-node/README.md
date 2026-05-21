@@ -5,6 +5,13 @@ Prometheus collects metrics and Grafana renders dashboards from Prometheus data.
 
 ## How it works
 
+```mermaid
+flowchart LR
+    Node([VPS / VM]) --> NodeExp[Node Exporter :9100]
+    NodeExp --> Prometheus[Prometheus :9090]
+    Prometheus --> Grafana[Grafana :3000]
+```
+
 1. Prometheus starts with local scrape config from `prometheus/prometheus.yml`.
 2. Prometheus stores time-series metrics in persistent storage.
 3. Grafana auto-loads a Prometheus datasource via provisioning.

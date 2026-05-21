@@ -4,6 +4,13 @@ This stack provides a lightweight API Gateway using KrakenD for routing, aggrega
 
 ## How it works
 
+```mermaid
+flowchart LR
+    Client([Client]) -->|:8080| KrakenD[KrakenD Gateway]
+    KrakenD --> Backend1[Backend A]
+    KrakenD --> Backend2[Backend B]
+```
+
 1. `krakend` runs as a stateless API Gateway.
 2. It exposes a single HTTP entrypoint and routes requests to configured backends.
 3. All routing logic is defined in `data/krakend.json`.

@@ -5,6 +5,14 @@ This setup runs a Woodpecker server plus one Docker-based build agent.
 
 ## How it works
 
+```mermaid
+flowchart LR
+    Dev([Developer]) -->|:8000| WP[Woodpecker Server]
+    WP -->|gRPC :9000| Agent[Woodpecker Agent]
+    Agent --> Docker[Docker Engine]
+    GitHub([GitHub]) -->|webhook| WP
+```
+
 1. `woodpecker-server` provides the web UI/API and receives webhook events.
 2. GitHub OAuth is used for login and repository access.
 3. `woodpecker-agent` polls the server for pipeline jobs.

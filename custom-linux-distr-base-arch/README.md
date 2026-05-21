@@ -4,6 +4,12 @@ This setup provides an Arch Linux containerized environment for building custom 
 
 ## How it works
 
+```mermaid
+flowchart LR
+    User([User]) -->|shell| Container[Arch Linux Container]
+    Container --> Build[(./build)]
+```
+
 1. A privileged Arch Linux container starts in interactive shell mode.
 2. Host `./build` directory is mounted into `/build` in the container.
 3. You run ArchISO tooling from inside the container.

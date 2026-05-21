@@ -5,6 +5,16 @@ It allows developers to build and test cloud applications locally without connec
 
 ## How Floci works
 
+```mermaid
+flowchart LR
+    App([Application]) -->|:4566| Floci[Floci]
+    Floci --> Lambda[Lambda]
+    Floci --> S3[S3]
+    Floci --> DynamoDB[DynamoDB]
+    Floci --> SQS[SQS]
+    CLI([AWS CLI]) -->|:4566| Floci
+```
+
 1. Floci emulates AWS services locally using Docker containers.
 2. Applications connect to Floci endpoints instead of real AWS services during development.
 3. Hot reload capabilities allow for rapid development and testing of Lambda functions.

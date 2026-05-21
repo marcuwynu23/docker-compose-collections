@@ -4,6 +4,14 @@ This stack provides a lightweight Supabase-style local foundation using PostgreS
 
 ## How it works
 
+```mermaid
+flowchart LR
+    App([Application]) -->|:8000 REST| PostgREST[PostgREST]
+    PostgREST --> PG[(PostgreSQL :5433)]
+    Admin([Admin]) -->|:5050| pgAdmin[pgAdmin UI]
+    pgAdmin --> PG
+```
+
 1. `supabase-db` runs PostgreSQL.
 2. `supabase-rest` (PostgREST) auto-generates REST endpoints from your database schema.
 3. `supabase-ui` (pgAdmin) provides a web UI for browsing and managing PostgreSQL.

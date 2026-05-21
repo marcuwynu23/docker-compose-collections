@@ -4,6 +4,13 @@ This stack provides a self-hosted Parse backend with MongoDB storage and Parse D
 
 ## How it works
 
+```mermaid
+flowchart LR
+    App([Application]) -->|:1337 /parse| ParseServer[Parse Server]
+    ParseServer --> MongoDB[(MongoDB)]
+    Admin([Admin]) -->|:4040| Dashboard[Parse Dashboard]
+```
+
 1. `parse-db` runs MongoDB for Parse data persistence.
 2. `parse-server` exposes the Parse API at `/parse`.
 3. `parse-dashboard` provides a web UI to inspect classes, data, and app settings.

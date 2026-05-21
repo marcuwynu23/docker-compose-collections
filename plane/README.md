@@ -4,6 +4,14 @@ Plane is an open-source project management tool (issues, projects, cycles).
 
 ## How it works
 
+```mermaid
+flowchart LR
+    User([User]) -->|:8080| Web[Plane Web]
+    Web --> API[Plane API :8000]
+    API --> PG[(PostgreSQL)]
+    API --> Redis[(Redis)]
+```
+
 1. Plane Web serves the UI.
 2. Plane API provides the backend API.
 3. Redis is used for queues/background work.

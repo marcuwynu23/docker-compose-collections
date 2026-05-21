@@ -5,6 +5,12 @@ This setup runs the OpenClaw gateway with persisted local state.
 
 ## How it works
 
+```mermaid
+flowchart LR
+    User([User]) -->|:18789| OpenClaw[OpenClaw Gateway]
+    OpenClaw --> Data[(./data)]
+```
+
 1. The OpenClaw container starts the gateway process.
 2. It serves API/control endpoints on mapped ports.
 3. State/config files are persisted in the mounted `./data` directory.

@@ -5,6 +5,13 @@ A Proxmox exporter exposes metrics, Prometheus scrapes them, and Grafana visuali
 
 ## How it works
 
+```mermaid
+flowchart LR
+    Proxmox([Proxmox VE]) --> Exporter[PVE Exporter :9221]
+    Exporter --> Prometheus[Prometheus :9090]
+    Prometheus --> Grafana[Grafana :3000]
+```
+
 1. `proxmox-exporter` connects to your Proxmox API using credentials from `.env`.
 2. The exporter exposes Prometheus metrics on port `9221`.
 3. Prometheus scrapes exporter metrics and stores them.

@@ -4,6 +4,12 @@ Portabase is a self-hosted application for building internal knowledge bases, in
 
 ## How Portabase works
 
+```mermaid
+flowchart LR
+    User([User]) -->|:8887| App[Portabase Web]
+    App --> PG[(PostgreSQL)]
+```
+
 1. The Portabase web app starts and serves HTTP traffic on port `80` inside the container.
 2. A PostgreSQL database container stores application data, user accounts, and configuration.
 3. The app container depends on the database container and checks database availability before starting.

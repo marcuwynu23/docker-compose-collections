@@ -4,6 +4,14 @@ This stack gives you a working “app → logs → Loki → Grafana Explore” p
 
 It ships logs from an example app into Loki using Promtail, then lets you query them in Grafana.
 
+```mermaid
+flowchart LR
+    App([Express App]) -->|logs| Volume[express-logs volume]
+    Volume --> Promtail[Promtail]
+    Promtail --> Loki[Loki :3100]
+    Loki --> Grafana[Grafana :3000]
+```
+
 ## What you get
 
 - **Grafana**: UI for Explore/dashboards

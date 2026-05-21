@@ -4,6 +4,13 @@ This stack provides [Ansible Semaphore](https://github.com/semaphoreui/semaphore
 
 ## How it works
 
+```mermaid
+flowchart LR
+    User([User]) -->|:3001| Semaphore[Semaphore UI]
+    Semaphore --> PG[(PostgreSQL)]
+    Semaphore -->|SSH| Hosts[Remote Hosts]
+```
+
 1. `semaphore-db` runs PostgreSQL to store projects, users, templates, and execution metadata.
 2. `semaphore` runs the Semaphore web application and connects to PostgreSQL.
 3. You log in to the web UI, register repositories/inventories, and run automation tasks.

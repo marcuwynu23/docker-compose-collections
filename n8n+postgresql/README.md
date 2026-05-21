@@ -5,6 +5,13 @@ It is suitable for more durable/self-hosted setups than SQLite-only deployments.
 
 ## How it works
 
+```mermaid
+flowchart LR
+    User([User]) -->|:5678| N8N[n8n]
+    N8N --> PG[(PostgreSQL)]
+    N8N --> Webhooks[Webhooks]
+```
+
 1. `postgres` starts and stores n8n data persistently.
 2. `n8n` connects to PostgreSQL using the configured DB environment variables.
 3. Workflows, credentials, and execution state are saved in Postgres.

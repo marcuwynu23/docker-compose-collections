@@ -24,6 +24,12 @@ This setup runs OpenProject using Docker with a PostgreSQL database.
 
 ## How OpenProject works
 
+```mermaid
+flowchart LR
+    User([User]) -->|:8080| OP[OpenProject]
+    OP --> PG[(PostgreSQL)]
+```
+
 1. User accesses the web interface via browser.
 2. OpenProject connects to PostgreSQL database (`db` service).
 3. Application runs background jobs using internal worker system.

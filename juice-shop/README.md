@@ -4,6 +4,11 @@ OWASP Juice Shop is an intentionally insecure web application for security train
 
 ## How it works
 
+```mermaid
+flowchart LR
+    User([User]) -->|:3000| JuiceShop[Juice Shop]
+```
+
 1. The Juice Shop container starts and initializes the Node.js application.
 
 2. The web interface is exposed on port 3000.

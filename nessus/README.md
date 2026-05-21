@@ -5,6 +5,13 @@ This setup runs the official Nessus container with persistent scan/config data.
 
 ## How it works
 
+```mermaid
+flowchart LR
+    Admin([Admin]) -->|:8834 HTTPS| Nessus[Nessus Scanner]
+    Nessus --> Targets[Scan Targets]
+    Nessus --> Data[(nessus-data volume)]
+```
+
 1. The Nessus service starts and exposes the web interface.
 2. You complete initial setup/license in the Nessus UI.
 3. Scan policies and results are stored in the mounted volume.

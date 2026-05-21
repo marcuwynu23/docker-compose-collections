@@ -5,6 +5,14 @@ Prometheus collects and stores metrics, while Grafana reads from Prometheus and 
 
 ## How it works
 
+```mermaid
+flowchart LR
+    K8s([Kubernetes]) -->|metrics| Prometheus[Prometheus :9090]
+    Prometheus --> Data[(Time-Series DB)]
+    Grafana[Grafana :3000] --> Prometheus
+    User([User]) --> Grafana
+```
+
 1. Prometheus scrapes metrics targets configured in `prometheus/prometheus.yml`.
 2. Metrics are stored in Prometheus time-series storage.
 3. Grafana connects to Prometheus as a datasource.
