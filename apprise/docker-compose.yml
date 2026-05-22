@@ -1,0 +1,15 @@
+services:
+  apprise:
+    image: caronc/apprise:latest
+    container_name: apprise
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - APPRISE_STATEFUL_MODE=simple
+    volumes:
+      - ./apprise/config:/config
+    command: >
+      apprise-api
+      --config=/config/apprise.yml
+      --verbose
