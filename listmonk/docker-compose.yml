@@ -1,0 +1,15 @@
+services:
+  listmonk:
+    image: listmonk/listmonk:nightly
+    container_name: listmonk
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./config/config.toml:/listmonk/config.toml
+    command:
+      [
+        sh,
+        -c,
+        "./listmonk --install --idempotent --yes --config /listmonk/config.toml && ./listmonk --upgrade --yes --config /listmonk/config.toml && ./listmonk --config /listmonk/config.toml",
+      ]
