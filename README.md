@@ -39,6 +39,10 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [n8n](./n8n)
 - [n8n+postgresql](./n8n+postgresql)
 
+### Alerts & Notifications
+
+- [apprise](./apprise)
+
 ### CI/CD & DevOps
 
 - [floci](./floci)
