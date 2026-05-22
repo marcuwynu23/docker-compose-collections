@@ -6,10 +6,6 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - APPRISE_STATEFUL_MODE=simple
+      APPRISE_STATEFUL_MODE: simple
     volumes:
-      - ./apprise/config:/config
-    command: >
-      apprise-api
-      --config=/config/apprise.yml
-      --verbose
+      - ./config/apprise.yml:/config/apprise.yml
