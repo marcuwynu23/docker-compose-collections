@@ -1,0 +1,11 @@
+services:
+  scalar:
+    image: scalarapi/api-reference:latest
+    container_name: scalar
+    ports:
+      - 8080:8080
+    volumes:
+      - ./docs:/docs
+    environment:
+      - SCALAR_CONFIG={"references":[{"title":"Public API","path":"/docs/api.yml"},{"title":"Admin API","path":"/docs/internal/admin-api.yaml"},{"title":"Partner API","path":"/docs/external/partner-api.json"}]}
+    restart: unless-stopped
