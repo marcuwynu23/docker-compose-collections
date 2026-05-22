@@ -91,6 +91,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [localstack](./localstack)
 - [portabase](./portabase)
 - [registry](./registry)
+- [scalar](./scalar)
 - [swaggerui-openapi](./swaggerui-openapi)
 - [verdaccio](./verdaccio)
 - [xampp](./xampp)
