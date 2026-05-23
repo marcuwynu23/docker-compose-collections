@@ -1,0 +1,57 @@
+services:
+  mixpost:
+    image: mixpost/app:latest
+    container_name: mixpost
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      - MIXPOST_DB_HOST=db
+      - MIXPOST_DB_DATABASE=mixpost
+      - MIXPOST_DB_USER=mixpost
+      - MIXPOST_DB_PASSWORD=mixpost-password
+      - MIXPOST_REDIS_HOST=redis
+      - MIXPOST_REDIS_PASSWORD=
+      - MIXPOST_APP_URL=http://localhost:8080
+      - MIXPOST_TRACKING_ENABLED=true
+    volumes:
+      - mixpost_uploads:/var/www/html/storage/app/public
+
+  db:
+    image: mysql:8
+    container_name: mixpost-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: mixpost-root-password
+      MYSQL_DATABASE: mixpost
+      MYSQL_USER: mixpost
+      MYSQL_PASSWORD: mixpost-password
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - mixpost_db_data:/var/lib/mysql
+
+  redis:
+    image: redis:7-alpine
+    container_name: mixpost-redis
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - mixpost_redis_data:/data
+
+volumes:
+  mixpost_db_data:
+  mixpost_redis_data:
+  mixpost_uploads:
