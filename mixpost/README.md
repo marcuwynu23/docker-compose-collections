@@ -18,7 +18,7 @@ flowchart LR
 
 ## Stack details in this repo
 
-- Mixpost image: `mixpost/app:latest`
+- Mixpost image: `inovector/mixpost:latest`
 - Database: `mysql:8`
 - Cache: `redis:7-alpine`
 - UI endpoint: `http://<host-ip>:8080`

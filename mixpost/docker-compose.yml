@@ -1,17 +1,17 @@
 services:
   mixpost:
-    image: mixpost/app:latest
+    image: inovector/mixpost:latest
     container_name: mixpost
     restart: unless-stopped
     ports:
       - "8080:80"
     depends_on:
-      db:
+      mysql:
         condition: service_healthy
       redis:
         condition: service_healthy
     environment:
-      - MIXPOST_DB_HOST=db
+      - MIXPOST_DB_HOST=mysql
       - MIXPOST_DB_DATABASE=mixpost
       - MIXPOST_DB_USER=mixpost
       - MIXPOST_DB_PASSWORD=mixpost-password
@@ -22,9 +22,9 @@ services:
     volumes:
       - mixpost_uploads:/var/www/html/storage/app/public
 
-  db:
+  mysql:
     image: mysql:8
-    container_name: mixpost-db
+    container_name: mixpost-mysql
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: mixpost-root-password
