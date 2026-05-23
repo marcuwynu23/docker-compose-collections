@@ -4,7 +4,7 @@ services:
     container_name: mixpost
     restart: unless-stopped
     ports:
-      - "8080:80"
+      - "9000:80"
     depends_on:
       mysql:
         condition: service_healthy
@@ -14,44 +14,44 @@ services:
       - MIXPOST_DB_HOST=mysql
       - MIXPOST_DB_DATABASE=mixpost
       - MIXPOST_DB_USER=mixpost
-      - MIXPOST_DB_PASSWORD=mixpost-password
+      - MIXPOST_DB_PASSWORD=mixpost
       - MIXPOST_REDIS_HOST=redis
-      - MIXPOST_REDIS_PASSWORD=
-      - MIXPOST_APP_URL=http://localhost:8080
-      - MIXPOST_TRACKING_ENABLED=true
+      - MIXPOST_APP_URL=http://localhost:9000
     volumes:
-      - mixpost_uploads:/var/www/html/storage/app/public
+      - mixpost_storage:/var/www/html/storage/app
+      - mixpost_logs:/var/www/html/storage/logs
 
   mysql:
-    image: mysql:8
+    image: mysql/mysql-server:8.0
     container_name: mixpost-mysql
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: mixpost-root-password
       MYSQL_DATABASE: mixpost
       MYSQL_USER: mixpost
-      MYSQL_PASSWORD: mixpost-password
+      MYSQL_PASSWORD: mixpost
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 5s
       timeout: 5s
       retries: 5
     volumes:
-      - mixpost_db_data:/var/lib/mysql
+      - mixpost_mysql:/var/lib/mysql
 
   redis:
-    image: redis:7-alpine
+    image: redis:latest
     container_name: mixpost-redis
     restart: unless-stopped
+    command: redis-server --appendonly yes
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 5s
       timeout: 5s
       retries: 5
     volumes:
-      - mixpost_redis_data:/data
+      - mixpost_redis:/data
 
 volumes:
-  mixpost_db_data:
-  mixpost_redis_data:
-  mixpost_uploads:
+  mixpost_mysql:
+  mixpost_redis:
+  mixpost_storage:
+  mixpost_logs:
