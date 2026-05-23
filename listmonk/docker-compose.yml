@@ -1,4 +1,20 @@
 services:
+  db:
+    image: postgres:15-alpine
+    container_name: listmonk_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: listmonk
+      POSTGRES_PASSWORD: listmonk
+      POSTGRES_DB: listmonk
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U listmonk -d listmonk"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
   listmonk:
     image: listmonk/listmonk:nightly
     container_name: listmonk
@@ -7,9 +23,15 @@ services:
       - "9000:9000"
     volumes:
       - ./config/config.toml:/listmonk/config.toml
+    depends_on:
+      db:
+        condition: service_healthy
     command:
       [
         sh,
         -c,
         "./listmonk --install --idempotent --yes --config /listmonk/config.toml && ./listmonk --upgrade --yes --config /listmonk/config.toml && ./listmonk --config /listmonk/config.toml",
       ]
+
+volumes:
+  postgres_data:
