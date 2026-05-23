@@ -46,6 +46,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 ### Social Media & Marketing Tools
 
 - [listmonk](./listmonk)
+- [mixpost](./mixpost)
 - [postiz](./postiz)
 
 ### CI/CD & DevOps
