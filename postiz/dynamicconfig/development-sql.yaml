@@ -1,9 +1,18 @@
-system.worker.persistenceMaxQPS: 1000
-system.worker.visibilityPersistenceMaxQPS: 1000
-frontend.workerPersistenceMaxQPS: 1000
-frontend.workerVisibilityPersistenceMaxQPS: 1000
-history.workerPersistenceMaxQPS: 1000
-history.workerVisibilityPersistenceMaxQPS: 1000
-system.advancedVisibilityPersistenceMaxQPS: 1000
-system.workerReplicatedTaskMaxQPS: 100
-system.workerReplicatedTaskForceSyncIterations: 10
+system.worker.persistenceMaxQPS:
+  - value: 1000
+system.worker.visibilityPersistenceMaxQPS:
+  - value: 1000
+frontend.workerPersistenceMaxQPS:
+  - value: 1000
+frontend.workerVisibilityPersistenceMaxQPS:
+  - value: 1000
+history.workerPersistenceMaxQPS:
+  - value: 1000
+history.workerVisibilityPersistenceMaxQPS:
+  - value: 1000
+system.advancedVisibilityPersistenceMaxQPS:
+  - value: 1000
+system.workerReplicatedTaskMaxQPS:
+  - value: 100
+system.workerReplicatedTaskForceSyncIterations:
+  - value: 10
