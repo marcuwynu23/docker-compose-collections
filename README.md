@@ -43,6 +43,11 @@ Each folder contains a service stack you can run quickly and customize for your 
 
 - [apprise](./apprise)
 
+### Social Media & Marketing Tools
+
+- [listmonk](./listmonk)
+- [postiz](./postiz)
+
 ### CI/CD & DevOps
 
 - [floci](./floci)
