@@ -1,0 +1,17 @@
+# API endpoints:
+# POST http://localhost:8884/tesseract
+# Body (multipart/form-data):
+#   - file: <image-file> (e.g. image.png)
+#   - options: {"languages":["eng"]} (optional JSON string)
+
+services:
+  tesseract:
+    image: hertzg/tesseract-server:latest
+    container_name: tesseract
+    restart: unless-stopped
+    ports:
+      - "${TESSERACT_PORT:-8884}:8884"
+    environment:
+      - TESSERACT_SERVER_INSTALL_LANGUAGES=${TESSERACT_LANGUAGES:-}
+    # volumes:
+    #   - ./tessdata:/usr/share/tessdata # Optional: mount custom language data (.traineddata) if needed
