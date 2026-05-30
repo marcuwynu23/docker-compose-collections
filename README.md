@@ -32,6 +32,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 
 - [litellm](./litellm)
 - [ollama](./ollama)
+- [tesseract](./tesseract)
 
 ### Automation & Workflow
 
