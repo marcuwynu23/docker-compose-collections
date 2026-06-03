@@ -76,6 +76,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 ### Databases & Storage
 
 - [adminer](./adminer)
+- [cassandra](./cassandra)
 - [couchdb](./couchdb)
 - [documentdb](./documentdb)
 - [meilisearch](./meilisearch)
