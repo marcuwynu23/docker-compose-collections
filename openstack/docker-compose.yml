@@ -1,0 +1,17 @@
+services:
+  openstack-client:
+    image: python:3.12-slim
+    container_name: openstack-client
+    command:
+      - sh
+      - -c
+      - |
+        pip install -q python-openstackclient &&
+        tail -f /dev/null
+    environment:
+      OS_CLOUD: ${OS_CLOUD:-openstack}
+    volumes:
+      - ./clouds.yaml:/etc/openstack/clouds.yaml
+      - ./secure.yaml:/etc/openstack/secure.yaml
+      - ./scripts:/scripts
+    working_dir: /scripts

@@ -1,0 +1,12 @@
+clouds:
+  mycloud:
+    auth:
+      auth_url: https://controller:5000/v3
+      username: admin
+      password: changeme
+      project_name: admin
+      user_domain_name: Default
+      project_domain_name: Default
+    region_name: RegionOne
+    interface: public
+    identity_api_version: 3
