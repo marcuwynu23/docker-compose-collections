@@ -1,0 +1,12 @@
+package %w(curl htop git) do
+  action :install
+end
+
+file '/etc/motd' do
+  content "Managed by Chef\n"
+  mode '0644'
+end
+
+service 'sshd' do
+  action [:enable, :start]
+end

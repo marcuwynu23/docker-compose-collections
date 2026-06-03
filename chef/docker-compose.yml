@@ -1,0 +1,23 @@
+services:
+  chef-server:
+    image: chef/chef-server:latest
+    container_name: chef-server
+    ports:
+      - "443:443"
+    environment:
+      CHEF_SERVER_FQDN: ${CHEF_SERVER_FQDN:-chef-server}
+    volumes:
+      - ./data/server/config:/etc/chef-server
+      - ./data/server/data:/var/opt/chef-server
+      - ./data/server/logs:/var/log/chef-server
+
+  chef-workstation:
+    image: chef/chef:latest
+    container_name: chef-workstation
+    volumes:
+      - ./cookbooks:/cookbooks
+      - ./data/workstation:/root
+      - ./data/server/config:/etc/chef-server
+    working_dir: /cookbooks
+    depends_on:
+      - chef-server
