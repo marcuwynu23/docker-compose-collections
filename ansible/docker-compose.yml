@@ -1,0 +1,7 @@
+services:
+  ansible:
+    image: ansible/ansible:latest
+    volumes:
+      - ./playbooks:/playbooks
+      - ./inventory:/inventory
+    working_dir: /playbooks
