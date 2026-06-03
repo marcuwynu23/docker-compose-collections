@@ -1,0 +1,46 @@
+services:
+  puppetdb-postgres:
+    image: postgres:15
+    container_name: puppetdb-postgres
+    environment:
+      POSTGRES_USER: ${PUPPETDB_USER:-puppetdb}
+      POSTGRES_PASSWORD: ${PUPPETDB_PASSWORD:-puppetdb}
+      POSTGRES_DB: puppetdb
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${PUPPETDB_USER:-puppetdb}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  puppetdb:
+    image: puppet/puppetdb:latest
+    container_name: puppetdb
+    ports:
+      - "8081:8081"
+    environment:
+      PUPPETDB_DATABASE_CONNECTION: //puppetdb-postgres:5432/puppetdb
+      PUPPETDB_DATABASE_USER: ${PUPPETDB_USER:-puppetdb}
+      PUPPETDB_DATABASE_PASSWORD: ${PUPPETDB_PASSWORD:-puppetdb}
+    volumes:
+      - ./data/puppetdb/ssl:/etc/puppetlabs/puppet/ssl
+    depends_on:
+      puppetdb-postgres:
+        condition: service_healthy
+
+  puppetserver:
+    image: puppet/puppetserver:latest
+    container_name: puppetserver
+    ports:
+      - "8140:8140"
+    environment:
+      PUPPETSERVER_HOSTNAME: ${PUPPETSERVER_HOSTNAME:-puppetserver}
+      PUPPETDB_SERVER_URL: https://puppetdb:8081
+      JAVA_ARGS: ${PUPPETSERVER_JAVA_ARGS:--Xms512m -Xmx512m}
+    volumes:
+      - ./data/puppetserver/code:/etc/puppetlabs/code
+      - ./data/puppetserver/ssl:/etc/puppetlabs/puppet/ssl
+      - ./data/puppetserver/logs:/var/log/puppetlabs/puppetserver
+    depends_on:
+      - puppetdb
