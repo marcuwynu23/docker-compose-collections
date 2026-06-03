@@ -58,6 +58,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [jenkins](./jenkins)
 - [semaphore](./semaphore)
 - [sonarqube](./sonarqube)
+- [ansible](./ansible)
 - [woodpecker-ci](./woodpecker-ci)
 
 ### Collaboration & Project Management
