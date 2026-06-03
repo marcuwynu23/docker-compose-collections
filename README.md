@@ -86,6 +86,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [postgrest](./postgrest)
 - [redis](./redis)
 - [supabase](./supabase)
+- [vectordb](./vectordb)
 
 ### Message Brokers & Queuing
 
