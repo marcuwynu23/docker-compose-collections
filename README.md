@@ -59,6 +59,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [semaphore](./semaphore)
 - [sonarqube](./sonarqube)
 - [ansible](./ansible)
+- [chef](./chef)
 - [puppet](./puppet)
 - [woodpecker-ci](./woodpecker-ci)
 
