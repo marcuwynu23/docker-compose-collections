@@ -79,6 +79,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [couchdb](./couchdb)
 - [documentdb](./documentdb)
 - [meilisearch](./meilisearch)
+- [neo4j](./neo4j)
 - [miniio](./miniio)
 - [mongodb-replicaset](./mongodb-replicaset)
 - [mongodb-sharding-cluster](./mongodb-sharding-cluster)
