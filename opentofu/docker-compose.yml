@@ -1,0 +1,9 @@
+services:
+  opentofu:
+    image: ghcr.io/opentofu/opentofu:minimal
+    container_name: opentofu
+    volumes:
+      - ./config:/workspace
+    working_dir: /workspace
+
+
