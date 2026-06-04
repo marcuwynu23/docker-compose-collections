@@ -61,6 +61,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [ansible](./ansible)
 - [chef](./chef)
 - [openstack](./openstack)
+- [opentofu](./opentofu)
 - [puppet](./puppet)
 - [woodpecker-ci](./woodpecker-ci)
 
