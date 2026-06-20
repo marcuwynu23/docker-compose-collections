@@ -1,0 +1,9 @@
+services:
+  automq:
+    image: automqinc/automq-for-kafka:latest
+    container_name: automq
+    ports:
+      - "9092:9092"
+      - "8080:8080"
+    volumes:
+      - ./data:/automq/data
