@@ -62,6 +62,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [chef](./chef)
 - [openstack](./openstack)
 - [opentofu](./opentofu)
+- [consul](./consul)
 - [puppet](./puppet)
 - [woodpecker-ci](./woodpecker-ci)
 
