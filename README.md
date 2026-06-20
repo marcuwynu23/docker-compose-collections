@@ -98,6 +98,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 ### Message Brokers & Queuing
 
 - [kafka](./kafka)
+- [automq](./automq)
 - [pulsar](./pulsar)
 - [rabbitmq](./rabbitmq)
 
