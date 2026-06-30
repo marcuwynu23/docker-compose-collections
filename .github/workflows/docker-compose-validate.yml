@@ -12,37 +12,40 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-ryl-0
+
       - name: Install ryl
         run: pip install ryl
 
       - name: ryl lint
-        run: ryl .
+        run: ryl . --format github
 
       - name: Validate all docker-compose files
         shell: bash
         run: |
           set -euo pipefail
-          errors=0
-
-          while IFS= read -r -d '' file; do
+          do_validate() {
+            local file=$1 dir
             dir=$(dirname "$file")
-            echo "=== Validating: $file ==="
-
             if [ -f "$dir/.env.example" ] && [ ! -f "$dir/.env" ]; then
               cp "$dir/.env.example" "$dir/.env"
             fi
-
-            if docker compose -f "$file" config --quiet 2>&1; then
-              echo "  OK"
-            else
-              echo "  FAILED"
-              errors=$((errors + 1))
+            if ! out=$(docker compose -f "$file" config --quiet 2>&1); then
+              echo "FAIL:$file"
+              echo "$out" | sed 's/^/  /'
             fi
-          done < <(find . -type f \( -name 'docker-compose.yml' -o -name 'docker-stack.yml' \) -print0)
-
-          if [ "$errors" -ne 0 ]; then
-            echo "::error::$errors compose file(s) failed validation"
+          }
+          export -f do_validate
+          tmp=$(mktemp)
+          find . -type f \( -name 'docker-compose.yml' -o -name 'docker-stack.yml' \) -print0 \
+            | xargs -0 -P "$(nproc)" -I {} bash -c 'do_validate "$@"' _ {} > "$tmp" 2>&1 || true
+          if [ -s "$tmp" ]; then
+            cat "$tmp"
+            echo "::error::$(grep -c ^FAIL: "$tmp") compose file(s) failed validation"
             exit 1
           fi
-
           echo "All compose files valid."
