@@ -3,7 +3,7 @@ services:
   fileuploader:
     image: ghcr.io/marcuwynu23/bucket-fileuploader:latest
     container_name: fileuploader
-    environments:
+    environment:
       BASE_URL: http://localhost:2424
       ROUTE_PREFIX: /api/fileuploader
       STORAGE_ENDPOINT: <storage endpoint>

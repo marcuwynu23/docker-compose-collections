@@ -1,7 +1,6 @@
 services:
   gitea-server:
     image: gitea/gitea:latest
-    container_name: gitea
     ports:
       - target: 3000
         published: 3000
@@ -12,8 +11,8 @@ services:
         protocol: tcp
         mode: ingress
     environment:
-      USER_UID: ${USER_UID:1000}
-      USER_GID: ${USER_UID:1000}
+      USER_UID: ${USER_UID:-1000}
+      USER_GID: ${USER_UID:-1000}
     volumes:
       - "./data/gitea:/data"
     deploy:
