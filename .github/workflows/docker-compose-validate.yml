@@ -1,0 +1,54 @@
+
+name: Docker Compose Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: yamllint
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          file_or_dir: .
+          config_data: |
+            extends: relaxed
+            rules:
+              line-length: disable
+              document-start: disable
+              truthy: disable
+
+      - name: Validate all docker-compose files
+        shell: bash
+        run: |
+          set -euo pipefail
+          errors=0
+
+          while IFS= read -r -d '' file; do
+            dir=$(dirname "$file")
+            echo "=== Validating: $file ==="
+
+            if [ -f "$dir/.env.example" ] && [ ! -f "$dir/.env" ]; then
+              cp "$dir/.env.example" "$dir/.env"
+            fi
+
+            if docker compose -f "$file" config --quiet 2>&1; then
+              echo "  OK"
+            else
+              echo "  FAILED"
+              errors=$((errors + 1))
+            fi
+          done < <(find . -type f \( -name 'docker-compose.yml' -o -name 'docker-stack.yml' \) -print0)
+
+          if [ "$errors" -ne 0 ]; then
+            echo "::error::$errors compose file(s) failed validation"
+            exit 1
+          fi
+
+          echo "All compose files valid."
