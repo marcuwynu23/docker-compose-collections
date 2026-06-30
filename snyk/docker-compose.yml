@@ -5,7 +5,6 @@ services:
     volumes:
       - .:/app
       - /var/run/docker.sock:/var/run/docker.sock
-    working_dir: /app
     environment:
       - SNYK_TOKEN=${SNY_TOKEN}
     entrypoint: ["snyk"]
