@@ -68,6 +68,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 
 ### Collaboration & Project Management
 
+- [affine](./affine)
 - [atlassian-jira](./atlassian-jira)
 - [bitbucket](./bitbucket)
 - [bugzilla](./bugzilla)
