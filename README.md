@@ -73,6 +73,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [bugzilla](./bugzilla)
 - [mattermost](./mattermost)
 - [openproject](./openproject)
+- [logseq](./logseq)
 - [plane](./plane)
 - [rocket-chat](./rocket-chat)
 - [taiga](./taiga)
