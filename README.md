@@ -32,7 +32,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 
 - [litellm](./litellm)
 - [ollama](./ollama)
-- [openclaw](./openclaw)
+
 - [tesseract](./tesseract)
 
 ### Automation & Workflow
@@ -40,6 +40,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [activepieces](./activepieces)
 - [n8n](./n8n)
 - [n8n+postgresql](./n8n+postgresql)
+- [openclaw](./openclaw)
 
 ### Alerts & Notifications
 
@@ -128,6 +129,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [swaggerui-openapi](./swaggerui-openapi)
 - [verdaccio](./verdaccio)
 - [xampp](./xampp)
+- [wordpress](./wordpress)
 
 ### Infrastructure & Security
 
@@ -171,6 +173,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [grafana-prometheus-opentelemetry-jaegerui](./grafana-prometheus-opentelemetry-jaegerui)
 - [grafana-prometheus-proxmox](./grafana-prometheus-proxmox)
 - [uptime-kuma](./uptime-kuma)
+- [sentry](./sentry)
 
 ### Backups
 
@@ -183,11 +186,9 @@ Each folder contains a service stack you can run quickly and customize for your 
 
 ### Other Services
 
-- [custom-linux-distr-base-arch](./custom-linux-distr-base-arch)
 - [filebrowser](./filebrowser)
 - [mailpit](./mailpit)
-- [sentry](./sentry)
-- [wordpress](./wordpress)
+- [custom-linux-distr-base-arch](./custom-linux-distr-base-arch)
 
 ## Quick Start
 
