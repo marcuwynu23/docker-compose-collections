@@ -1,0 +1,65 @@
+services:
+  affine_migration:
+    image: ghcr.io/toeverything/affine:${AFFINE_REVISION:-stable}
+    container_name: affine_migration
+    command: ['sh', '-c', 'node ./scripts/self-host-predeploy.js']
+    volumes:
+      - ${UPLOAD_LOCATION:-./data/storage}:/root/.affine/storage
+      - ${CONFIG_LOCATION:-./data/config}:/root/.affine/config
+    environment:
+      - REDIS_SERVER_HOST=redis
+      - DATABASE_URL=postgresql://${DB_USERNAME:-affine}:${DB_PASSWORD:-affine}@postgres:5432/${DB_DATABASE:-affine}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: no
+
+  affine:
+    image: ghcr.io/toeverything/affine:${AFFINE_REVISION:-stable}
+    container_name: affine
+    ports:
+      - "${AFFINE_PORT:-3010}:3010"
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+      affine_migration:
+        condition: service_completed_successfully
+    volumes:
+      - ${UPLOAD_LOCATION:-./data/storage}:/root/.affine/storage
+      - ${CONFIG_LOCATION:-./data/config}:/root/.affine/config
+    environment:
+      - REDIS_SERVER_HOST=redis
+      - DATABASE_URL=postgresql://${DB_USERNAME:-affine}:${DB_PASSWORD:-affine}@postgres:5432/${DB_DATABASE:-affine}
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: affine_redis
+    healthcheck:
+      test: ['CMD', 'redis-cli', '--raw', 'incr', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: affine_postgres
+    volumes:
+      - ${DB_DATA_LOCATION:-./data/postgres}:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${DB_USERNAME:-affine}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-affine}
+      POSTGRES_DB: ${DB_DATABASE:-affine}
+      POSTGRES_INITDB_ARGS: '--data-checksums'
+      POSTGRES_HOST_AUTH_METHOD: trust
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-U', "${DB_USERNAME:-affine}", '-d', "${DB_DATABASE:-affine}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
