@@ -1,0 +1,7 @@
+services:
+  logseq:
+    image: ghcr.io/logseq/logseq-webapp:latest
+    container_name: logseq
+    ports:
+      - "${LOGSEQ_PORT:-3000}:3000"
+    restart: unless-stopped
