@@ -1,0 +1,47 @@
+services:
+  overleaf:
+    image: overleaf/overleaf:${OVERLEAF_REVISION:-latest}
+    container_name: overleaf
+    depends_on:
+      mongo:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    ports:
+      - "${OVERLEAF_PORT:-8080}:80"
+    stop_grace_period: 60s
+    volumes:
+      - ${OVERLEAF_DATA:-./data/overleaf}:/var/lib/overleaf
+    environment:
+      - OVERLEAF_APP_NAME=${OVERLEAF_APP_NAME:-Overleaf Community Edition}
+      - OVERLEAF_MONGO_URL=mongodb://mongo/overleaf
+      - OVERLEAF_REDIS_HOST=redis
+      - REDIS_HOST=redis
+      - ENABLED_LINKED_FILE_TYPES=project_file,project_output_file
+      - ENABLE_CONVERSIONS=true
+      - EMAIL_CONFIRMATION_DISABLED=true
+    restart: unless-stopped
+
+  mongo:
+    image: mongo:8.0
+    container_name: overleaf_mongo
+    command: "--replSet overleaf"
+    volumes:
+      - ${MONGO_DATA:-./data/mongo}:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: overleaf
+    extra_hosts:
+      - mongo:127.0.0.1
+    healthcheck:
+      test: echo 'db.stats().ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
+
+  redis:
+    image: redis:6.2
+    container_name: overleaf_redis
+    volumes:
+      - ${REDIS_DATA:-./data/redis}:/data
+    restart: unless-stopped
