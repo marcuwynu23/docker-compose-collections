@@ -77,6 +77,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [logseq](./logseq)
 - [plane](./plane)
 - [rocket-chat](./rocket-chat)
+- [siyuan](./siyuan)
 - [taiga](./taiga)
 - [twake](./twake)
 
