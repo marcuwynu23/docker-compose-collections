@@ -66,18 +66,26 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [puppet](./puppet)
 - [woodpecker-ci](./woodpecker-ci)
 
-### Collaboration & Project Management
+### Knowledge Management
 
 - [affine](./affine)
+- [logseq](./logseq)
+- [siyuan](./siyuan)
+
+### Document Editor and Management
+
+- [overleaf](./overleaf)
+- [stirling-pdf](./stirling-pdf)
+
+### Collaboration & Project Management
+
 - [atlassian-jira](./atlassian-jira)
 - [bitbucket](./bitbucket)
 - [bugzilla](./bugzilla)
 - [mattermost](./mattermost)
 - [openproject](./openproject)
-- [logseq](./logseq)
 - [plane](./plane)
 - [rocket-chat](./rocket-chat)
-- [siyuan](./siyuan)
 - [taiga](./taiga)
 - [twake](./twake)
 
