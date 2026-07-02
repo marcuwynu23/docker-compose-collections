@@ -32,6 +32,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 
 - [litellm](./litellm)
 - [ollama](./ollama)
+- [openclaw](./openclaw)
 - [tesseract](./tesseract)
 
 ### Automation & Workflow
@@ -175,13 +176,16 @@ Each folder contains a service stack you can run quickly and customize for your 
 
 - [restic](./restic)
 
+### Visual Management
+
+- [draw.io](./draw.io)
+- [penpot](./penpot)
+
 ### Other Services
 
 - [custom-linux-distr-base-arch](./custom-linux-distr-base-arch)
-- [draw.io](./draw.io)
 - [filebrowser](./filebrowser)
 - [mailpit](./mailpit)
-- [openclaw](./openclaw)
 - [sentry](./sentry)
 - [wordpress](./wordpress)
 
