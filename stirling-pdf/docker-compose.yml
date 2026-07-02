@@ -1,0 +1,16 @@
+services:
+  stirling-pdf:
+    image: stirlingtools/stirling-pdf:latest
+    container_name: stirling-pdf
+    ports:
+      - "${STIRLING_PDF_PORT:-8080}:8080"
+    volumes:
+      - ${STIRLING_CONFIG:-./data/configs}:/configs
+      - ${STIRLING_LOGS:-./data/logs}:/logs
+      - ${STIRLING_PIPELINE:-./data/pipeline}:/pipeline
+      - ${STIRLING_TESSDATA:-./data/tessdata}:/usr/share/tessdata
+    environment:
+      - SECURITY_ENABLELOGIN=${SECURITY_ENABLELOGIN:-true}
+      - LANGS=${LANGS:-en_US}
+      - SYSTEM_DEFAULTLOCALE=${SYSTEM_DEFAULTLOCALE:-en_US}
+    restart: unless-stopped
