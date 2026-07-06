@@ -2,8 +2,6 @@
   <img src="./banner.jpg" alt="Docker Compose Collections" style="width: 100%; max-width: 1200px;" />
 </p>
 
-<h1 align="center">Docker Compose Collections</h1>
-
 <p align="center">
   Ready-to-use Docker Compose stacks for development and self-hosted services.
 </p>
@@ -96,6 +94,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [adminer](./adminer)
 - [cassandra](./cassandra)
 - [couchdb](./couchdb)
+- [dbx](./dbx)
 - [documentdb](./documentdb)
 - [meilisearch](./meilisearch)
 - [neo4j](./neo4j)
