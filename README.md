@@ -1,16 +1,13 @@
-<p align="center">
-  <img src="./banner.jpg" alt="Docker Compose Collections" style="width: 100%; max-width: 1200px;" />
-</p>
+<div align="center">
 
-<p align="center">
-  Ready-to-use Docker Compose stacks for development and self-hosted services.
-</p>
+ <img src="./banner.svg" alt="Docker Compose Collections" style="width: 100%; max-width: 1200px;" />
 
-<p align="center">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
-  <img src="https://img.shields.io/badge/stacks-docker_compose-informational" alt="Docker Compose Stacks">
-  <img src="https://img.shields.io/badge/runtime-Docker%20%7C%20Podman-0db7ed" alt="Runtime: Docker or Podman">
-</p>
+<a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
+<img src="https://img.shields.io/badge/stacks-docker_compose-informational" alt="Docker Compose Stacks">
+<img src="https://img.shields.io/badge/runtime-Docker%20%7C%20Podman-0db7ed" alt="Runtime: Docker or Podman">
+
+  <p><strong> Ready-to-use Docker Compose stacks for development and self-hosted services.</strong></p>
+</div>
 
 ## Overview
 
