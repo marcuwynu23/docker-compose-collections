@@ -72,3 +72,7 @@ Default SonarQube credentials (change after first login):
 - SonarQube requires some kernel settings (especially on Linux) for Elasticsearch internals:
   - `vm.max_map_count` is commonly required to be at least `262144`.
 - First startup can take a few minutes while services initialize.
+
+## References and Guide
+
+- [SonarQube Github Setup Guide](https://gremoire.marcuwynu.space/article/articles/devops/sonarcube-github-setup-guide)
