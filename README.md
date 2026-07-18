@@ -157,6 +157,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [elasticsearch](./elasticsearch)
 - [elasticsearch-kibana-filebeat](./elasticsearch-kibana-filebeat)
 - [fluentbit](./fluentbit)
+- [grafana-alloy](./grafana-alloy)
 - [grafana-opentelemetry-tempo](./grafana-opentelemetry-tempo)
 - [grafana-prometheus](./grafana-prometheus)
 - [grafana-prometheus-alertmanager](./grafana-prometheus-alertmanager)
