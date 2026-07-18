@@ -3,6 +3,24 @@
 This stack provides a full observability platform combining metrics, logs, and traces.  
 Prometheus collects metrics, Loki aggregates logs, Tempo stores traces, OpenTelemetry collects and routes telemetry data, and Grafana visualizes everything in unified dashboards.
 
+> See the [Grafana Alloy version](../grafana-alloy) of this stack which replaces the OpenTelemetry Collector + Promtail with a single Alloy agent.
+
+## Comparison vs Grafana Alloy
+
+| Aspect               | OpenTelemetry Collector + Promtail (this stack)     | Grafana Alloy                                       |
+| -------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| **Agents**           | Separate agents for traces/metrics + logs           | Single binary for all telemetry                     |
+| **Log ingestion**    | Promtail reads log files from disk                  | OTLP logs protocol (app sends logs inline)          |
+| **Config language**  | YAML for both OTel Collector and Promtail           | Alloy / River syntax (`.alloy`)                     |
+| **Vendor lock-in**   | Vendor-neutral, OTel-native                         | Grafana-focused, deeply integrated                  |
+| **Maturity**         | Mature ecosystem, broad adoption                    | Newer project, faster evolution                     |
+| **Pipeline model**   | Two independent pipelines bridged by storage        | Unified DAG-based pipeline inside one process       |
+| **Span metrics**     | Built-in `spanmetrics` connector                    | Requires external configuration or manual scraping  |
+| **Resource usage**   | Two containers, slightly more overhead              | One container, less overhead                        |
+
+> **When to choose OTel Collector + Promtail:** You need vendor-neutrality, want to read logs from files, or rely on the OTel Collector's span metrics connector.
+> **When to choose Alloy:** You want a single agent to manage, prefer OTLP log protocol over file scraping, and are already invested in the Grafana ecosystem.
+
 ## How it works
 
 ```mermaid
