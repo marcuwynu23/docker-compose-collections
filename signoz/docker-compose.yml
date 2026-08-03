@@ -46,7 +46,7 @@ services:
       start_period: 40s
     volumes:
       - signoz-telemetrykeeper-0-data:/var/lib/clickhouse-keeper
-      - ./telemetrykeeper/clickhousekeeper/keeper-0.yaml:/etc/clickhouse-keeper/keeper.yaml:ro
+      - ./telemetrykeeper/clickhousekeeper/keeper_config.xml:/etc/clickhouse-keeper/keeper_config.xml:ro
 
   signoz-telemetrystore-clickhouse-user-scripts:
     container_name: signoz-clickhouse-user-scripts
