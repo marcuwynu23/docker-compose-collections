@@ -170,7 +170,8 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [grafana-prometheus-opentelemetry-jaegerui](./grafana-prometheus-opentelemetry-jaegerui)
 - [grafana-prometheus-proxmox](./grafana-prometheus-proxmox)
 - [uptime-kuma](./uptime-kuma)
-- [sentry](./sentry)
+  - [sentry](./sentry)
+  - [signoz](./signoz)
 
 ### Backups
 
