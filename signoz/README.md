@@ -22,6 +22,7 @@ flowchart LR
 5. `signoz-postgres` stores SigNoz application metadata (users, orgs, dashboards) in PostgreSQL.
 6. `signoz` is the main application: UI, API, and query engine on port 8080.
 7. `signoz-ingester` is the OpenTelemetry Collector that receives OTLP data on ports 4317 (gRPC) and 4318 (HTTP) and writes it to ClickHouse.
+8. `app` is a sample Express.js application instrumented with OpenTelemetry SDK, sending telemetry to the ingester.
 
 ## Stack details in this repo
 
@@ -32,16 +33,25 @@ flowchart LR
   - `signoz-telemetrystore-migrator` (`signoz/signoz-otel-collector:latest`, one-time migration job) — schema migrations
   - `signoz` (`signoz/signoz:latest`) — UI, API, and query engine
   - `signoz-ingester` (`signoz/signoz-otel-collector:latest`) — OpenTelemetry Collector ingest
+  - `app` — sample Express.js app with OpenTelemetry instrumentation (built from `./app/Dockerfile`)
 - Ports:
   - SigNoz UI: `http://localhost:8080`
   - OTLP gRPC ingest: `localhost:4317`
   - OTLP HTTP ingest: `localhost:4318`
+  - Sample app: `http://localhost:5000`
 - Persistent data:
   - `signoz-metastore-postgres-0-data:/var/lib/postgresql/data`
   - `signoz-telemetrykeeper-0-data:/var/lib/clickhouse-keeper`
   - `signoz-telemetrystore-0-0-data:/var/lib/clickhouse`
   - `signoz-telemetrystore-user-scripts:/var/lib/clickhouse/user_scripts`
   - `signoz_signoz-data:/var/lib/signoz/`
+- Mounted config:
+  - `./ingester/ingester.yaml:/etc/otel-collector-config.yaml` — OpenTelemetry Collector pipeline config
+  - `./ingester/opamp.yaml:/etc/opamp-config.yaml` — OpAMP client config
+  - `./telemetrykeeper/clickhousekeeper/keeper-0.yaml:/etc/clickhouse-keeper/keeper.yaml` — ClickHouse Keeper config
+  - `./telemetrystore/clickhouse/config-0-0.yaml:/etc/clickhouse-server/config-0-0.yaml` — ClickHouse server config
+  - `./telemetrystore/clickhouse/functions.yaml:/etc/clickhouse-server/functions.yaml` — ClickHouse executable functions
+  - `./app/Dockerfile` — sample application build context
 
 ## Environment variables
 
@@ -60,6 +70,12 @@ Copy `.env.example` to `.env` and adjust as needed:
 - `SIGNOZ_OTEL_RESOURCE_ATTRIBUTES` — resource attributes for the collector
 - `SIGNOZ_LOW_CARDINAL_EXCEPTION_GROUPING` — enable low-cardinality exception grouping
 - `SIGNOZ_OTEL_COLLECTOR_CLICKHOUSE_REPLICATION` — enable ClickHouse replication
+- `APP_PORT` — sample application port (default `5000`)
+- `NODE_ENV` — Node.js environment for the sample app
+- `OTEL_EXPORTER_OTLP_ENDPOINT` — OTLP endpoint the sample app sends telemetry to (default `http://signoz-ingester:4317`)
+- `OTEL_EXPORTER_OTLP_PROTOCOL` — OTLP protocol (default `grpc`)
+- `OTEL_SERVICE_NAME` — service name for the sample app's telemetry
+- `APP_VERSION` — service version for the sample app
 
 ## How to run
 
@@ -74,8 +90,9 @@ docker compose up -d
 Open:
 
 - SigNoz UI: `http://localhost:8080`
+- Sample app: `http://localhost:5000`
 
-> **Note:** First startup takes a few minutes. The `signoz-migrator` and `signoz-clickhouse-user-scripts` jobs run once to set up the database schema and download required binaries. Wait for the `signoz` service health check to pass before logging in.
+> **Note:** First startup takes a few minutes. The `signoz-migrator` and `signoz-clickhouse-user-scripts` jobs run once to set up the database schema and download required binaries. Wait for the `signoz` service health check to pass before logging in. The sample `app` service starts once the ingester is ready.
 
 Useful commands:
 
@@ -83,6 +100,7 @@ Useful commands:
 docker compose ps
 docker compose logs -f signoz
 docker compose logs -f signoz-ingester
+docker compose logs -f app
 docker compose logs -f signoz-migrator
 docker compose restart
 docker compose down
@@ -91,7 +109,16 @@ docker compose down -v
 
 ## Instrumentation
 
-Send telemetry from your application using OpenTelemetry SDKs. Configure the OTLP exporter to point at the ingest ports:
+The stack includes a sample Express.js application (`app` service) already instrumented with the OpenTelemetry Node.js SDK. It sends traces, metrics, and logs to the SigNoz ingester.
+
+### Sample app endpoints
+
+- `GET /` — returns a greeting message with a traced span
+- `GET /health` — health check endpoint
+- `GET /api/items` — returns a list of items (instrumented span)
+- `GET /api/error` — returns a 500 error (to see error tracking in SigNoz)
+
+To send telemetry from your own application, configure the OTLP exporter to point at the ingest ports:
 
 | Protocol | Endpoint |
 |----------|----------|
@@ -124,3 +151,4 @@ sdk.start();
 - The default SigNoz login credentials are `user@example.com` / `usermail123` unless `SIGNOZ_INITIAL_ADMIN_PASSWORD` is set.
 - If the `signoz-migrator` or `signoz-clickhouse-user-scripts` jobs fail on first run, you can re-run them with `docker compose up signoz-migrator`.
 - ClickHouse requires at least 4 GB of memory. Ensure Docker is allocated enough resources.
+- The sample `app` service is built locally from `./app/Dockerfile`; it requires Docker build support.
