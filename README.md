@@ -129,7 +129,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 
 ### API Management
 
-- [wso2](./wso2/)
+- [wso2-am](./wso2-am/)
 
 ### Infrastructure & Security
 
@@ -153,6 +153,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [krakend](./krakend)
 - [nginx-proxy-manager](./nginx-proxy-manager)
 - [traefik](./traefik)
+- [wso2-mi](./wso2-mi)
 
 ### Monitoring & Observability
 
