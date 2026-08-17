@@ -46,7 +46,7 @@ docker compose logs -f
 
 ### 1. Open the management dashboard
 
-- URL: <https://localhost:9743/dashboard/>
+- URL: <https://localhost:9743/>
 - Default login: `admin` / `admin`
 
 The dashboard shows the connected MI node, its status, and lets you browse deployed artifacts and manage integrations.
