@@ -1,0 +1,39 @@
+services:
+  app:
+    build: ./app
+    container_name: app
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+
+  wso2-am:
+    image: wso2/wso2am:4.7.0
+    container_name: wso2-am
+    ports:
+      - "8243:8243"
+      - "9443:9443"
+    volumes:
+      - ./conf/am/deployment.toml:/home/wso2carbon/wso2am-4.7.0/repository/conf/deployment.toml:ro
+    restart: unless-stopped
+
+  wso2-mi:
+    image: wso2/wso2mi:4.5.0
+    container_name: wso2-mi
+    ports:
+      - "8290:8290"
+      - "8253:8253"
+      - "9164:9164"
+    volumes:
+      - ./conf/mi/deployment.toml:/home/wso2carbon/wso2mi-4.5.0/conf/deployment.toml:ro
+      - ./artifacts/api:/home/wso2carbon/wso2mi-4.5.0/repository/deployment/server/synapse-configs/default/api:ro
+    depends_on:
+      - wso2-icp
+      - app
+    restart: unless-stopped
+
+  wso2-icp:
+    image: wso2/wso2-integration-control-plane:1.0.0
+    container_name: wso2-icp
+    ports:
+      - "9743:9743"
+    restart: unless-stopped

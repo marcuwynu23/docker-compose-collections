@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api xmlns="http://ws.apache.org/ns/synapse"
+     name="OrderAPI"
+     context="/orders">
+    <resource methods="GET" uri-template="/{id}">
+        <inSequence>
+            <log level="full"/>
+            <send>
+                <endpoint>
+                    <http method="GET" uri-template="http://app:3000/api/orders/{uri.var.id}"/>
+                </endpoint>
+            </send>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+        <faultSequence>
+            <log level="full">
+                <property name="MESSAGE" value="Backend call failed"/>
+            </log>
+        </faultSequence>
+    </resource>
+    <resource methods="GET" uri-template="/">
+        <inSequence>
+            <send>
+                <endpoint>
+                    <http method="GET" uri-template="http://app:3000/api/orders"/>
+                </endpoint>
+            </send>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+        <faultSequence>
+            <log level="full">
+                <property name="MESSAGE" value="Backend call failed"/>
+            </log>
+        </faultSequence>
+    </resource>
+</api>
