@@ -56,7 +56,7 @@ This local setup uses the default Micro Integrator configuration.
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| â€” | â€” | Uses the default WSO2 Micro Integrator configuration |
+| — | — | Uses the default WSO2 Micro Integrator configuration |
 
 For production deployments, secrets, certificates, identity providers, databases, and other environment-specific configuration should be externalized.
 
