@@ -1,0 +1,8 @@
+services:
+  wso2am:
+    image: wso2/wso2am:4.7.0
+    container_name: wso2am
+    ports:
+      - "8243:8243"
+      - "9443:9443"
+    restart: unless-stopped
