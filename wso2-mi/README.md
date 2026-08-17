@@ -151,7 +151,6 @@ flowchart LR
 
 Add APIM to the stack:
 
-```yaml
 The full APIM stack lives in `../wso2-am/` and runs `wso2/wso2am:4.7.0` (service name `wso2am`). For the two stacks to reach each other, run both on a shared external Docker network:
 
 ```bash
