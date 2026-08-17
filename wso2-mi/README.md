@@ -152,15 +152,19 @@ flowchart LR
 Add APIM to the stack:
 
 ```yaml
-services:
-  wso2-am:
-    image: wso2/wso2am:4.4.0
-    container_name: wso2-am
-    ports:
-      - "9443:9443"   # Publisher / Store / Console (HTTPS)
-      - "8280:8280"   # HTTP gateway
-      - "8243:8243"   # HTTPS gateway
-    restart: unless-stopped
+The full APIM stack lives in `../wso2-am/` and runs `wso2/wso2am:4.7.0` (service name `wso2am`). For the two stacks to reach each other, run both on a shared external Docker network:
+
+```bash
+docker network create wso2-integration
+```
+
+Add this network to both `docker-compose.yml` files (this stack and `../wso2-am/docker-compose.yml`):
+
+```yaml
+networks:
+  default:
+    external: true
+    name: wso2-integration
 ```
 
 **Pattern A — APIM manages the API, MI does the integration (recommended)**
@@ -175,12 +179,12 @@ MI can also call into APIM (e.g. token validation, subscribing to managed APIs, 
 
 | Purpose | URL |
 |---------|-----|
-| Invoke a managed API via the gateway | `http://wso2-am:8280/<api-context>` |
-| OAuth2 token endpoint | `https://wso2-am:9443/oauth2/token` |
-| Publisher REST API | `https://wso2-am:9443/api/am/publisher/v4` |
-| Developer Portal (Store) REST API | `https://wso2-am:9443/api/am/store/v4` |
+| Invoke a managed API via the gateway | `http://wso2am:8280/<api-context>` |
+| OAuth2 token endpoint | `https://wso2am:9443/oauth2/token` |
+| Publisher REST API | `https://wso2am:9443/api/am/publisher/v4` |
+| Developer Portal (Store) REST API | `https://wso2am:9443/api/am/store/v4` |
 
-Note: HTTPS calls to APIM from MI require the APIM certificate (`wso2carbon.jks`) to be trusted in the MI `client-truststore.jks`.
+Note: in local development both products use the default `wso2carbon` self-signed certificate, so HTTPS between the two containers works without extra truststore configuration. See the [WSO2 API Manager README](../wso2-am/README.md) for the APIM-side setup.
 
 ### 6. Configure the MI runtime
 

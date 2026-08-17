@@ -229,6 +229,63 @@ The Developer Portal allows API consumers to:
 - Obtain credentials
 - Test APIs
 
+## Integrate with WSO2 Micro Integrator (MI)
+
+WSO2 API Manager and the [WSO2 Micro Integrator](../wso2-mi/README.md) are complementary: APIM handles API management (publishing, subscriptions, keys, rate limits, gateway policies), while MI handles integration and mediation (routing, transformation, enrichment) before requests reach the real backend.
+
+```mermaid
+flowchart LR
+    Client([API Client]) -->|HTTPS :8243| Gateway[WSO2 API Gateway]
+    Gateway -->|backend endpoint| MI[Micro Integrator :8290]
+    MI -->|mediation / routing| Backend[(Backend API)]
+```
+
+### Put both stacks on one network
+
+The two compose projects need a shared Docker network so their containers can resolve each other by name. Create an external network:
+
+```bash
+docker network create wso2-integration
+```
+
+Then attach it to both stacks by adding this to each `docker-compose.yml`:
+
+```yaml
+networks:
+  default:
+    external: true
+    name: wso2-integration
+```
+
+With this in place, APIM reaches MI at `http://wso2-mi:8290`, and MI reaches APIM at `https://wso2am:9443` / `https://wso2am:8243` (or `http://wso2am:8280` for the internal HTTP gateway).
+
+In local development both products use the default `wso2carbon` self-signed certificate, so HTTPS between the two containers works without extra truststore configuration.
+
+### Pattern A — Expose an MI integration as a managed API (recommended)
+
+1. Run both stacks on the shared `wso2-integration` network.
+2. In the API Publisher, create an API and set its backend endpoint to the MI runtime: `http://wso2-mi:8290/<your-api-context>`.
+3. Publish the API.
+
+The gateway enforces authentication, subscriptions, and throttling before forwarding to MI, which applies mediation and routes the request to the real backend:
+
+```text
+Client --> APIM Gateway :8243 --> MI :8290 --> Backend
+```
+
+### Pattern B — MI calls APIM
+
+MI can also call into APIM (token validation, invoking managed APIs, or using the Publisher/Store REST APIs). From an MI integration artifact, point an endpoint at the APIM service:
+
+| Purpose | URL |
+|---------|-----|
+| Invoke a managed API via the gateway | `http://wso2am:8280/<api-context>` |
+| OAuth2 token endpoint | `https://wso2am:9443/oauth2/token` |
+| Publisher REST API | `https://wso2am:9443/api/am/publisher/v4` |
+| Developer Portal (Store) REST API | `https://wso2am:9443/api/am/store/v4` |
+
+See the [WSO2 Micro Integrator README](../wso2-mi/README.md) for the matching guide, including an example MI REST API artifact that forwards requests to a backend.
+
 ## Architecture
 
 ```mermaid
