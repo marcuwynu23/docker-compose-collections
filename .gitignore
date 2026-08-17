@@ -16,3 +16,5 @@ node_modules/
 # WSO2 keystores (contain private keys)
 wso2-mi/conf/*.p12
 wso2-mi/conf/*.jks
+wso2-am/conf/*.p12
+wso2-am/conf/*.jks

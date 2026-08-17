@@ -286,6 +286,83 @@ MI can also call into APIM (token validation, invoking managed APIs, or using th
 
 See the [WSO2 Micro Integrator README](../wso2-mi/README.md) for the matching guide, including an example MI REST API artifact that forwards requests to a backend.
 
+## Use a Cloudflare Origin certificate for TLS
+
+In the APIM + MI topology, TLS is terminated at whichever component is the **entry point**. If Cloudflare routes directly to APIM (the normal case), the origin certificate belongs on **APIM** — the gateway (`8243`) and management (`9443`) listeners. MI only needs its own certificate when it is the origin (see the [MI TLS guide](../wso2-mi/README.md#use-a-cloudflare-origin-certificate-for-tls)).
+
+Unlike MI, APIM distinguishes the TLS keystore from the internal keystore: the HTTPS transports use **`[keystore.tls]`**, while **`[keystore.primary]`** stays untouched for internal token signing. So you can replace the TLS certificate without breaking internal JWT/token trust.
+
+### 1. Create the Origin certificate
+
+In the Cloudflare dashboard: **SSL/TLS → Origin Server → Create Certificate**. Note the hostname(s) it covers. Later set the zone **SSL/TLS encryption mode to `Full (strict)`**.
+
+### 2. Bundle the PEM cert and key into a PKCS12 keystore
+
+Run locally (where `origin.pem` and `origin-key.pem` are your Cloudflare downloads):
+
+```bash
+openssl pkcs12 -export -name wso2carbon \
+  -in origin.pem -inkey origin-key.pem \
+  -out conf/origin.p12 -password pass:<store-pass>
+```
+
+Or download the origin certificate directly as PKCS12 from the Cloudflare dashboard. Remember the alias and password. The `.p12` contains the private key — **do not commit it** (see `.gitignore`).
+
+### 3. Mount the keystore and config into the container
+
+The APIM stack has no config mounted yet, so add both the keystore and a `deployment.toml` to `docker-compose.yml`:
+
+```yaml
+services:
+  wso2am:
+    volumes:
+      - ./conf/deployment.toml:/home/wso2carbon/wso2am-4.7.0/conf/deployment.toml:ro
+      - ./conf/origin.p12:/home/wso2carbon/wso2am-4.7.0/repository/resources/security/origin.p12:ro
+```
+
+### 4. Point `[keystore.tls]` at it
+
+`conf/deployment.toml` must start from the image's full default file (extract it with `docker run --rm --entrypoint cat wso2/wso2am:4.7.0 /home/wso2carbon/wso2am-4.7.0/conf/deployment.toml`), then add:
+
+```toml
+[keystore.tls]
+file_name = "repository/resources/security/origin.p12"
+type = "PKCS12"
+password = "<store-pass>"
+alias = "<alias>"
+key_password = "<key-pass>"
+```
+
+Keep `[keystore.primary]` and `[truststore]` at their defaults so internal token signing and outbound TLS validation keep working. As with MI, do not override with only this section — the config mapper needs the full base file or startup fails.
+
+### 5. Recreate the container and verify
+
+```bash
+docker compose up -d --force-recreate wso2am
+openssl s_client -connect localhost:8243 -servername <origin-host> -showcerts
+openssl s_client -connect localhost:9443 -servername <origin-host> -showcerts
+```
+
+The subject should be your origin hostname and the issuer a **Cloudflare Inc … CA**.
+
+### 6. Route Cloudflare to APIM
+
+Point Cloudflare traffic at the gateway `https://localhost:8243` (e.g. a Cloudflare Tunnel), with the SNI hostname matching the certificate.
+
+### Where each certificate goes
+
+| Hop | Component | Config |
+|-----|-----------|--------|
+| Client → APIM (`8243`/`9443`) | APIM | `[keystore.tls]` (this guide) |
+| APIM → MI (`8290`) | plain HTTP by default | no cert needed |
+| Cloudflare → MI directly | MI | `[keystore.primary]` (see [MI TLS guide](../wso2-mi/README.md#use-a-cloudflare-origin-certificate-for-tls)) |
+
+### Caveats
+
+- Origin certificates are trusted **only between Cloudflare and your origin**, not by browsers — direct access to `8243`/`9443` still shows a warning.
+- Replacing `[keystore.tls]` only changes the HTTPS listeners; do not replace `[keystore.primary]`, which signs the internal tokens.
+- Keep the private key out of the repository. The root `.gitignore` excludes `wso2-am/conf/*.p12` and `wso2-am/conf/*.jks`.
+
 ## Architecture
 
 ```mermaid
