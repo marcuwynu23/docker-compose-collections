@@ -246,6 +246,72 @@ Then recreate the container so the volume is re-read:
 docker compose up -d --force-recreate wso2-mi
 ```
 
+## Use a Cloudflare Origin certificate for TLS
+
+MI terminates TLS through a **Java keystore** (JKS/PKCS12). Cloudflare origin certificates are delivered as PEM (certificate + private key) files, which MI cannot load directly — bundle them into a PKCS12 keystore first (or download the origin certificate as PKCS12 from the Cloudflare dashboard).
+
+### 1. Create the Origin certificate
+
+In the Cloudflare dashboard: **SSL/TLS → Origin Server → Create Certificate**. Note the hostname(s) it covers and its validity period. Later, set the zone **SSL/TLS encryption mode to `Full (strict)`** so Cloudflare validates the origin certificate.
+
+### 2. Bundle the PEM cert and key into a PKCS12 keystore
+
+Run locally (where `origin.pem` and `origin-key.pem` are your Cloudflare downloads):
+
+```bash
+openssl pkcs12 -export -name wso2carbon \
+  -in origin.pem -inkey origin-key.pem \
+  -out conf/origin.p12 -password pass:<store-pass>
+```
+
+Remember the alias and password — they go into `deployment.toml`. Use a strong password (WSO2 warns on weak ones). The `.p12` contains the private key: **do not commit it** (see `.gitignore` below).
+
+### 3. Mount the keystore into the container
+
+Add to `docker-compose.yml`:
+
+```yaml
+services:
+  wso2-mi:
+    volumes:
+      - ./conf/deployment.toml:/home/wso2carbon/wso2mi-4.5.0/conf/deployment.toml:ro
+      - ./conf/origin.p12:/home/wso2carbon/wso2mi-4.5.0/repository/resources/security/origin.p12:ro
+```
+
+### 4. Point the primary keystore at it
+
+Update `[keystore.primary]` in `conf/deployment.toml`:
+
+```toml
+[keystore.primary]
+file_name = "repository/resources/security/origin.p12"
+type = "PKCS12"
+password = "<store-pass>"
+alias = "<alias>"
+key_password = "<key-pass>"
+```
+
+Leave `[truststore]`, `[user_store]`, and `[dashboard_config]` unchanged.
+
+### 5. Recreate the container and verify
+
+```bash
+docker compose up -d --force-recreate wso2-mi
+openssl s_client -connect localhost:8253 -servername <origin-host> -showcerts
+```
+
+The subject should be your origin hostname and the issuer should be a **Cloudflare Inc … CA**.
+
+### 6. Route Cloudflare to the origin
+
+Point Cloudflare traffic at the origin host `8253` (e.g. a Cloudflare Tunnel with service `https://localhost:8253`, or direct DNS plus port forwarding). The SNI hostname Cloudflare uses must match the hostname on the certificate.
+
+### Caveats
+
+- Origin certificates are trusted **only between Cloudflare and your origin**, not by browsers. Direct access to `https://localhost:8253` will still show a certificate warning — that is expected.
+- The primary keystore is also used by the internal HTTPS listener (`9164`) and the dashboard heartbeat; replacing it changes MI's TLS identity.
+- Keep the private key out of the repository. The root `.gitignore` already excludes `wso2-mi/conf/*.p12` and `wso2-mi/conf/*.jks`.
+
 ## Mediation and integration architecture
 
 ```mermaid
