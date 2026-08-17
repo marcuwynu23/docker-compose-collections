@@ -127,6 +127,10 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [xampp](./xampp)
 - [wordpress](./wordpress)
 
+### API Management
+
+- [wso2](./wso2/)
+
 ### Infrastructure & Security
 
 - [authentik](./authentik)
