@@ -31,14 +31,36 @@ flowchart LR
 
 ## Environment variables
 
-Set via `.env` (copy from `.env.example`):
+Environment files are in the `config/` directory, copied from `config-examples/`:
 
-- `KONG_PROXY_PORT` (default: `8000`)
-- `KONG_PROXY_SSL_PORT` (default: `8443`)
-- `KONG_ADMIN_PORT` (default: `8001`)
+### `config/kong.env`
+Copied from `config-examples/kong.env.example`:
+- `KONG_DATABASE` (default: `postgres`)
+- `KONG_PG_HOST` (default: `kong-database`)
 - `KONG_PG_USER` (default: `kong`)
 - `KONG_PG_PASSWORD` (default: `changeme`)
 - `KONG_PG_DATABASE` (default: `kong`)
+- `KONG_PROXY_ACCESS_LOG` (default: `/dev/stdout`)
+- `KONG_ADMIN_ACCESS_LOG` (default: `/dev/stdout`)
+- `KONG_PROXY_ERROR_LOG` (default: `/dev/stderr`)
+- `KONG_ADMIN_ERROR_LOG` (default: `/dev/stderr`)
+- `KONG_ADMIN_LISTEN` (default: `0.0.0.0:8001`)
+
+### `config/kong-db.env`
+Copied from `config-examples/kong-db.env.example`:
+- `POSTGRES_USER` (default: `kong`)
+- `POSTGRES_PASSWORD` (default: `changeme`)
+- `POSTGRES_DB` (default: `kong`)
+
+### `config/kong-migration.env`
+Copied from `config-examples/kong-migration.env.example`:
+- `KONG_DATABASE` (default: `postgres`)
+- `KONG_PG_HOST` (default: `kong-database`)
+- `KONG_PG_USER` (default: `kong`)
+- `KONG_PG_PASSWORD` (default: `changeme`)
+- `KONG_PG_DATABASE` (default: `kong`)
+
+Port mappings are defined in `docker-compose.yml` using defaults `8000`, `8443`, `8001` overridden by `KONG_PROXY_PORT`, `KONG_PROXY_SSL_PORT`, `KONG_ADMIN_PORT` respectively.
 
 ## How to run
 
@@ -46,7 +68,11 @@ From the repository root:
 
 ```bash
 cd kong
-cp .env.example .env
+mkdir config
+
+cp config-examples/kong.env.example config/kong.env
+cp config-examples/kong-db.env.example config/kong-db.env
+cp config-examples/kong-migration.env.example config/kong-migration.env
 docker compose up -d
 ```
 
