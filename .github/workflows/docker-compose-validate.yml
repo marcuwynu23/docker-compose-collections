@@ -34,6 +34,12 @@ jobs:
             if [ -f "$dir/.env.example" ] && [ ! -f "$dir/.env" ]; then
               cp "$dir/.env.example" "$dir/.env"
             fi
+            if [ -d "$dir/config-examples" ] && [ ! -d "$dir/config" ]; then
+              mkdir -p "$dir/config"
+              for f in "$dir/config-examples/"*.env.example; do
+                [ -f "$f" ] && cp "$f" "$dir/config/$(basename "$f" .example)"
+              done
+            fi
             if ! out=$(docker compose -f "$file" config --quiet 2>&1); then
               echo "FAIL:$file"
               echo "$out" | sed 's/^/  /'
