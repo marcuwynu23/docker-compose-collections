@@ -1,0 +1,65 @@
+services:
+  app:
+    build: ./app
+    container_name: app
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    networks:
+      - wso2-network
+
+  wso2-acp:
+    image: wso2/wso2am-acp:4.7.0
+    container_name: wso2-acp
+    ports:
+      - "9443:9443" # Publisher / DevPortal / Admin Portal / Key Manager
+      - "9763:9763" # internal, optional — drop if you don't need it exposed to the host
+    volumes:
+      - ./conf/acp/deployment.toml:/home/wso2carbon/wso2am-acp-4.7.0/repository/conf/deployment.toml:ro
+    environment:
+      - JAVA_OPTS=-Xms512m -Xmx2g
+    restart: unless-stopped
+    networks:
+      - wso2-network
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "curl",
+          "-f",
+          "https://localhost:9443/carbon/admin/login.jsp",
+          "-k",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  wso2-gateway:
+    image: wso2/wso2am-universal-gw:4.7.0
+    container_name: wso2-gateway
+    ports:
+      - "8243:8243" # HTTPS passthrough (API traffic)
+      - "8280:8280" # HTTP passthrough (API traffic)
+    volumes:
+      - ./conf/gateway/deployment.toml:/home/wso2carbon/wso2am-universal-gw-4.7.0/repository/conf/deployment.toml:ro
+    environment:
+      - JAVA_OPTS=-Xms512m -Xmx1g
+    depends_on:
+      wso2-acp:
+        condition: service_healthy
+      app:
+        condition: service_started
+    restart: unless-stopped
+    networks:
+      - wso2-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "https://localhost:8243/services/echo", "-k"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+networks:
+  wso2-network:
+    driver: bridge

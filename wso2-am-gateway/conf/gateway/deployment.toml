@@ -1,0 +1,63 @@
+[server]
+hostname = "wso2-gateway"
+node_ip = "127.0.0.1"
+server_role = "default"
+
+[user_store]
+type = "database_unique_id"
+
+[super_admin]
+username = "admin"
+password = "admin"
+create_admin_account = true
+
+# Gateway needs shared_db too (registry / user store lookups) —
+# same database instance/credentials as the ACP's shared_db.
+[database.shared_db]
+type = "mysql"
+hostname = "mysql"
+name = "shared_db"
+port = "3306"
+username = "sharedadmin"
+password = "sharedadmin"
+
+[keystore.tls]
+file_name = "wso2carbon.jks"
+type = "JKS"
+password = "wso2carbon"
+alias = "wso2carbon"
+key_password = "wso2carbon"
+
+[truststore]
+file_name = "client-truststore.jks"
+type = "JKS"
+password = "wso2carbon"
+
+# Must match the ACP's key exactly.
+[apim.encryption]
+key = "REPLACE_WITH_A_64_CHAR_HEX_KEY"
+
+# --- Where to validate tokens ---
+[apim.key_manager]
+service_url = "https://wso2-acp:9443/services/"
+username = "$ref{super_admin.username}"
+password = "$ref{super_admin.password}"
+
+# --- Where to pull API/App/Subscription artifacts from ---
+[apim.event_hub]
+enable = true
+username = "$ref{super_admin.username}"
+password = "$ref{super_admin.password}"
+service_url = "https://wso2-acp:9443/services/"
+event_listening_endpoints = ["tcp://wso2-acp:5672"]
+
+# Which gateway "label" this node deploys revisions for — must match
+# the label used when deploying an API to this gateway from the ACP.
+[apim.sync_runtime_artifacts.gateway]
+gateway_labels = ["Default"]
+
+# NOTE: no [apim.throttling] block — with a single Gateway node, rate
+# limiting falls back to local, in-memory throttling on this node,
+# which is fine until you scale to more than one gateway. If you add
+# a second gateway node later, you'll need a dedicated Traffic Manager
+# and an [apim.throttling] block on both nodes pointing to it.
