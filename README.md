@@ -179,6 +179,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [uptime-kuma](./uptime-kuma)
 - [sentry](./sentry)
 - [signoz](./signoz)
+- [splunk](./splunk)
 
 ### Backups
 
