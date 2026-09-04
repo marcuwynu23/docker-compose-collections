@@ -50,6 +50,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 ### CI/CD & DevOps
 
 - [floci](./floci)
+- [gitlab](./gitlab)
 - [gitea](./gitea)
 - [gitea+jenkins](./gitea+jenkins)
 - [jenkins](./jenkins)
