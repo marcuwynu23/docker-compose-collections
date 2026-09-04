@@ -118,6 +118,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [devpi](./devpi)
 - [it-tools](./it-tools)
 - [jmeter](./jmeter)
+- [jmeter-gui](./jmeter-gui)
 - [localstack](./localstack)
 - [portabase](./portabase)
 - [registry](./registry)
