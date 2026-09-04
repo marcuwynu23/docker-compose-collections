@@ -75,10 +75,55 @@ docker compose down
 
 ## Use it effectively
 
-- Edit `fluent-bit/fluent-bit.conf` to add outputs (Elasticsearch, Loki, S3, Kafka, etc.).
+- Edit `fluent-bit/fluent-bit.conf` to add outputs (Elasticsearch, Loki, S3, Kafka, Splunk, etc.).
 - Use filters to enrich, modify, or drop log records before forwarding.
 - Mount additional log paths from other containers using shared volumes.
 - Pair with Prometheus to scrape the `/api/v1/metrics/prometheus` endpoint.
+
+### Splunk Integration
+
+Fluent Bit can forward logs to Splunk via the **Splunk output plugin** using the HTTP Event Collector (HEC):
+
+```mermaid
+flowchart LR
+    App([Application]) -->|logs| FB[Fluent Bit :2020]
+    FB -->|Tail/Forward| Parse[Parse/Filter]
+    Parse -->|Splunk Output| HEC[Splunk HEC :8088]
+    HEC --> Index[(Splunk Index)]
+    Index --> UI[Splunk Web UI :8083]
+    
+    subgraph FB["Fluent Bit"]
+        Parse
+    end
+    
+    subgraph Splunk["Splunk"]
+        HEC
+        Index
+        UI
+    end
+```
+
+1. Applications write logs to files or stdout.
+2. Fluent Bit collects, parses, and forwards logs using the Splunk output plugin.
+3. Logs are sent to Splunk's HEC endpoint on port `8088`.
+4. Splunk indexes the data for search, analysis, and visualization.
+
+```ini
+[OUTPUT]
+    Name         splunk
+    Match        *
+    Host         <splunk-host>
+    Port         8088
+    Splunk_Token <YOUR_HEC_TOKEN>
+    Tls          Off
+    Index        main
+```
+
+1. Enable HEC in Splunk (**Settings > Data Inputs > HTTP Event Collector**).
+2. Generate an HEC token and configure it in Fluent Bit.
+3. Fluent Bit forwards logs to Splunk's HEC endpoint on port `8088`.
+
+See the [Splunk Integration Guide](./../splunk/README.md) for full setup details.
 
 ## Notes
 
