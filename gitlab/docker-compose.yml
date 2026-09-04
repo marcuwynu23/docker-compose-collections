@@ -1,0 +1,14 @@
+services:
+  gitlab:
+    image: gitlab/gitlab-ee:latest
+    container_name: gitlab
+    restart: unless-stopped
+    # hostname: gitlab.local
+    ports:
+      - "8084:80"
+      - "8443:443"
+      - "2222:22"
+    volumes:
+      - ./data/config:/etc/gitlab
+      - ./data/logs:/var/log/gitlab
+      - ./data/data:/var/opt/gitlab
