@@ -1,0 +1,8 @@
+services:
+  jmeter:
+    container_name: jmeter-gui
+    image: guitarrapc/jmeter-gui:5.6.3
+    ports:
+      - "8082:8080"
+    volumes:
+      - ./jmeter:/root/jmeter
