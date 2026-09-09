@@ -1,0 +1,43 @@
+services:
+  freeipa:
+    image: freeipa/freeipa-server:almalinux-10
+    container_name: freeipa
+    hostname: ipa.example.test
+    restart: unless-stopped
+    read_only: true
+    cgroup: host
+    environment:
+      TZ: Asia/Manila
+      # Prevent the container from trying to automatically
+      # modify the container IP configuration.
+      IPA_SERVER_IP: no-update
+    command:
+      - ipa-server-install
+      - --realm=EXAMPLE.TEST
+      - --domain=example.test
+      - --hostname=ipa.example.test
+      - --ds-password=DirectoryManagerPassword123!
+      - --admin-password=AdminPassword123!
+      - --setup-dns
+      - --no-reverse
+      - --no-ntp
+      - --no-host-dns
+      - --no-forwarders
+      - --skip-mem-check
+      - --unattended
+    volumes:
+      - freeipa-data:/data
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "80:80/tcp"
+      - "443:443/tcp"
+      - "389:389/tcp"
+      - "636:636/tcp"
+      - "88:88/tcp"
+      - "88:88/udp"
+      - "464:464/tcp"
+      - "464:464/udp"
+volumes:
+  freeipa-data:
