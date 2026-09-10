@@ -70,3 +70,11 @@ docker compose down -v   # remove containers + named volumes
 
 - Compose file currently hardcodes some app DB env values in `web`; keep these in sync with `.env` values.
 - MySQL healthcheck uses root password; mismatched values can delay `web` startup.
+
+## References
+
+- Official site (Apache Friends): <https://www.apachefriends.org>
+- Documentation / FAQs: <https://www.apachefriends.org/docs>
+- PHP docs: <https://www.php.net/docs.php>
+- MySQL Docker Hub image: <https://hub.docker.com/_/mysql>
+- YouTube — Stop Using XAMPP! Docker PHP + MySQL Full Setup: <https://www.youtube.com/watch?v=MSkLDwP-yCs>
