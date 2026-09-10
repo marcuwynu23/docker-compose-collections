@@ -59,3 +59,10 @@ docker compose down
 - The container is stateless — no persistent volume needed.
 - Change the host port mapping if `8080` conflicts with other services.
 - See [IT Tools GitHub](https://github.com/CorentinTh/it-tools) for the full list of included utilities.
+
+## References
+
+- Official site: <https://it-tools.tech>
+- GitHub repo: <https://github.com/CorentinTh/it-tools>
+- Docker Hub image: <https://hub.docker.com/r/corentinth/it-tools>
+- YouTube — Every Techie Needs This: IT Tools (Jim's Garage): <https://www.youtube.com/watch?v=CbIASgzUIUU>
