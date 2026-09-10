@@ -92,3 +92,11 @@ docker compose run --rm restic stats
 - The `./data` directory is mounted read-only to prevent accidental modification during backup.
 - For remote backends (S3, SFTP), add the relevant credentials as environment variables (e.g., `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`).
 - See [Restic docs](https://restic.readthedocs.io/) for full configuration reference.
+
+## References
+
+- Official site: <https://restic.net>
+- Documentation: <https://restic.readthedocs.io/>
+- Docker Hub image: <https://hub.docker.com/r/restic/restic>
+- GitHub repo: <https://github.com/restic/restic>
+- YouTube — Docker Backup and Restore Made EASY with Restic: <https://www.youtube.com/watch?v=WBBTC5WfGis>
