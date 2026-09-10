@@ -73,3 +73,11 @@ docker compose down
 - The official image ships with a demo catalog; customize `app-config.yaml` for your org.
 - For production, mount a custom `app-config.production.yaml` via volumes.
 - See [Backstage docs](https://backstage.io/docs) for full configuration and plugin reference.
+
+## References
+
+- Official site: <https://backstage.io/>
+- Documentation: <https://backstage.io/docs>
+- Docker deployment guide: <https://backstage.io/docs/deployment/docker/>
+- GitHub repo: <https://github.com/backstage/backstage>
+- YouTube — What is Backstage? Explainer Video (Spotify R&D): <https://www.youtube.com/watch?v=85TQEpNCaU0>
