@@ -104,3 +104,11 @@ curl "http://localhost:7700/indexes/movies/search" \
 - In development mode, the API is accessible without authentication for convenience.
 - Data persists across restarts via the `meili_data` volume.
 - See [Meilisearch docs](https://www.meilisearch.com/docs) for full API and configuration reference.
+
+## References
+
+- Official site: <https://www.meilisearch.com>
+- Documentation: <https://www.meilisearch.com/docs>
+- Docker Hub image: <https://hub.docker.com/r/getmeili/meilisearch>
+- GitHub repo: <https://github.com/meilisearch/meilisearch>
+- YouTube — Setting Up a Fast, Self-Hosted Search Engine - Meilisearch: <https://www.youtube.com/watch?v=-Ptm38WyoPY>
