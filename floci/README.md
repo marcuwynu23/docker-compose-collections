@@ -140,3 +140,11 @@ For comprehensive documentation, examples, and advanced configuration:
 - Check that required ports are not in use by other services
 - Verify Docker socket permissions if container fails to start
 - Use `docker compose logs -f` to monitor service startup and errors
+
+## References
+
+- Official site: <https://floci.io>
+- Documentation: <https://floci.io/floci/getting-started/installation>
+- GitHub repo: <https://github.com/floci-io/floci>
+- Docker Hub image: <https://hub.docker.com/r/floci/floci>
+- YouTube — Floci Local Cloud Emulator Tutorial | Run AWS Services Locally | Complete Beginner Guide: <https://www.youtube.com/watch?v=Bje-D5L85JE>
