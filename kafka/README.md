@@ -101,3 +101,12 @@ npm run consumer
 - The internal port `29092` is used for inter-container communication.
 - Replication factor is set to 1 for single-node development setup.
 - For production use, consider running multiple Kafka brokers and adjusting replication factors.
+
+## References
+
+- Official site: <https://kafka.apache.org>
+- Quickstart: <https://kafka.apache.org/quickstart>
+- Docker Hub image: <https://hub.docker.com/r/apache/kafka>
+- GitHub repo: <https://github.com/apache/kafka>
+- GitHub repo (Kafka UI): <https://github.com/provectus/kafka-ui>
+- YouTube — Kafka Tutorial for Beginners | Everything you need to get started (TechWorld with Nana): <https://www.youtube.com/watch?v=QkdkLdMBuL0>
