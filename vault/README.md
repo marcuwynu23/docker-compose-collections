@@ -77,3 +77,11 @@ docker compose down
 - Dev mode is not suitable for production because it auto-initializes and uses simplified security settings.
 - For production, use a proper storage backend (for example Raft), TLS, unseal workflow, and strict policy/auth setup.
 - If host port `8200` is already used by another local Vault process, keep using `18200` (or any free port) in `.env`.
+
+## References
+
+- Official site: <https://www.vaultproject.io>
+- Documentation: <https://developer.hashicorp.com/vault/docs>
+- Docker Hub image: <https://hub.docker.com/r/hashicorp/vault>
+- GitHub repo: <https://github.com/hashicorp/vault>
+- YouTube — Getting started with HashiCorp Vault: <https://www.youtube.com/watch?v=Oyvnicmxmbo>
