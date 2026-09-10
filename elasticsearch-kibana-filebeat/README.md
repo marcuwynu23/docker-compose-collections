@@ -280,3 +280,12 @@ Auto-refresh in Kibana gives live log streaming experience.
 - Add Filebeat parsing pipelines
 - Add Kibana dashboards
 - Add alerting rules
+
+## References
+
+- Elasticsearch documentation: <https://www.elastic.co/docs/reference/elasticsearch>
+- Kibana documentation: <https://www.elastic.co/docs/reference/kibana>
+- Filebeat documentation: <https://www.elastic.co/docs/reference/beats/filebeat>
+- Kibana product page: <https://www.elastic.co/kibana>
+- Filebeat product page: <https://www.elastic.co/beats/filebeat>
+- YouTube — Install ELK Elasticsearch, Kibana, and Filebeat using Docker Compose: <https://www.youtube.com/watch?v=rJzDU9jKTjQ>
