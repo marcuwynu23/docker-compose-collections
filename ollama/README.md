@@ -64,3 +64,11 @@ docker compose down
 
 - First model pull can take time depending on model size.
 - If container name differs in your environment, check with `docker ps` before `docker exec`.
+
+## References
+
+- Official site: <https://ollama.com>
+- GitHub repo: <https://github.com/ollama/ollama>
+- Docker Hub image: <https://hub.docker.com/r/ollama/ollama>
+- Docker docs: <https://github.com/ollama/ollama/blob/main/docs/docker.mdx>
+- YouTube — Run AI Models Locally: Ollama Tutorial (Step-by-Step Guide + WebUI): <https://www.youtube.com/watch?v=Lb5D892-2HY>
