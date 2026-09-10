@@ -61,3 +61,11 @@ docker compose down
 
 - For production-grade reliability, prefer the `n8n+postgresql` stack.
 - Keep webhook/editor URLs aligned with your public domain/proxy settings.
+
+## References
+
+- Official site: <https://n8n.io>
+- Documentation: <https://docs.n8n.io>
+- Docker Hub image: <https://hub.docker.com/r/n8nio/n8n>
+- GitHub repo: <https://github.com/n8n-io/n8n>
+- YouTube — n8n Quick Start Tutorial: Build Your First Workflow [2025]: <https://www.youtube.com/watch?v=4cQWJViybAQ>
