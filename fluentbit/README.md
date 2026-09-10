@@ -131,3 +131,11 @@ See the [Splunk Integration Guide](./../splunk/README.md) for full setup details
 - Fluent Bit is extremely lightweight (~450KB) compared to Fluentd or Logstash.
 - Place your application log files in `./logs/` and they will be tailed automatically.
 - See [Fluent Bit docs](https://docs.fluentbit.io/) for full plugin and configuration reference.
+
+## References
+
+- Official site: <https://fluentbit.io>
+- Documentation: <https://docs.fluentbit.io/manual>
+- GitHub repo: <https://github.com/fluent/fluent-bit>
+- Docker Hub image: <https://hub.docker.com/r/fluent/fluent-bit>
+- YouTube — Get Started with Fluent Bit in 2 minutes: <https://www.youtube.com/watch?v=TNI8HzNJumE>
