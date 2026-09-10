@@ -80,3 +80,11 @@ docker compose down
 - Scalar supports OpenAPI 3.0, 3.1, and Swagger 2.0 formats (YAML and JSON).
 - No authentication or database required — it's a stateless documentation renderer.
 - See [Scalar docs](https://github.com/scalar/scalar) for theming and configuration options.
+
+## References
+
+- Official site: <https://scalar.com>
+- Documentation: <https://scalar.com/docs>
+- Docker Hub image: <https://hub.docker.com/r/scalarapi/api-reference>
+- GitHub repo: <https://github.com/scalar/scalar>
+- YouTube — Scalar Setup - Your Swagger Setup Is Outdated: <https://www.youtube.com/watch?v=vjT2M_LMZMs>
