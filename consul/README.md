@@ -67,3 +67,10 @@ docker compose down
 - For production deployments, you'll want to configure a proper cluster with persistent storage.
 - Place any Consul configuration files in the `config/` directory.
 - Access the Web UI at http://localhost:8500
+
+## References
+
+- Official site: <https://developer.hashicorp.com/consul>
+- Documentation: <https://developer.hashicorp.com/consul/docs>
+- Docker Hub image: <https://hub.docker.com/r/hashicorp/consul>
+- YouTube — Consul Service Mesh Tutorial for Beginners (TechWorld with Nana): <https://www.youtube.com/watch?v=s3I1kKKfjtQ>
