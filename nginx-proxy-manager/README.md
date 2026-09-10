@@ -81,3 +81,11 @@ docker compose down
 
 - Port conflicts are common on `80`/`443`; change mapped ports in `.env` if needed.
 - If you run this behind another reverse proxy, ensure correct forwarded headers.
+
+## References
+
+- Official site: <https://nginxproxymanager.com/>
+- Guide: <https://nginxproxymanager.com/guide>
+- Docker Hub image: <https://hub.docker.com/r/jc21/nginx-proxy-manager>
+- GitHub repo: <https://github.com/NginxProxyManager/nginx-proxy-manager>
+- YouTube — NGINX Proxy Manager: How to Install and Setup Reverse Proxy on Unraid: <https://www.youtube.com/watch?v=h1a4u72o-64>
