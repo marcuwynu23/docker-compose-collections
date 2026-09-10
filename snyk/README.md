@@ -69,3 +69,12 @@ docker compose run --rm snyk auth
 - Keep your `SNYK_TOKEN` secret — do not commit `.env` to version control.
 - The Docker socket mount is required for container scanning; remove it if you only scan code dependencies.
 - Free tier includes limited tests per month; check [Snyk pricing](https://snyk.io/plans/) for details.
+
+## References
+
+- Official site: <https://snyk.io>
+- Documentation: <https://docs.snyk.io>
+- Snyk CLI docs: <https://docs.snyk.io/developer-tools/snyk-cli>
+- Docker Hub image: <https://hub.docker.com/r/snyk/snyk>
+- GitHub repo (CLI): <https://github.com/snyk/cli>
+- YouTube — How to Integrate Snyk CLI 2026?: <https://www.youtube.com/watch?v=4t87qSwkR2s>
