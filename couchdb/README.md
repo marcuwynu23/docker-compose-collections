@@ -88,3 +88,11 @@ docker compose down
 - CouchDB is schema-free — each document can have a different structure.
 - For production clusters, configure multiple nodes with the cluster setup wizard in Fauxton.
 - See [CouchDB docs](https://docs.couchdb.org/) for full configuration reference.
+
+## References
+
+- Official site: <https://couchdb.apache.org/>
+- Docker install docs: <https://docs.couchdb.org/en/stable/install/docker.html>
+- GitHub repo: <https://github.com/apache/couchdb-docker>
+- Docker Hub image: <https://hub.docker.com/_/couchdb>
+- YouTube — Apache CouchDB Installation, Configuration & Bi-Directional Replication: <https://www.youtube.com/watch?v=D2rz8qUmezE>
