@@ -142,3 +142,11 @@ with driver.session() as session:
 - The `data/import/` folder is mounted to `/import` — files placed there are accessible with `file:///` in Cypher.
 - APOC provides hundreds of procedures for data transformation, graph algorithms, and more.
 - For AI use cases, Neo4j supports vector indexes and can store/query embeddings with `apoc.nlp.*` procedures.
+
+## References
+
+- Official site: <https://neo4j.com>
+- Documentation: <https://neo4j.com/docs>
+- Docker Hub image: <https://hub.docker.com/_/neo4j>
+- GitHub repo: <https://github.com/neo4j/neo4j>
+- YouTube — Beginner's Guide to Neo4j Graph Databases!: <https://www.youtube.com/watch?v=UF9gD4irBOE>
