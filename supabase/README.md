@@ -87,3 +87,12 @@ docker compose down -v
 
 - This is a lightweight Supabase-compatible starter, not the full official Supabase platform bundle.
 - Create an `anon` DB role (or change `SUPABASE_ANON_ROLE`) before exposing REST endpoints to client apps.
+
+## References
+
+- Official site: <https://supabase.com>
+- Documentation: <https://supabase.com/docs>
+- Self-hosting with Docker: <https://supabase.com/docs/guides/self-hosting/docker>
+- GitHub repo: <https://github.com/supabase/supabase>
+- PostgREST docs: <https://postgrest.org/en/stable/>
+- YouTube — Complete Guide Supabase Self-Hosted + Custom S3 + Authelia: <https://www.youtube.com/watch?v=wyUr_U6Cma4>
