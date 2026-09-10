@@ -145,3 +145,10 @@ for row in rows:
 - Run `nodetool status` to verify the cluster is healthy after startup.
 - The first startup seeds the cluster — it may take 30–60 seconds before `cqlsh` is available.
 - For multi-node clusters, add more `cassandra` services in the compose file with different seeds and advertise addresses.
+
+## References
+
+- Official site: <https://cassandra.apache.org/>
+- Documentation: <https://cassandra.apache.org/doc/latest/cassandra/installing/installing.html>
+- Docker Hub image: <https://hub.docker.com/_/cassandra>
+- YouTube — Apache Cassandra Database Full Course for Beginners (freeCodeCamp.org): <https://www.youtube.com/watch?v=J-cSy5MeMOA>
