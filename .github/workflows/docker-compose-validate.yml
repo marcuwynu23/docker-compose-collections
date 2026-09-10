@@ -22,7 +22,10 @@ jobs:
         run: pip install ryl
 
       - name: ryl lint
-        run: ryl . --format github
+        shell: bash
+        run: |
+          find . -type f \( -name 'docker-compose.yml' -o -name 'docker-stack.yml' \) -print0 \
+            | xargs -0 -r ryl check --format github
 
       - name: Validate all docker-compose files
         shell: bash
