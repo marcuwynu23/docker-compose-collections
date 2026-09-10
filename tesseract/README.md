@@ -75,3 +75,12 @@ docker compose down
 - **Stateless**: The container is completely stateless. No volume mounts are required unless you wish to load custom `.traineddata` files.
 - **Resource Usage**: OCR can be CPU intensive; make sure to monitor container resource usage if processing a large volume of images.
 - **Language Codes**: Supported languages correspond to standard Alpine Linux `tesseract-ocr-data-*` package names.
+
+## References
+
+- Tesseract OCR site: <https://tesseract-ocr.github.io>
+- Tesseract docs: <https://tesseractocr.org/doc>
+- Docker Hub image: <https://hub.docker.com/r/hertzg/tesseract-server>
+- GitHub repo (server): <https://github.com/hertzg/tesseract-server>
+- GitHub repo (engine): <https://github.com/tesseract-ocr/tesseract>
+- YouTube — Docker Tesseract OCR | Extract Text from Images: <https://www.youtube.com/watch?v=ZGPsvgOGmcQ>
