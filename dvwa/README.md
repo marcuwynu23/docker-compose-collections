@@ -52,3 +52,9 @@ docker compose down
 - Initialization: Upon first load, you may need to click the "Create / Reset Database" button on the setup page to populate the tables.
 - Security: This application is intentionally vulnerable. Do not expose this container to the public internet. It is intended for local educational use only.
 - Persistence: This configuration uses a Docker volume for MySQL to ensure your database configuration persists between container restarts.
+
+## References
+
+- Project home (GitHub): <https://github.com/digininja/DVWA>
+- Docker Hub image: <https://hub.docker.com/r/vulnerables/web-dvwa>
+- YouTube — Setting up DVWA in Docker | Containerization Crash Course 4: <https://www.youtube.com/watch?v=H6_31G6BY-8>
