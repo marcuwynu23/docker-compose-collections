@@ -146,3 +146,12 @@ If your image provides default credentials, check logs:
 
 - Confirm `BUGZILLA_URL=http://localhost:8080`
 - Clear browser cache or try incognito mode
+
+## References
+
+- Official site: <https://www.bugzilla.org/>
+- Documentation: <https://www.bugzilla.org/docs/>
+- Online docs: <https://bugzilla.readthedocs.io/>
+- GitHub repo: <https://github.com/bugzilla/bugzilla>
+- Docker Hub image: <https://hub.docker.com/r/nasqueron/bugzilla>
+- YouTube — Bugzilla for Windows 10 (installation walkthrough): <https://www.youtube.com/watch?v=4FIMB3Ouap8>
