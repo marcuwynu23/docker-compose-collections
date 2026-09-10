@@ -51,3 +51,12 @@ podman compose up -d
 
 - Default config is provided at `data/conf/config.yaml`.
 - Use scoped registries in npm config for best control.
+
+## References
+
+- Official site: <https://verdaccio.org>
+- Documentation: <https://verdaccio.org/docs/installation>
+- Docker guide: <https://verdaccio.org/docs/docker>
+- Docker Hub image: <https://hub.docker.com/r/verdaccio/verdaccio>
+- GitHub repo: <https://github.com/verdaccio/verdaccio>
+- YouTube — Creating a Local Private NPM registry using Verdaccio: <https://www.youtube.com/watch?v=dYE9vc8KtE4>
