@@ -342,3 +342,10 @@ sequenceDiagram
 - The Micro Integrator Dashboard / Integration Control Plane is a separate management component (`wso2-icp`).
 - The HTTPS endpoints use a self-signed certificate in local development, so `curl` may require `-k`.
 - For production deployments, configure proper certificates, secrets, authentication, logging, monitoring, persistence, and high availability.
+
+## References
+
+- Documentation: <https://mi.docs.wso2.com/en/latest>
+- Docker Hub image: <https://hub.docker.com/r/wso2/wso2mi>
+- GitHub repo: <https://github.com/wso2/micro-integrator>
+- YouTube — WSO2 Micro Integrator Demo: Mastering Basic Integration Scenarios and API Exposure with API Manager: <https://www.youtube.com/watch?v=KfclxL76trw>
