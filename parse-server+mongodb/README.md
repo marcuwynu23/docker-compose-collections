@@ -103,3 +103,12 @@ docker compose down -v
 - If you change app ID or master key after data already exists, old clients must be updated with new values.
 - If Dashboard shows "Parse Server failed to fetch", set `PARSE_DASHBOARD_SERVER_URL` to a URL reachable by your browser (for local host usage, keep `http://localhost:1337/parse`).
 - If Dashboard shows "unauthorized", ensure `PARSE_MASTER_KEY` matches in both services and allow dashboard source IPs via `PARSE_MASTER_KEY_IPS` (local dev default: `0.0.0.0/0,::/0`).
+
+## References
+
+- Official site: <https://parseplatform.org>
+- Parse Server guide: <https://docs.parseplatform.org/parse-server/guide/>
+- GitHub repo: <https://github.com/parse-community/parse-server>
+- Docker Hub image (Parse Server): <https://hub.docker.com/r/parseplatform/parse-server>
+- Docker Hub image (MongoDB): <https://hub.docker.com/_/mongo>
+- YouTube — How To Run Cloud Functions On A Self Hosted Parse Server: <https://www.youtube.com/watch?v=uyYHvrYTex4>
