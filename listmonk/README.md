@@ -51,3 +51,11 @@ podman compose up -d
 - First startup initializes the database schema.
 - Access the dashboard at `http://localhost:<LISTMONK_PORT>`
 - Configure your SMTP settings for sending newsletters.
+
+## References
+
+- Official site: <https://listmonk.app/>
+- Documentation: <https://listmonk.app/docs>
+- Docker Hub image: <https://hub.docker.com/r/listmonk/listmonk>
+- GitHub repo: <https://github.com/knadh/listmonk>
+- YouTube — Listmonk Tutorial: Set Up a Self-Hosted Newsletter (Docker + VPS): <https://www.youtube.com/watch?v=SxYyjdnnWNQ>
