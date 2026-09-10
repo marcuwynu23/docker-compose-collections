@@ -66,3 +66,12 @@ docker compose down
 - You can use standard Kafka clients (librdkafka, kafka-python, etc.) to connect.
 - Access the management UI at http://localhost:8080
 - For production, consider configuring proper object storage backend (S3, MinIO, etc.)
+
+## References
+
+- Official site: <https://www.automq.com/>
+- Documentation: <https://docs.automq.com/>
+- Docker deploy guide: <https://docs.automq.com/automq/getting-started/deploy-multi-nodes-test-cluster-on-docker>
+- GitHub repo: <https://github.com/AutoMQ/automq-for-kafka>
+- Docker Hub image: <https://hub.docker.com/r/automqinc/automq>
+- YouTube — AutoMQ: A New Kafka Alternative on S3 (The Geek Narrator): <https://www.youtube.com/watch?v=sFIqo1QUE_Y>
