@@ -130,3 +130,13 @@ docker compose restart prometheus
 - Change default Grafana credentials before exposing this stack.
 - You can add additional scrape targets in `prometheus/prometheus.yml`.
 - Using Grafana dashboard **1860** is strongly recommended for system-level monitoring.
+
+## References
+
+- Prometheus official site: <https://prometheus.io>
+- Node Exporter guide: <https://prometheus.io/docs/guides/node-exporter>
+- Grafana official site: <https://grafana.com>
+- Node Exporter Full dashboard (ID 1860): <https://grafana.com/grafana/dashboards/1860-node-exporter-full>
+- GitHub repo (Node Exporter): <https://github.com/prometheus/node_exporter>
+- Docker Hub image (Prometheus): <https://hub.docker.com/r/prom/prometheus>
+- YouTube — Monitoring Linux Host Metrics with Prometheus | Node Exporter (Setup, Scrape, Query, Grafana): <https://www.youtube.com/watch?v=dcb59H_iLj4>
