@@ -55,3 +55,10 @@ docker compose down
 
 - Keep the `./data` folder backed up if you want to preserve gateway state.
 - Update allowed origins if you access the UI from non-localhost domains.
+
+## References
+
+- Official site: <https://openclaw.ai>
+- Documentation: <https://docs.openclaw.ai>
+- GitHub repo: <https://github.com/openclaw/openclaw>
+- YouTube — OpenClaw Tutorial for Beginners (Complete Setup Guide): <https://www.youtube.com/watch?v=0ki32iAlKHw>
