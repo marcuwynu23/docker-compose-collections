@@ -124,3 +124,11 @@ curl -X POST http://localhost:6333/collections/products/points/search \
 - The dashboard is available at `/dashboard` on the REST API port — useful for inspecting collections and points.
 - Snapshots in `./data/snapshots/` can be used for backup and restore across instances.
 - For production, consider setting `QDRANT__SERVICE__API_KEY` to secure the API.
+
+## References
+
+- Official site: <https://qdrant.tech>
+- Documentation: <https://qdrant.tech/documentation>
+- Docker Hub image: <https://hub.docker.com/r/qdrant/qdrant>
+- GitHub repo: <https://github.com/qdrant/qdrant>
+- YouTube — Run Qdrant Locally in 5 Minutes: Docker Setup Guide for Vector Search: <https://www.youtube.com/watch?v=pfX6y5tjDb8>
