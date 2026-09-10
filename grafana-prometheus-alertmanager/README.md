@@ -57,3 +57,13 @@ docker compose restart prometheus
 
 - Change default Grafana credentials before exposing this stack.
 - You can add additional scrape targets in `prometheus/prometheus.yml`.
+
+## References
+
+- Prometheus official site: <https://prometheus.io>
+- Alertmanager documentation: <https://prometheus.io/docs/alerting/latest/alertmanager>
+- Grafana official site: <https://grafana.com>
+- Docker Hub image (Alertmanager): <https://hub.docker.com/r/prom/alertmanager>
+- Docker Hub image (Grafana): <https://hub.docker.com/r/grafana/grafana>
+- GitHub repo (Alertmanager): <https://github.com/prometheus/alertmanager>
+- YouTube — Grafana, Prometheus and Alert-Manager | Docker Compose Full ...: <https://www.youtube.com/watch?v=I9GMatFDBQ0>
