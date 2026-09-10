@@ -73,3 +73,10 @@ docker compose down        # stop and remove containers
 - PostgreSQL is exposed on `5433` only for local development.
 - Do not commit sensitive values from `.env` to source control.
 - The app container includes a healthcheck that verifies `/api/health` before marking the service healthy.
+
+## References
+
+- Official site: <https://portabase.io>
+- Documentation: <https://portabase.io/docs>
+- GitHub repo: <https://github.com/portabase/portabase>
+- YouTube — Portabase demo: <https://www.youtube.com/watch?v=nSTzT27GgAg>
