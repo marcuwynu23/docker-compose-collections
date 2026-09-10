@@ -134,3 +134,12 @@ docker compose restart prometheus   # After prometheus.yml changes
 docker compose restart loki   # After loki config.yaml changes
 docker compose restart tempo   # After tempo config.yaml changes
 ```
+
+## References
+
+- Alloy documentation: <https://grafana.com/docs/alloy/latest>
+- GitHub repo (Alloy): <https://github.com/grafana/alloy>
+- Docker Hub image (Alloy): <https://hub.docker.com/r/grafana/alloy>
+- Loki documentation: <https://grafana.com/docs/loki/latest>
+- Tempo documentation: <https://grafana.com/docs/tempo/latest>
+- YouTube — Grafana Alloy, NEW log + metric collector replaces everything!: <https://www.youtube.com/watch?v=E654LPrkCjo>
