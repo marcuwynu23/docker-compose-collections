@@ -52,3 +52,11 @@ docker compose down
 
 - Privileged mode gives broad host capabilities; use on trusted environments.
 - Keep build scripts/assets under `build/` so output persists on host.
+
+## References
+
+- Official site: <https://archlinux.org>
+- Documentation (archiso): <https://wiki.archlinux.org/title/Archiso>
+- GitHub repo (archiso): <https://github.com/archlinux/archiso>
+- Docker Hub image: <https://hub.docker.com/_/archlinux>
+- YouTube — Build Your Own Distro With Archiso: <https://www.youtube.com/watch?v=tSGGBbJBgvk>
