@@ -87,3 +87,11 @@ docker compose down
 - For production, deploy broker, BookKeeper, and ZooKeeper as separate services.
 - Data persists across restarts via the `pulsar_data` volume.
 - See [Apache Pulsar docs](https://pulsar.apache.org/docs/) for full configuration reference.
+
+## References
+
+- Official site: <https://pulsar.apache.org>
+- Documentation: <https://pulsar.apache.org/docs/next/>
+- Docker Hub image: <https://hub.docker.com/r/apachepulsar/pulsar>
+- GitHub repo: <https://github.com/apache/pulsar>
+- YouTube — Understanding Apache Pulsar in 10 minutes: <https://www.youtube.com/watch?v=TKs5T6N78Tc>
