@@ -133,3 +133,13 @@ docker compose down
 - Change default Grafana credentials before exposing this stack.
 - Ensure MongoDB exporter is secured (do not expose 9216 publicly).
 - You can add additional scrape targets in `prometheus/prometheus.yml`.
+
+## References
+
+- MongoDB official site: <https://www.mongodb.com>
+- MongoDB documentation: <https://www.mongodb.com/docs/manual/>
+- Prometheus official site: <https://prometheus.io>
+- Grafana official site: <https://grafana.com>
+- Docker Hub image (MongoDB exporter): <https://hub.docker.com/r/percona/mongodb_exporter>
+- GitHub repo (MongoDB exporter): <https://github.com/percona/mongodb_exporter>
+- YouTube — How to Monitor MongoDB with Prometheus and Grafana: <https://www.youtube.com/watch?v=7yVx158HtkY>
