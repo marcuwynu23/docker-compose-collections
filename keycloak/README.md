@@ -78,3 +78,10 @@ docker compose down
 - Change default admin credentials before exposing Keycloak externally.
 - The `start-dev` command runs Keycloak in development mode (HTTP, no caching). For production, use `start` with TLS configured.
 - See [Keycloak docs](https://www.keycloak.org/documentation) for full configuration reference.
+
+## References
+
+- Official site: <https://www.keycloak.org>
+- Documentation: <https://www.keycloak.org/documentation>
+- GitHub repo: <https://github.com/keycloak/keycloak>
+- YouTube — Keycloak + Docker Compose: Setup & Authentication Tutorial (Rayan Slim): <https://www.youtube.com/watch?v=WGcgiegv0W0>
