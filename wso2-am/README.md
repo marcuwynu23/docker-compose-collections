@@ -395,3 +395,11 @@ flowchart TB
 - When the backend runs directly on the Windows host while WSO2 runs inside Docker, `host.docker.internal` can be used to reach the host from the container.
 - For production deployments, configure proper certificates, external databases, secrets, identity providers, clustering, persistence, and security policies.
 - WSO2 API Manager is an **API management platform**, not merely an API gateway. The gateway handles runtime API traffic while the management components handle API lifecycle, publishing, subscriptions, policies, and developer consumption.
+
+## References
+
+- Documentation: <https://apim.docs.wso2.com/en/latest>
+- Docker Hub image: <https://hub.docker.com/r/wso2/wso2am>
+- GitHub repo (docker-apim): <https://github.com/wso2/docker-apim>
+- GitHub repo (docs): <https://github.com/wso2/docs-apim>
+- YouTube — WSO2 API Manager v4: Introduction: <https://www.youtube.com/watch?v=faicue1FXLw>
