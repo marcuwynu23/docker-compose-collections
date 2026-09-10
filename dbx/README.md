@@ -42,3 +42,11 @@ podman compose up -d
 ```
 
 Open `http://localhost:4224` in your browser.
+
+## References
+
+- Official site: <https://dbxio.com>
+- Documentation: <https://dbxio.com/en/docs/getting-started>
+- GitHub repo: <https://github.com/t8y2/dbx>
+- Docker Hub image: <https://hub.docker.com/r/t8y2/dbx>
+- YouTube — DBX Is Almost the Perfect Free Database Client: <https://www.youtube.com/watch?v=b6rVCrBPbe8>
