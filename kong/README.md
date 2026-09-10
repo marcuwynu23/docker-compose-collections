@@ -121,3 +121,11 @@ curl -i -X POST http://localhost:8001/services/example-service/routes \
 - The migration container runs once and exits — this is expected behavior.
 - Admin API should not be exposed publicly in production; restrict access via firewall or bind to localhost.
 - See [Kong docs](https://docs.konghq.com/) for full plugin and configuration reference.
+
+## References
+
+- Official site: <https://konghq.com>
+- Documentation: <https://docs.konghq.com/gateway/latest/>
+- Docker Hub image: <https://hub.docker.com/_/kong>
+- GitHub repo: <https://github.com/Kong/kong>
+- YouTube — Installing Kong's API Gateway with Docker (Kong): <https://www.youtube.com/watch?v=sJEID1xEZMg>
