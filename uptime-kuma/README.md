@@ -76,3 +76,10 @@ docker compose down
 
 - Keep `./data` backed up to preserve monitor history and settings.
 - Port conflicts on `3001` can be resolved by changing `UPTIME_KUMA_PORT` in `.env`.
+
+## References
+
+- Official site: <https://uptime.kuma.pet>
+- Docker Hub image: <https://hub.docker.com/r/louislam/uptime-kuma>
+- GitHub repo: <https://github.com/louislam/uptime-kuma>
+- YouTube — How to Set Up Uptime Kuma to Monitor your Network: <https://www.youtube.com/watch?v=wEfgMdOIyjo>
