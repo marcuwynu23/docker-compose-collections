@@ -70,3 +70,10 @@ docker compose down
 - This is a local emulator — not all DocumentDB features may be available.
 - Data does not persist across container restarts by default. Add a volume mount if persistence is needed.
 - See [DocumentDB Local docs](https://github.com/documentdb/documentdb) for compatibility details.
+
+## References
+
+- Official site: <https://documentdb.io>
+- Documentation (DocumentDB Local): <https://documentdb.io/docs/documentdb-local>
+- GitHub repo: <https://github.com/documentdb/documentdb>
+- YouTube — Getting Started with DocumentDB and Open Source: <https://www.youtube.com/watch?v=YlPo1SO5g0U>
