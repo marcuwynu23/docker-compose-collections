@@ -497,3 +497,11 @@ wso2-am-gateway/
 
 This setup uses WSO2 API Manager under Apache 2.0 License.
 WSO2 Docker images: https://github.com/wso2/docker-apim
+
+## References
+
+- Documentation: <https://apim.docs.wso2.com/en/latest>
+- Docker Hub image (ACP): <https://hub.docker.com/r/wso2/wso2am-acp>
+- Docker Hub image (gateway): <https://hub.docker.com/r/wso2/wso2am-universal-gw>
+- GitHub repo (docker-apim): <https://github.com/wso2/docker-apim>
+- YouTube — WSO2 API Manager v4: Introduction: <https://www.youtube.com/watch?v=faicue1FXLw>
