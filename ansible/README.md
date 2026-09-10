@@ -85,3 +85,10 @@ The repository includes example files to get started:
 - Create your own playbooks and inventory files under `data/` — the folder is gitignored-friendly and easy to back up.
 - For Windows targets, adjust `ansible_connection` in the inventory to `winrm`.
 - The container does not run playbooks on startup; it is designed for interactive CLI use via `docker compose exec`.
+
+## References
+
+- Official site: <https://www.ansible.com>
+- Documentation: <https://docs.ansible.com/>
+- Docker Hub image: <https://hub.docker.com/r/ansible/ansible>
+- YouTube — you need to learn Ansible RIGHT NOW!! (NetworkChuck): <https://www.youtube.com/watch?v=5hycyr-8EKs>
