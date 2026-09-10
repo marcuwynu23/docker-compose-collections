@@ -75,3 +75,13 @@ docker compose down
 
 - Ensure `prometheus/prometheus.yml` has reachable targets from this Docker host.
 - Change default Grafana password before exposing the stack externally.
+
+## References
+
+- Kubernetes official site: <https://kubernetes.io>
+- Prometheus official site: <https://prometheus.io>
+- Prometheus documentation: <https://prometheus.io/docs/prometheus/latest/installation>
+- Grafana official site: <https://grafana.com>
+- Docker Hub image (Prometheus): <https://hub.docker.com/r/prom/prometheus>
+- GitHub repo (Prometheus): <https://github.com/prometheus/prometheus>
+- YouTube — Setup Monitoring and Alerting on Kubernetes | Prometheus and Grafana Tutorial: <https://www.youtube.com/watch?v=gBdyIv9d_O8>
