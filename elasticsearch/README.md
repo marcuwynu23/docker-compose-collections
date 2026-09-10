@@ -67,3 +67,11 @@ docker compose down
 
 - This config is single-node (`discovery.type=single-node`) for local use.
 - Tune `ES_JAVA_OPTS` according to host memory.
+
+## References
+
+- Official site: <https://www.elastic.co/elasticsearch>
+- Documentation: <https://www.elastic.co/docs/reference/elasticsearch>
+- GitHub repo: <https://github.com/elastic/elasticsearch>
+- Docker Hub image: <https://hub.docker.com/_/elasticsearch>
+- YouTube — Elasticsearch: Install on Docker | Quick and Easy Installation | ELK Stack Tutorial: <https://www.youtube.com/watch?v=Xff3dBZfPTk>
