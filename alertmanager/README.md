@@ -60,3 +60,12 @@ docker compose down -v
 
 - The included config is intentionally minimal and routes all alerts to a placeholder receiver.
 - Edit `alertmanager/alertmanager.yml` to add real receivers (Slack/email/webhook) for your environment.
+
+## References
+
+- Official site: <https://prometheus.io>
+- Documentation: <https://prometheus.io/docs/alerting/latest/alertmanager/>
+- Configuration reference: <https://prometheus.io/docs/alerting/latest/configuration/>
+- GitHub repo: <https://github.com/prometheus/alertmanager>
+- Docker Hub image: <https://hub.docker.com/r/prom/alertmanager>
+- YouTube — Prometheus Alertmanager tutorial (Pavan Elthepu): <https://www.youtube.com/watch?v=h78tYrW8IJU>
