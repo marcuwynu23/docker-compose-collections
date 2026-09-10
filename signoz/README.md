@@ -152,3 +152,12 @@ sdk.start();
 - If the `signoz-migrator` or `signoz-clickhouse-user-scripts` jobs fail on first run, you can re-run them with `docker compose up signoz-migrator`.
 - ClickHouse requires at least 4 GB of memory. Ensure Docker is allocated enough resources.
 - The sample `app` service is built locally from `./app/Dockerfile`; it requires Docker build support.
+
+## References
+
+- Official site: <https://signoz.io>
+- Documentation: <https://signoz.io/docs>
+- Docker install guide: <https://signoz.io/docs/install/docker>
+- Docker Hub image: <https://hub.docker.com/r/signoz/signoz>
+- GitHub repo: <https://github.com/SigNoz/signoz>
+- YouTube — Installing SigNoz with Docker Compose: <https://www.youtube.com/watch?v=qpXp5kYbO14>
