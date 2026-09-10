@@ -57,3 +57,11 @@ podman-compose down -v
 - **MySQL 8 Compatibility**: This setup uses `--default-authentication-plugin=mysql_native_password` to ensure compatibility with WordPress.
 
 - **Persistence**: All data is saved in named volumes. To reset the installation (e.g., to change database credentials), you must run `podman-compose down -v` to delete the volumes.
+
+## References
+
+- Official site: <https://wordpress.org>
+- Documentation: <https://wordpress.org/documentation/>
+- Docker Hub image: <https://hub.docker.com/_/wordpress>
+- GitHub repo (docker packaging): <https://github.com/docker-library/wordpress>
+- YouTube — How to Run WordPress Locally with Docker (Easy Setup Guide!): <https://www.youtube.com/watch?v=CnaROd6vyWc>
