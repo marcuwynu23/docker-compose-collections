@@ -109,3 +109,11 @@ After upload, your package is stored in devpi and can be installed via pip from 
 
 - Great for caching dependencies in CI/CD to speed builds.
 - Add auth/users before production usage.
+
+## References
+
+- Official site: <https://devpi.net>
+- Documentation: <https://doc.devpi.net>
+- GitHub repo: <https://github.com/devpi/devpi>
+- Docker Hub image: <https://hub.docker.com/r/muccg/devpi>
+- YouTube — devpi server in Docker container: <https://www.youtube.com/watch?v=1P1qDFpti38>
