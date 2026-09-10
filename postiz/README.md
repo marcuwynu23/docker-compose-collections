@@ -57,3 +57,10 @@ podman compose up -d
 - First startup initializes the database schema.
 - Access the dashboard at `http://localhost:<POSTIZ_PORT>`
 - Configure your social media API credentials for each platform.
+
+## References
+
+- Official site: <https://postiz.com>
+- Documentation: <https://docs.postiz.com>
+- GitHub repo: <https://github.com/gitroomhq/postiz-app>
+- YouTube — Self Hosted Postiz Setup Guide (HowTo): <https://www.youtube.com/watch?v=fiB3O0IgMXY>
