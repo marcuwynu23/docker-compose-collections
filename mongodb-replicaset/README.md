@@ -108,3 +108,10 @@ docker compose down
 **When to use Sharding:** Your data or write throughput exceeds what a single replica set can handle, or you need geographic data distribution.
 
 See also: [mongodb-sharding-cluster](../mongodb-sharding-cluster)
+
+## References
+
+- Official site: <https://www.mongodb.com>
+- Documentation - Replication: <https://www.mongodb.com/docs/manual/replication>
+- Docker Hub image: <https://hub.docker.com/_/mongo>
+- YouTube — Set up replica set on MongoDB in 10 minutes: <https://www.youtube.com/watch?v=1t7D8tVSaiY>
