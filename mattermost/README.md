@@ -78,3 +78,11 @@ docker compose down
 - First startup may take a minute while the database initializes.
 - For production, configure a reverse proxy with TLS in front of Mattermost.
 - See [Mattermost docs](https://docs.mattermost.com/) for full configuration reference.
+
+## References
+
+- Official site: <https://mattermost.com>
+- Documentation: <https://docs.mattermost.com/>
+- Docker Hub image: <https://hub.docker.com/r/mattermost/mattermost-team-edition>
+- GitHub repo: <https://github.com/mattermost/mattermost>
+- YouTube — Mattermost - An Open Source, Self Hosted, Slack Chat Alternative: <https://www.youtube.com/watch?v=KiZzImMGr-4>
