@@ -55,3 +55,10 @@ docker compose down
 
 - Browser certificate warnings are expected on first load.
 - Initial plugin updates can take time before Nessus is fully ready.
+
+## References
+
+- Official site: <https://www.tenable.com/products/nessus>
+- Documentation - Deploy Nessus as Docker: <https://docs.tenable.com/nessus/Content/DeployNessusDocker.htm>
+- Docker Hub image: <https://hub.docker.com/r/tenable/nessus>
+- YouTube — Nessus Vulnerability Scanner Tutorial (Cyber Security Tools): <https://www.youtube.com/watch?v=x87gbgQD4eg>
