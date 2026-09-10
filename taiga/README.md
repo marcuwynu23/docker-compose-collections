@@ -73,3 +73,11 @@ docker compose exec taiga-back python manage.py createsuperuser
 ## Notes
 
 - First startup can take a few minutes while services initialize.
+
+## References
+
+- Official site: <https://taiga.io>
+- Documentation: <https://docs.taiga.io>
+- GitHub repo (docker): <https://github.com/taigaio/taiga-docker>
+- GitHub org: <https://github.com/taigaio>
+- YouTube — How to deploy the Taiga kanban solution in minutes with Docker: <https://www.youtube.com/watch?v=2PLjs6X-2D8>
