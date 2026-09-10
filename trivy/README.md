@@ -116,3 +116,11 @@ docker compose restart trivy
   - `trivy image --server http://localhost:4954 alpine:latest`
 - Web UI is provided by `pointvy`, a third-party frontend for Trivy.
 - Feature availability in Pointvy can vary between image versions.
+
+## References
+
+- Official site: <https://trivy.dev>
+- Documentation: <https://trivy.dev/docs>
+- Docker Hub image: <https://hub.docker.com/r/aquasec/trivy>
+- GitHub repo: <https://github.com/aquasecurity/trivy>
+- YouTube — Docker vulnerability scanning tool | Trivy: <https://www.youtube.com/watch?v=pZumqxTwLNw>
