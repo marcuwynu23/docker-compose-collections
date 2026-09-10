@@ -67,3 +67,11 @@ docker compose down -v
 
 - Change admin credentials and encryption key before exposing this stack outside local development.
 - To run playbooks against remote hosts, make sure network/firewall and SSH credentials are configured in Semaphore.
+
+## References
+
+- Official site: <https://semaphoreui.com>
+- Documentation: <https://semaphoreui.com/docs>
+- Docker Hub image: <https://hub.docker.com/r/semaphoreui/semaphore>
+- GitHub repo: <https://github.com/semaphoreui/semaphore>
+- YouTube — Complete Ansible Semaphore Tutorial: From Installation to Automation (Learn Linux TV): <https://www.youtube.com/watch?v=CltoVfeRdoM>
