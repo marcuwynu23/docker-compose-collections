@@ -144,3 +144,12 @@ services:
 docker compose restart otel-collector  # After otel-config.yaml changes
 docker compose restart grafana         # After provisioning changes
 ```
+
+## References
+
+- Tempo documentation: <https://grafana.com/docs/tempo/latest>
+- OpenTelemetry Collector docs: <https://opentelemetry.io/docs/collector>
+- Grafana documentation: <https://grafana.com/docs/grafana/latest>
+- Docker Hub image (OTel Collector): <https://hub.docker.com/r/otel/opentelemetry-collector-contrib>
+- Docker Hub image (Tempo): <https://hub.docker.com/r/grafana/tempo>
+- YouTube — Docker Distributed Tracing: Tempo + Alloy + Grafana: <https://www.youtube.com/watch?v=rzHlhTrIlwQ>
