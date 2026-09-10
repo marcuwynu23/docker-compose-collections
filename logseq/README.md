@@ -56,3 +56,11 @@ docker compose down
 - The container is stateless — no persistent volume is required.
 - Change the host port mapping if `3000` conflicts with other services.
 - See [Logseq GitHub](https://github.com/logseq/logseq) for more details.
+
+## References
+
+- Official site: <https://logseq.com>
+- Documentation: <https://docs.logseq.com>
+- GitHub repo: <https://github.com/logseq/logseq>
+- Docker web app guide: <https://github.com/logseq/logseq/blob/master/docs/docker-web-app-guide.md>
+- YouTube — Logseq Tutorial – How to Use Logseq to Take Amazing Notes: <https://www.youtube.com/watch?v=lkL2leJsPUI>
