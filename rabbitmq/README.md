@@ -68,3 +68,10 @@ docker compose down
 
 - Change default credentials before exposing RabbitMQ externally.
 - Port `5672` should be reachable by app containers/services that publish or consume.
+
+## References
+
+- Official site: <https://www.rabbitmq.com>
+- Documentation: <https://www.rabbitmq.com/docs>
+- Docker Hub image: <https://hub.docker.com/_/rabbitmq>
+- YouTube — RabbitMQ Tutorial - Message Queues and Distributed Systems: <https://www.youtube.com/watch?v=nFxjaVmFj5E>
