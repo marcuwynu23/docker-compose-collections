@@ -70,3 +70,11 @@ docker compose down
 
 - Point AWS SDK/CLI endpoints to `http://localhost:4566` for local testing.
 - Reduce `SERVICES` list if you only need a small subset to save resources.
+
+## References
+
+- Official site: <https://localstack.cloud>
+- Documentation: <https://docs.localstack.cloud/>
+- Docker Hub image: <https://hub.docker.com/r/localstack/localstack>
+- GitHub repo: <https://github.com/localstack/localstack>
+- YouTube — LocalStack 101: Getting started: <https://www.youtube.com/watch?v=CzX4mfiS058>
