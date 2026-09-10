@@ -81,3 +81,11 @@ docker compose down
 
 - Add your `.jmx` files into `jmeter/tests/`.
 - `jmeter-run` expects `tests/test-plan.jmx` to exist.
+
+## References
+
+- Official site: <https://jmeter.apache.org>
+- Documentation: <https://jmeter.apache.org/usermanual/>
+- Docker Hub image: <https://hub.docker.com/r/justb4/jmeter>
+- GitHub repo: <https://github.com/apache/jmeter>
+- YouTube — JMeter Load Testing | JMeter Tutorial For Beginners (Simplilearn): <https://www.youtube.com/watch?v=NTyY8wKSvik>
