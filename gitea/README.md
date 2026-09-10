@@ -62,3 +62,11 @@ docker compose down
 
 - Use `ssh://git@localhost:2222/<owner>/<repo>.git` for SSH clone/push.
 - Keep `./data/gitea` backed up for repository persistence.
+
+## References
+
+- Official site: <https://gitea.com>
+- Documentation: <https://docs.gitea.com>
+- GitHub repo: <https://github.com/go-gitea/gitea>
+- Docker Hub image: <https://hub.docker.com/r/gitea/gitea>
+- YouTube — Self-host your own Git platform! // Gitea Tutorial: <https://www.youtube.com/watch?v=Kg0ct2lBUVg>
