@@ -195,3 +195,10 @@ The repository includes example files to get started:
 - The `openstack` client supports `--os-cloud` to switch between profiles defined in `clouds.yaml`.
 - For production clouds, consider mounting a `clouds.yaml` with application credentials (scoped tokens) instead of user passwords.
 - To add additional OpenStack clients (heat, magnum, etc.), modify the `pip install` line in the compose command or create a custom Dockerfile.
+
+## References
+
+- Official site: <https://www.openstack.org>
+- Documentation: <https://docs.openstack.org/python-openstackclient/latest/>
+- GitHub repo: <https://github.com/openstack/python-openstackclient>
+- YouTube — OpenStack Tutorial – Operate Your Own Private Cloud (Full Course) | freeCodeCamp.org: <https://www.youtube.com/watch?v=_gWfFEuert8>
