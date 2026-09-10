@@ -77,3 +77,10 @@ After that, devices using that DNS path will be filtered by Pi-hole.
 
 - Only one DNS service should bind host port `53`. Stop/avoid other local DNS servers that use port `53`.
 - For best results, keep your blocklists updated in the Pi-hole admin panel.
+
+## References
+
+- Official site: <https://pi-hole.net>
+- Documentation: <https://docs.pi-hole.net/>
+- Docker Hub image: <https://hub.docker.com/r/pihole/pihole>
+- YouTube — Installing and Running Pi-Hole using Docker: <https://www.youtube.com/watch?v=0X4mxj-uYsc>
