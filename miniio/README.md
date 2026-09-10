@@ -64,3 +64,11 @@ docker compose down
 
 - Change default credentials before using beyond local testing.
 - MinIO requires a strong password (at least 8 characters).
+
+## References
+
+- Official site: <https://min.io>
+- Documentation: <https://github.com/minio/docs>
+- Docker Hub image: <https://hub.docker.com/r/minio/minio>
+- GitHub repo: <https://github.com/minio/minio>
+- YouTube — Intro to Minio S3 object storage: <https://www.youtube.com/watch?v=ir4LiUTi5ac>
