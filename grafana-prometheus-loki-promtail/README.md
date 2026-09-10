@@ -240,3 +240,13 @@ Check these in order:
 ### Positions file keeps changing / git diffs
 
 Promtail stores offsets in `promtail/positions/positions.yaml` so it doesn’t re-read files on restart. It’s intentionally ignored by git in this repo.
+
+## References
+
+- Loki official site: <https://grafana.com/oss/loki/>
+- Loki documentation: <https://grafana.com/docs/loki/latest>
+- Promtail documentation: <https://grafana.com/docs/loki/latest/send-data/promtail>
+- Docker Hub image (Loki): <https://hub.docker.com/r/grafana/loki>
+- Docker Hub image (Promtail): <https://hub.docker.com/r/grafana/promtail>
+- GitHub repo (Loki): <https://github.com/grafana/loki>
+- YouTube — Get System Logs with Promtail Loki Grafana: <https://www.youtube.com/watch?v=2NuGnrs8964>
