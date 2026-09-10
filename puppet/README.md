@@ -166,3 +166,10 @@ curl -s --cacert ./data/puppetserver/ssl/certs/ca.pem \
 - For production, use a `.env` file with strong passwords and larger JVM heap (e.g. `-Xms2g -Xmx2g`).
 - Agent nodes must be able to resolve `puppetserver` to the Docker host IP and reach port `8140`.
 - Puppet code (modules, manifests) lives under `data/puppetserver/code/environments/production/`.
+
+## References
+
+- Official site: <https://www.puppet.com>
+- Documentation: <https://puppet.com/docs/puppetserver/latest/>
+- Docker Hub image: <https://hub.docker.com/r/puppet/puppetserver>
+- YouTube — What is Puppet? | Puppet Tutorial For Beginners | Simplilearn: <https://www.youtube.com/watch?v=llcjg1R0DdM>
