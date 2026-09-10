@@ -86,3 +86,10 @@ Open:
 - Remove `disable-email-verification` and `disable-secure-session-cookies` flags when exposing Penpot to the internet.
 - The mailcatcher service is for development only; configure a real SMTP provider for production.
 - See the [official Penpot Docker setup](https://github.com/penpot/penpot/blob/develop/docker/images/docker-compose.yaml) and [configuration docs](https://help.penpot.app/technical-guide/configuration/) for advanced options.
+
+## References
+
+- Official site: <https://penpot.app>
+- Documentation: <https://help.penpot.app/>
+- GitHub repo: <https://github.com/penpot/penpot>
+- YouTube — Self Host Penpot deep dive | Penpot Community Hours #3: <https://www.youtube.com/watch?v=gMPvMakhvzE>
