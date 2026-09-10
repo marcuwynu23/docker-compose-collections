@@ -71,3 +71,10 @@ docker compose down
 - First startup can take several minutes; check logs if the UI is not immediately available.
 - Allocate at least 2GB RAM — the JVM settings in compose are tuned for container environments.
 - The embedded database (H2) is used by default; for production, configure an external PostgreSQL database.
+
+## References
+
+- Official site: <https://www.atlassian.com/enterprise/data-center/bitbucket>
+- Documentation: <https://confluence.atlassian.com/spaces/BitbucketServer/pages/776639749/Bitbucket+Data+Center+documentation>
+- Docker Hub image: <https://hub.docker.com/r/atlassian/bitbucket>
+- YouTube — Run Atlassian Data Center Jira, Confluence, Bitbucket in docker (Alexey Matveev): <https://www.youtube.com/watch?v=xfqAwLB0OWU>
