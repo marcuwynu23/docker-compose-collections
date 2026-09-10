@@ -60,3 +60,10 @@ docker compose down
 - The workspace folder must be writable by UID 1000 (or the `PUID` you set).
 - Change the host port via the `SIYUAN_PORT` environment variable.
 - See [SiYuan GitHub](https://github.com/siyuan-note/siyuan) for more details.
+
+## References
+
+- Official site: <https://b3log.org/siyuan>
+- Docker Hub image: <https://hub.docker.com/r/b3log/siyuan>
+- GitHub repo: <https://github.com/siyuan-note/siyuan>
+- YouTube — Siyuan notes tutorial (DPA): <https://www.youtube.com/watch?v=1t-O-Q7nkN0>
