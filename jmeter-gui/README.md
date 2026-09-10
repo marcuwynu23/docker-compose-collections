@@ -141,3 +141,11 @@ docker compose logs jmeter-gui
 - Add your `.jmx` files into `jmeter-gui/jmeter/`.
 - The JMeter GUI web interface is accessible on port `8082`.
 - Default test plan is located at `jmeter-gui/jmeter/Test Plan.jmx`.
+
+## References
+
+- Official site (Apache JMeter): <https://jmeter.apache.org>
+- Documentation: <https://jmeter.apache.org/usermanual/>
+- Docker Hub image: <https://hub.docker.com/r/guitarrapc/jmeter-gui>
+- GitHub repo: <https://github.com/guitarrapc/docker-jmeter-gui>
+- YouTube — JMeter Load Testing | JMeter Tutorial For Beginners (Simplilearn): <https://www.youtube.com/watch?v=NTyY8wKSvik>
