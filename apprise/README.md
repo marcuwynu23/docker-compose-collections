@@ -224,3 +224,11 @@ POST /notify
 - Use `.env`, Docker secrets, or secret managers for production environments.
 - Monitor logs for notification failures.
 - Implement retry handling for critical notification workflows.
+
+## References
+
+- Official site and documentation: <https://appriseit.com/getting-started/>
+- GitHub repo: <https://github.com/caronc/apprise>
+- Apprise API repo: <https://github.com/caronc/apprise-api>
+- Docker Hub image: <https://hub.docker.com/r/caronc/apprise>
+- YouTube — Best Notification System for Home Servers with Apprise Push Alerts (VirtualizationHowto): <https://www.youtube.com/watch?v=Cj7A46NuACA>
