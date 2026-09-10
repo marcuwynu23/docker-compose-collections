@@ -70,3 +70,11 @@ docker compose down -v  # includes volumes
 - MySQL initialization may take a few minutes on first startup.
 - Ensure your server has enough memory for MySQL 8.
 - Configure cron or a scheduler for post publishing if needed.
+
+## References
+
+- Official site: <https://mixpost.app>
+- Documentation: <https://docs.mixpost.app>
+- Docker Hub image: <https://hub.docker.com/r/inovector/mixpost>
+- GitHub repo: <https://github.com/inovector/mixpost>
+- YouTube — Installing MixPost Using Docker -- A Tutorial: <https://www.youtube.com/watch?v=WOStgw2pZbw>
