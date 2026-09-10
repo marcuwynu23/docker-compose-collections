@@ -42,3 +42,11 @@ podman compose up -d
 # or
 docker compose up -d
 ```
+
+## References
+
+- Official site: <https://dozzle.dev>
+- Documentation: <https://dozzle.dev/guide/getting-started>
+- GitHub repo: <https://github.com/amir20/dozzle>
+- Docker Hub image: <https://hub.docker.com/r/amir20/dozzle>
+- YouTube — The Fastest Way to Debug Docker Containers (Dozzle): <https://www.youtube.com/watch?v=cyNv7UzNaU4>
