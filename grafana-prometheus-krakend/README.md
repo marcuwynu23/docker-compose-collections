@@ -227,3 +227,13 @@ http://localhost:9090/targets
 ✔ No JSON exporter required
 ✔ OpenTelemetry-based metrics pipeline
 ✔ Simplified architecture
+
+## References
+
+- KrakenD official site: <https://www.krakend.io>
+- KrakenD documentation: <https://www.krakend.io/docs>
+- Prometheus official site: <https://prometheus.io>
+- Grafana official site: <https://grafana.com>
+- Docker Hub image (KrakenD): <https://hub.docker.com/r/devopsfaith/krakend>
+- GitHub repo (KrakenD): <https://github.com/krakend/krakend-ce>
+- YouTube — KrakenD API Gateway full demo: The Playground: <https://www.youtube.com/watch?v=VtXXZRO84t8>
