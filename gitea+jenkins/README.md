@@ -68,3 +68,12 @@ docker compose down
 
 - For CI integration, configure a webhook from Gitea repo settings to Jenkins.
 - Secure Jenkins and Gitea admin accounts before external exposure.
+
+## References
+
+- Gitea documentation: <https://docs.gitea.com>
+- Jenkins official site: <https://www.jenkins.io>
+- Jenkins documentation: <https://www.jenkins.io/doc>
+- Docker Hub image (Gitea): <https://hub.docker.com/r/gitea/gitea>
+- Docker Hub image (Jenkins): <https://hub.docker.com/r/jenkins/jenkins>
+- YouTube — CI/CD Setup for homelab | Jenkins Gitea Docker: <https://www.youtube.com/watch?v=daW2CqH8TUA>
