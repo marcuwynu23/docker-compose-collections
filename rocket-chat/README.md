@@ -72,3 +72,11 @@ docker compose down
 - First startup may take a minute while MongoDB initializes the replica set.
 - For production, set `ROOT_URL` to your public domain and configure TLS via a reverse proxy.
 - See [Rocket.Chat docs](https://docs.rocket.chat/) for full configuration reference.
+
+## References
+
+- Official site: <https://www.rocket.chat>
+- Documentation: <https://docs.rocket.chat>
+- Docker Hub image: <https://hub.docker.com/r/rocketchat/rocket.chat>
+- GitHub repo: <https://github.com/RocketChat/Rocket.Chat>
+- YouTube — RocketChat is an amazing open source, self hosted chat app (Awesome Open Source): <https://www.youtube.com/watch?v=VwofqLAmDJ4>
