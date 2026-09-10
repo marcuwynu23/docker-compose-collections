@@ -62,3 +62,12 @@ docker compose down
 
 - Avoid committing real credentials/URLs in `.env`.
 - If exposed behind reverse proxy, keep `N8N_HOST`, `N8N_PROTOCOL`, and webhook URLs consistent.
+
+## References
+
+- Official site (n8n): <https://n8n.io>
+- Documentation (n8n): <https://docs.n8n.io>
+- Documentation (PostgreSQL): <https://www.postgresql.org/docs/>
+- Docker Hub image (n8n): <https://hub.docker.com/r/n8nio/n8n>
+- GitHub repo (n8n): <https://github.com/n8n-io/n8n>
+- YouTube — n8n Quick Start Tutorial: Build Your First Workflow [2025]: <https://www.youtube.com/watch?v=4cQWJViybAQ>
