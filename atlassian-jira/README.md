@@ -76,3 +76,10 @@ docker compose down
 - Jira requires a valid license (free trial available from Atlassian).
 - First startup can take several minutes while the database initializes.
 - Allocate at least 2GB RAM to the host for smooth operation.
+
+## References
+
+- Official site: <https://www.atlassian.com/software/jira>
+- Documentation: <https://confluence.atlassian.com/adminjiraserver100/installing-jira-applications-1442844855.html>
+- Docker Hub image: <https://hub.docker.com/r/atlassian/jira-software>
+- YouTube — Introduction to Jira Data Center with Docker (Atlassian Community Nairobi): <https://www.youtube.com/watch?v=W67kcsaKSeI>
