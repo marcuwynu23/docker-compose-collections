@@ -46,3 +46,9 @@ docker compose down
 - Educational Use: This application is intentionally insecure. Do not use it for production data, and do not expose this container to the public internet.
 
 - Boot Time: The application may take 10–30 seconds to fully initialize after the container starts. If you receive a "connection refused" or empty response initially, wait a few moments and refresh your browser.
+
+## References
+
+- GitHub repo: <https://github.com/juice-shop/juice-shop>
+- Docker Hub image: <https://hub.docker.com/r/bkimminich/juice-shop>
+- YouTube — How to conduct Web Application Penetration testing on a real website | OWASP Juice Shop: <https://www.youtube.com/watch?v=0XIzwlhWO3g>
