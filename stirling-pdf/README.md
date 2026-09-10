@@ -60,3 +60,11 @@ docker compose down
 - Download OCR language packs to `/usr/share/tessdata` for additional languages.
 - Change the host port via the `STIRLING_PDF_PORT` environment variable.
 - See [Stirling PDF GitHub](https://github.com/Stirling-Tools/Stirling-PDF) for more details.
+
+## References
+
+- Official site: <https://stirlingpdf.com>
+- Documentation: <https://docs.stirlingpdf.com>
+- Docker Hub image: <https://hub.docker.com/r/stirlingtools/stirling-pdf>
+- GitHub repo: <https://github.com/Stirling-Tools/Stirling-PDF>
+- YouTube — The Ultimate Self Hosted PDF Solution in Docker!: <https://www.youtube.com/watch?v=VecgkvI8_x8>
