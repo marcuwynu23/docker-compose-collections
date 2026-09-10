@@ -87,3 +87,11 @@ curl http://localhost:4000/v1/chat/completions \
 
 - Set a strong `LITELLM_MASTER_KEY` before exposing this stack outside your machine.
 - Update `litellm_config.yaml` `model_list` to match the providers/models you want to route to.
+
+## References
+
+- Documentation: <https://docs.litellm.ai/>
+- Docker quick start: <https://docs.litellm.ai/docs/proxy/docker_quick_start>
+- GitHub repo (LiteLLM): <https://github.com/BerriAI/litellm>
+- GitHub repo (Open WebUI): <https://github.com/open-webui/open-webui>
+- YouTube — LiteLLM Crash Course | For Complete Beginners: <https://www.youtube.com/watch?v=WyW4Ifu4rSo>
