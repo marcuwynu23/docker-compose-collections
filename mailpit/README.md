@@ -96,3 +96,11 @@ podman compose ps
 podman compose logs -f
 podman compose down
 ```
+
+## References
+
+- Official site: <https://mailpit.axllent.org/>
+- Documentation: <https://mailpit.axllent.org/docs/>
+- Docker Hub image: <https://hub.docker.com/r/axllent/mailpit>
+- GitHub repo: <https://github.com/axllent/mailpit>
+- YouTube — Mailpit - email & SMTP testing tool with API for developers: <https://www.youtube.com/watch?v=ItpnwK_vPS8>
