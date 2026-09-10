@@ -61,3 +61,10 @@ Open:
 
 - Adminer does not persist your database data; it is only a management UI.
 - Restrict external exposure of Adminer in production environments.
+
+## References
+
+- Official site: <https://www.adminer.org/en/>
+- GitHub repo: <https://github.com/vrana/adminer>
+- Docker Hub image: <https://hub.docker.com/_/adminer/>
+- YouTube — How to Setup MariaDB + Adminer with Docker Compose: <https://www.youtube.com/watch?v=uAH2zCYzhNw>
