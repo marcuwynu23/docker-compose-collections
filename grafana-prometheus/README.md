@@ -88,3 +88,12 @@ docker compose restart prometheus
 
 - Change default Grafana credentials before exposing this stack.
 - You can add additional scrape targets in `prometheus/prometheus.yml`.
+
+## References
+
+- Prometheus official site: <https://prometheus.io>
+- Prometheus documentation: <https://prometheus.io/docs/introduction/overview>
+- Grafana documentation: <https://grafana.com/docs/grafana/latest>
+- Docker Hub image (Prometheus): <https://hub.docker.com/r/prom/prometheus>
+- Docker Hub image (Grafana): <https://hub.docker.com/r/grafana/grafana>
+- YouTube — Prometheus & Grafana: Docker Compose Monitoring Tutorial: <https://www.youtube.com/watch?v=kAVBNgsrtik>
