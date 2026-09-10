@@ -68,3 +68,10 @@ docker compose down
 - The default config proxies to `host.docker.internal:8080` — update backend servers to match your setup.
 - Stats page has no authentication by default; add `stats auth user:pass` for production.
 - See [HAProxy docs](https://www.haproxy.org/download/2.9/doc/configuration.txt) for full configuration reference.
+
+## References
+
+- Official site: <https://www.haproxy.org>
+- Docker Hub image: <https://hub.docker.com/_/haproxy>
+- GitHub repo: <https://github.com/haproxy/haproxy>
+- YouTube — How to Compose Multiple Web Apps With Docker (HAProxy Tutorial): <https://www.youtube.com/watch?v=PtT32MW2j9c>
