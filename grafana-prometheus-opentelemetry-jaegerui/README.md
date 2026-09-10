@@ -160,3 +160,13 @@ You can extend this stack with:
 - Pino traceId correlation
 - Alertmanager (alerts)
 - Kubernetes deployment version
+
+## References
+
+- Jaeger official site: <https://www.jaegertracing.io>
+- Jaeger documentation: <https://www.jaegertracing.io/docs/latest/deployment>
+- OpenTelemetry official site: <https://opentelemetry.io>
+- Grafana official site: <https://grafana.com>
+- Docker Hub image (Jaeger): <https://hub.docker.com/r/jaegertracing/all-in-one>
+- GitHub repo (Jaeger): <https://github.com/jaegertracing/jaeger>
+- YouTube — Jaeger Distributed Tracing Complete Guide: <https://www.youtube.com/watch?v=sf78d5tnrvE>
