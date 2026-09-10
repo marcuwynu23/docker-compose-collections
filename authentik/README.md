@@ -66,3 +66,10 @@ Then sign in again with username `akadmin` and the new password.
 
 - First startup can take a few minutes.
 - Set a strong `AUTHENTIK_SECRET_KEY` before production use.
+
+## References
+
+- Official site: <https://goauthentik.io/>
+- Documentation: <https://docs.goauthentik.io/>
+- GitHub repo: <https://github.com/goauthentik/authentik>
+- YouTube — Secure Self Hosted with Authentik | Traefik & NGINX Proxy Manager (IBRACORP): <https://www.youtube.com/watch?v=CPURnYaW3Zk>
