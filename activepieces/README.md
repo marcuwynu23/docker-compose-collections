@@ -71,3 +71,12 @@ docker compose down -v
 
 - Keep `AP_ENCRYPTION_KEY` and `AP_JWT_SECRET` private.
 - If startup takes longer, check health of `redis` and `db` first.
+
+## References
+
+- Official site: <https://www.activepieces.com>
+- Documentation: <https://www.activepieces.com/docs>
+- Docker Compose install guide: <https://www.activepieces.com/docs/install/options/docker-compose>
+- GitHub repo: <https://github.com/activepieces/activepieces>
+- Docker Hub image: <https://hub.docker.com/r/activepieces/activepieces>
+- YouTube — Automate ALL the things! - Self-hosting Activepieces (2GuysTek): <https://www.youtube.com/watch?v=P-GjiL-XrFQ>
