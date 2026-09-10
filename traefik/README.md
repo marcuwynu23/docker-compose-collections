@@ -51,3 +51,11 @@ TRAEFIK_SOCKET=/var/run/podman/podman.sock podman compose up -d
 
 - Dashboard is enabled with insecure mode for local usage.
 - For production, secure dashboard and configure TLS/certificates.
+
+## References
+
+- Official site: <https://traefik.io>
+- Documentation: <https://doc.traefik.io/traefik>
+- Docker provider docs: <https://doc.traefik.io/traefik/providers/docker>
+- GitHub repo: <https://github.com/traefik/traefik>
+- YouTube — Simple HTTPs for Docker! // Traefik Tutorial (updated): <https://www.youtube.com/watch?v=-hfejNXqOzA>
