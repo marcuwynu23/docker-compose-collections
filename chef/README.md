@@ -162,3 +162,12 @@ The repository includes example files to get started:
 - Cookbooks are authored in **Ruby DSL** — see the [Chef Infra Language docs](https://docs.chef.io/infra_language/) for resource types (`package`, `service`, `file`, `template`, `execute`, etc.).
 - The workstation container includes `chef-client` and `ohai` — use them for local apply testing.
 - Manage cookbook dependencies with `Berkshelf` (`knife cookbook` can also use `--berks`).
+
+## References
+
+- Official site: <https://www.chef.io/>
+- Documentation: <https://docs.chef.io/>
+- Chef Infra Server overview: <https://docs.chef.io/server/>
+- GitHub repo: <https://github.com/chef/chef-server/>
+- Docker Hub image: <https://hub.docker.com/r/chef/chef>
+- YouTube — Get Started with Declarative State Management on Chef 360: <https://www.youtube.com/watch?v=_pqOhCJYt54>
