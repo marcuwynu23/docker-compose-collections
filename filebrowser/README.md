@@ -76,3 +76,11 @@ docker compose down
 - The database is stored in a named Docker volume (`filebrowser_db`).
 - Mount any directory you want to manage as `/srv` inside the container.
 - See [File Browser docs](https://filebrowser.org/) for full configuration reference.
+
+## References
+
+- Official site: <https://filebrowser.org>
+- Documentation: <https://filebrowser.org/installation.html>
+- GitHub repo: <https://github.com/filebrowser/filebrowser>
+- Docker Hub image: <https://hub.docker.com/r/filebrowser/filebrowser>
+- YouTube — File Browser full setup and the review - Setup file sharing using docker.: <https://www.youtube.com/watch?v=O7yJdD5xT6k>
