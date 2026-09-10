@@ -79,3 +79,12 @@ docker compose down
 
 - The agent has access to host Docker, so treat it as privileged.
 - Do not commit real OAuth credentials to git.
+
+## References
+
+- Official site: <https://woodpecker-ci.org>
+- Documentation: <https://woodpecker-ci.org/docs/intro>
+- Docker Hub (server): <https://hub.docker.com/r/woodpeckerci/woodpecker-server>
+- Docker Hub (agent): <https://hub.docker.com/r/woodpeckerci/woodpecker-agent>
+- GitHub repo: <https://github.com/woodpecker-ci/woodpecker>
+- YouTube — Woodpecker CI: <https://www.youtube.com/watch?v=Htd98Mepu4s>
