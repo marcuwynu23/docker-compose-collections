@@ -255,3 +255,12 @@ The APIM `deployment.toml` must define `[keystore.tls]`, `[truststore]`, `[user_
 
 - [wso2-am](../wso2-am/) — standalone API Manager (includes APIM ↔ MI integration and TLS guides)
 - [wso2-mi](../wso2-mi/) — standalone Micro Integrator (includes TLS and backend guides)
+
+## References
+
+- API Manager docs: <https://apim.docs.wso2.com/en/latest>
+- Micro Integrator docs: <https://mi.docs.wso2.com/en/latest>
+- Docker Hub image (APIM): <https://hub.docker.com/r/wso2/wso2am>
+- Docker Hub image (MI): <https://hub.docker.com/r/wso2/wso2mi>
+- GitHub repo (docker-apim): <https://github.com/wso2/docker-apim>
+- YouTube — WSO2 Micro Integrator Demo: Mastering Basic Integration Scenarios and API Exposure with API Manager: <https://www.youtube.com/watch?v=KfclxL76trw>
