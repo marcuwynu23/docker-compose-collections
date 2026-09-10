@@ -67,3 +67,11 @@ docker compose down
 
 - Mounting Docker socket gives Jenkins strong control of host Docker.
 - Consider pinning Jenkins/plugin versions for reproducible CI environments.
+
+## References
+
+- Official site: <https://www.jenkins.io>
+- Documentation: <https://www.jenkins.io/doc/>
+- Docker Hub image: <https://hub.docker.com/r/jenkins/jenkins>
+- GitHub repo: <https://github.com/jenkinsci/jenkins>
+- YouTube — Docker Jenkins Pipeline | Docker Jenkins Integration | DevOps Tutorial for Beginners (edureka!): <https://www.youtube.com/watch?v=mVc_WX_YO_A>
