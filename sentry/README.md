@@ -168,3 +168,12 @@ docker compose down -v
 
 - On first start, wait until `sentry-init` exits with code `0`, then open `http://localhost:9002`.
 - If `createuser` returns a warning/traceback after showing `User created`, the user is usually still created successfully.
+
+## References
+
+- Official site: <https://sentry.io>
+- Documentation: <https://docs.sentry.io>
+- Self-hosted guide: <https://develop.sentry.dev/self-hosted/>
+- Docker Hub image: <https://hub.docker.com/_/sentry>
+- GitHub repo (self-hosted): <https://github.com/getsentry/self-hosted>
+- YouTube — How to Install Sentry with Docker on Ubuntu 22.04: <https://www.youtube.com/watch?v=rMKw7M_fNJA>
