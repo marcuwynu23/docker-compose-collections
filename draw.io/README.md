@@ -53,3 +53,11 @@ docker compose down
 
 - This setup runs the application in a lightweight container.
 - By default, files created in the browser are not persisted to the host filesystem unless using specific cloud storage integrations (e.g., Google Drive, GitHub, or local file system via your browser).
+
+## References
+
+- Official site: <https://www.diagrams.net>
+- GitHub repo: <https://github.com/jgraph/drawio>
+- Docker image repo: <https://github.com/jgraph/docker-drawio>
+- Docker Hub image: <https://hub.docker.com/r/jgraph/drawio>
+- YouTube — How To Self host DRAW IO in Your Home Lab Using Docker!: <https://www.youtube.com/watch?v=USoCtdREmeE>
