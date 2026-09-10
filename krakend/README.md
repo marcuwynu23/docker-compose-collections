@@ -105,3 +105,11 @@ curl http://localhost:8080/github
 - Add caching layer for backend responses
 - Introduce multiple environments (dev/staging/prod)
 - Add observability (Prometheus + Grafana)
+
+## References
+
+- Official site: <https://www.krakend.io/>
+- Documentation: <https://www.krakend.io/docs/>
+- Docker Hub image: <https://hub.docker.com/_/krakend>
+- GitHub repo: <https://github.com/krakend/krakend-ce>
+- YouTube — KrakenD API Gateway full demo: The Playground: <https://www.youtube.com/watch?v=VtXXZRO84t8>
