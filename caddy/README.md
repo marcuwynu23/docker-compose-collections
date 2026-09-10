@@ -72,3 +72,11 @@ docker compose down
 - Automatic HTTPS requires a publicly reachable domain and ports 80/443 open.
 - For local development, Caddy serves HTTP or uses self-signed certs.
 - See [Caddy docs](https://caddyserver.com/docs/) for full Caddyfile reference.
+
+## References
+
+- Official site: <https://caddyserver.com/>
+- Documentation: <https://caddyserver.com/docs/>
+- Docker Compose guide: <https://caddyserver.com/docs/running>
+- Docker Hub image: <https://hub.docker.com/_/caddy>
+- YouTube — Remotely access anything from anywhere with a cloud VPS and Caddy (Tailscale): <https://www.youtube.com/watch?v=8iRgvhRpyK4>
