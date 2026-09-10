@@ -52,3 +52,12 @@ podman compose up -d
 
 - Access over HTTPS with a self-signed cert by default.
 - Change default passwords before exposing publicly.
+
+## References
+
+- Official site: <https://coder.com>
+- Documentation: <https://coder.com/docs/code-server>
+- Install guide: <https://coder.com/docs/code-server/install>
+- GitHub repo: <https://github.com/coder/code-server>
+- LinuxServer image docs: <https://docs.linuxserver.io/images/docker-code-server/>
+- YouTube — Code-Server Docker Setup tutorial (NotDUsualTechGuy): <https://www.youtube.com/watch?v=gzUjMdDJ8rk>
