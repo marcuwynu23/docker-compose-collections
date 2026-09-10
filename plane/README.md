@@ -57,3 +57,10 @@ Open:
 
 - The frontend is configured to call the API at `http://localhost:8000` by default.
 - First startup can take a few minutes while migrations run and services initialize.
+
+## References
+
+- Official site: <https://plane.so>
+- Documentation: <https://docs.plane.so/>
+- GitHub repo: <https://github.com/makeplane/plane>
+- YouTube — How to Self Host Plane - a Project Management Tool: <https://www.youtube.com/watch?v=HZie3PSmFsk>
