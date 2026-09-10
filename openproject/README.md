@@ -123,3 +123,10 @@ Notes
 - Always use a strong `SECRET_KEY_BASE`.
 - Ensure port `8080` is free.
 - Data is stored in `pgdata`.
+
+## References
+
+- Official site: <https://www.openproject.org>
+- Documentation: <https://www.openproject.org/docs/installation-and-operations/installation/docker/>
+- Docker Hub image: <https://hub.docker.com/r/openproject/openproject>
+- YouTube — Install OpenProject In Docker: <https://www.youtube.com/watch?v=EkU1pBWcd20>
