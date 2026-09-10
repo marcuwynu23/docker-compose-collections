@@ -72,3 +72,11 @@ docker compose down
 - Replace the `app` service image with your own application as needed.
 - The admin port should not be exposed publicly in production.
 - See [Envoy docs](https://www.envoyproxy.io/docs) for full configuration reference.
+
+## References
+
+- Official site: <https://www.envoyproxy.io>
+- Documentation: <https://www.envoyproxy.io/docs>
+- GitHub repo: <https://github.com/envoyproxy/envoy>
+- Docker Hub image: <https://hub.docker.com/r/envoyproxy/envoy>
+- YouTube — Envoy Proxy Crash Course, Architecture, L7 & L4 Proxying, HTTP/2, Enabling TLS 1.2/1.3 and more: <https://www.youtube.com/watch?v=40gKzHQWgP0>
