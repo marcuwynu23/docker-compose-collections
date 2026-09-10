@@ -32,3 +32,10 @@ docker compose up -d
 
 - This setup is HTTP-only by default.
 - Configure TLS/auth before exposing outside trusted networks.
+
+## References
+
+- Official site: <https://distribution.github.io/distribution/>
+- GitHub repo: <https://github.com/docker/distribution>
+- Docker Hub image: <https://hub.docker.com/_/registry>
+- YouTube — Self Hosted Docker Registry: <https://www.youtube.com/watch?v=DMDRxL11WTE>
