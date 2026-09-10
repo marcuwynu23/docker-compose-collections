@@ -58,3 +58,11 @@ docker compose down
 - Persistent data is stored in `./data/` (configurable via environment variables).
 - Change the host port via the `AFFINE_PORT` environment variable.
 - See [AFFiNE GitHub](https://github.com/toeverything/AFFiNE) for more details.
+
+## References
+
+- Official site: <https://affine.pro>
+- Documentation: <https://docs.affine.pro/>
+- Self-host guide: <https://docs.affine.pro/self-host-affine/>
+- GitHub repo: <https://github.com/toeverything/affine>
+- YouTube — Affine Review Best Open Source Notion Alternative Tested: <https://www.youtube.com/watch?v=n_HMdzY0EvM>
