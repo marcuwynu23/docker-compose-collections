@@ -81,3 +81,10 @@ docker compose down
 - Place your `*.tf` configuration files in the `config/` directory.
 - State files will be stored in `config/` as well.
 - For multi-environment workflows, create subdirectories inside `config/` (e.g., `config/dev/`, `config/prod/`).
+
+## References
+
+- Official site: <https://opentofu.org>
+- Documentation: <https://opentofu.org/docs/>
+- GitHub repo: <https://github.com/opentofu/opentofu>
+- YouTube — OpenTofu Tutorial: Getting Started with the Core Workflow: <https://www.youtube.com/watch?v=fqjECID1ICs>
