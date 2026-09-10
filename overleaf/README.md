@@ -62,3 +62,10 @@ docker compose down
 - For production use with untrusted users, consider Overleaf Server Pro for sandboxed compiles.
 - Change the host port via the `OVERLEAF_PORT` environment variable.
 - See [Overleaf GitHub](https://github.com/overleaf/overleaf) for more details.
+
+## References
+
+- Official site: <https://www.overleaf.com>
+- Documentation: <https://docs.overleaf.com>
+- GitHub repo: <https://github.com/overleaf/overleaf>
+- YouTube — How To Run Overleaf Locally & For Free!: <https://www.youtube.com/watch?v=jDy9rdgSoHs>
