@@ -70,3 +70,10 @@ docker compose down
 - The Alpine image keeps the footprint small (~30MB).
 - Data persists across restarts via the `redis_data` volume.
 - For production, consider enabling AOF persistence by adding `--appendonly yes` to the command.
+
+## References
+
+- Official site: <https://redis.io>
+- Documentation: <https://redis.io/docs/latest/operate/oss_and_stack/install/install-stack/docker/>
+- Docker Hub image: <https://hub.docker.com/_/redis>
+- YouTube — Running Redis in Docker: <https://www.youtube.com/watch?v=-lQVFP5HFAM>
