@@ -182,3 +182,13 @@ docker compose restart prometheus   # After prometheus.yaml changes
 docker compose restart promtail     # After promtail-config.yml changes
 docker compose restart otel-collector  # After otel-config.yaml changes
 ```
+
+## References
+
+- Tempo official site: <https://grafana.com/oss/tempo/>
+- Tempo documentation: <https://grafana.com/docs/tempo/latest>
+- Loki official site: <https://grafana.com/oss/loki/>
+- OpenTelemetry official site: <https://opentelemetry.io>
+- OpenTelemetry Collector documentation: <https://opentelemetry.io/docs/collector/>
+- Docker Hub image (Tempo): <https://hub.docker.com/r/grafana/tempo>
+- YouTube — Docker Distributed Tracing: Tempo + Alloy + Grafana: <https://www.youtube.com/watch?v=rzHlhTrIlwQ>
