@@ -118,3 +118,10 @@ mongosh --host localhost:27017 --eval '
 **When to use Replica Set:** Your data fits on a single server and you need redundancy and automatic failover.
 
 See also: [mongodb-replicaset](../mongodb-replicaset)
+
+## References
+
+- Official site: <https://www.mongodb.com>
+- Documentation - Sharding: <https://www.mongodb.com/docs/manual/sharding/index.html>
+- Docker Hub image: <https://hub.docker.com/_/mongo>
+- YouTube — What is MongoDB Sharding? | Beginner-Friendly Tutorial: <https://www.youtube.com/watch?v=BeNT516CdN4>
