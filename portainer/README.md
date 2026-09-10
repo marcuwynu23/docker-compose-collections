@@ -69,3 +69,10 @@ docker compose down        # stop and remove container
 - Portainer needs access to `/var/run/docker.sock`; this gives broad control over Docker on the host.
 - Port `8000` is only needed for Edge Agents and can be removed if unused.
 - Browser may show a certificate warning on first load because Portainer serves HTTPS by default.
+
+## References
+
+- Official site: <https://www.portainer.io>
+- Documentation: <https://docs.portainer.io/>
+- Docker Hub image: <https://hub.docker.com/r/portainer/portainer-ce>
+- YouTube — How to Install Portainer on Ubuntu 24.04: Step-by-Step Guide: <https://www.youtube.com/watch?v=qmkAu2e9nS0>
