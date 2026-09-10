@@ -83,3 +83,12 @@ docker compose down
 
 - Prefer API tokens over passwords for Proxmox access.
 - Restrict `.env` permissions because it contains sensitive credentials.
+
+## References
+
+- Proxmox VE official site: <https://www.proxmox.com/en/proxmox-virtual-environment/overview>
+- Prometheus official site: <https://prometheus.io>
+- Grafana official site: <https://grafana.com>
+- Docker Hub image (PVE exporter): <https://hub.docker.com/r/prompve/prometheus-pve-exporter>
+- GitHub repo (PVE exporter): <https://github.com/prometheus-pve/prometheus-pve-exporter>
+- YouTube — Proxmox Monitoring with Grafana and Prometheus: <https://www.youtube.com/watch?v=CBa0GIDGMP4>
