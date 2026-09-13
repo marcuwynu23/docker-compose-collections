@@ -1,0 +1,20 @@
+marcuwynu23.local:53 {
+    hosts {
+        10.126.90.210 dns.marcuwynu23.local
+        10.126.90.124 gateway.marcuwynu23.local
+        10.126.90.101 vm01.marcuwynu23.local
+        10.126.90.102 vm02.marcuwynu23.local
+        10.126.90.103 vm03.marcuwynu23.local
+        fallthrough
+    }
+
+    log
+    errors
+}
+
+.:53 {
+    forward . 10.126.90.124 1.1.1.1 8.8.8.8
+    cache
+    log
+    errors
+}
