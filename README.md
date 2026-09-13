@@ -134,7 +134,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [wso2-am](./wso2-am/)
 - [wso2-am-mi](./wso2-am-mi/) (WSO2 API Manager + Micro Integrator + Node.js backend)
 
-### DNS Management
+### Internal DNS Hosting & DNS Management
 
 - [dnsmasq](./dnsmasq)
 - [coredns](./coredns)
