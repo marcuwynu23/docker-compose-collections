@@ -138,6 +138,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 
 - [dnsmasq](./dnsmasq)
 - [coredns](./coredns)
+- [unbound](./unbound)
 - [freeipa](./freeipa)
 
 ### Infrastructure & Security
