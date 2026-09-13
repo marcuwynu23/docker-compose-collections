@@ -137,6 +137,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 ### DNS Management
 
 - [dnsmasq](./dnsmasq)
+- [coredns](./coredns)
 - [freeipa](./freeipa)
 
 ### Infrastructure & Security
