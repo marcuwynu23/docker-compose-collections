@@ -1,0 +1,18 @@
+$TTL 300
+
+@       IN      SOA     dns.marcuwynu23.local. admin.marcuwynu23.local. (
+                        2026091301
+                        3600
+                        1800
+                        604800
+                        300
+)
+
+        IN      NS      dns.marcuwynu23.local.
+
+dns     IN      A       10.126.90.210
+gateway IN      A       10.126.90.124
+
+vm01    IN      A       10.126.90.101
+vm02    IN      A       10.126.90.102
+vm03    IN      A       10.126.90.103
