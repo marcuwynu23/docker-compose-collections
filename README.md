@@ -189,6 +189,7 @@ flowchart TD
 - [nessus](./nessus)
 - [pihole](./pihole)
 - [portainer](./portainer)
+- [suricata](./suricata)
 - [trivy](./trivy)
 - [snyk](./snyk)
 - [vault](./vault)
@@ -294,12 +295,6 @@ graph TB
     CONTAINER4 --> CONTAINER1
     CONTAINER1 --> CONTAINER2
     CONTAINER1 --> CONTAINER3
-
-    style Docker Network fill:#e3f2fd,color:#000
-    style CONTAINER1 fill:#4caf50,color:#fff
-    style CONTAINER2 fill:#2196f3,color:#fff
-    style CONTAINER3 fill:#ff9800,color:#fff
-    style CONTAINER4 fill:#f44336,color:#fff
 ```
 
 ```mermaid
