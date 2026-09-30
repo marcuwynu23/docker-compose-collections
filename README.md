@@ -9,9 +9,23 @@
   <p><strong> Ready-to-use Docker Compose stacks for development and self-hosted services.</strong></p>
 </div>
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Architecture](#architecture)
+- [Available Stacks](#available-stacks)
+- [Quick Start](#quick-start)
+- [Mermaid Diagrams](#mermaid-diagrams)
+- [Guidelines](#guidelines)
+- [References](#references)
+- [Contributing](#contributing)
+- [License](#license)
+
+---
+
 ## Overview
 
-This repository is a practical collection of Compose-based setups for common infrastructure and developer tooling.  
+This repository is a practical collection of Compose-based setups for common infrastructure and developer tooling.
 Each folder contains a service stack you can run quickly and customize for your environment.
 
 ## What You Will Find
@@ -21,14 +35,38 @@ Each folder contains a service stack you can run quickly and customize for your 
 - Service-specific README files with setup, usage, and operational notes
 - Configurations that are easy to adapt for local labs and small deployments
 
+## Architecture
+
+```mermaid
+flowchart TD
+    A[Docker Compose Collections] --> B[Web Servers]
+    A --> C[Databases]
+    A --> D[Dev Tools]
+    A --> E[Security]
+    A --> F[Monitoring]
+    A --> G[Message Brokers]
+
+    B --> B1[nginx, caddy, haproxy]
+    C --> C1[postgresql, mongodb, redis]
+    D --> D1[code-server, gitea, backstage]
+    E --> E1[vault, keycloak, authentik]
+    F --> F1[prometheus, grafana, alertmanager]
+    G --> G1[rabbitmq, kafka, pulsar]
+
+    style A fill:#0db7ed,color:#fff
+```
+
 ## Available Stacks
 
 ### AI & Machine Learning
 
 - [litellm](./litellm)
 - [ollama](./ollama)
-
 - [tesseract](./tesseract)
+
+### Media & Photos
+
+- [immich](./immich)
 
 ### Automation & Workflow
 
@@ -154,6 +192,7 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [trivy](./trivy)
 - [snyk](./snyk)
 - [vault](./vault)
+- [vaultwarden](./vaultwarden)
 
 ### Load Balancers & Reverse Proxies
 
@@ -165,6 +204,10 @@ Each folder contains a service stack you can run quickly and customize for your 
 - [nginx-proxy-manager](./nginx-proxy-manager)
 - [traefik](./traefik)
 - [wso2-mi](./wso2-mi)
+
+### Tunneling & Remote Access
+
+- [pangolin](./pangolin)
 
 ### Monitoring & Observability
 
@@ -229,7 +272,6 @@ Each folder contains a service stack you can run quickly and customize for your 
 ## Podman Support
 
 Most stacks can also run with Podman:
-
 ```bash
 podman compose up -d
 # when needed:
@@ -237,11 +279,98 @@ podman compose up -d --env-file .env
 podman compose down
 ```
 
-Note: stacks that require `/var/run/docker.sock` may need Docker-compatible socket configuration when running on Podman.
+## Mermaid Diagrams
+
+```mermaid
+graph TB
+    subgraph Docker Network
+        CONTAINER1[Container: Web App]
+        CONTAINER2[Container: Database]
+        CONTAINER3[Container: Cache]
+        CONTAINER4[Container: Reverse Proxy]
+    end
+
+    CLIENT[Client] --> CONTAINER4
+    CONTAINER4 --> CONTAINER1
+    CONTAINER1 --> CONTAINER2
+    CONTAINER1 --> CONTAINER3
+
+    style Docker Network fill:#e3f2fd,color:#000
+    style CONTAINER1 fill:#4caf50,color:#fff
+    style CONTAINER2 fill:#2196f3,color:#fff
+    style CONTAINER3 fill:#ff9800,color:#fff
+    style CONTAINER4 fill:#f44336,color:#fff
+```
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Docker
+    participant Compose
+    participant Container
+
+    User->>Compose: docker compose up -d
+    Compose->>Docker: Build & start services
+    Docker->>Container: Pull & run images
+    Container-->>Docker: Ready
+    Docker-->>User: Services running
+```
+
+## Guidelines
+
+### Best Practices
+
+1. **Use `.env` files** for environment variables
+2. **Set resource limits** in `docker-compose.yml`
+   ```yaml
+   services:
+     app:
+       deploy:
+         resources:
+           limits:
+             memory: 512M
+             cpus: "0.5"
+   ```
+3. **Use named volumes** for persistent data
+4. **Use networks** for service isolation
+   ```yaml
+   networks:
+     app:
+       driver: bridge
+   ```
+5. **Pin image versions** to avoid breaking changes
+
+### Troubleshooting
+
+| Problem | Solution |
+|---|---|
+| Container not starting | Check logs: `docker compose logs <service>` |
+| Port conflict | Change host port mapping |
+| Build failure | Verify Dockerfile and base image |
+| Network issues | Check: `docker network ls` |
+
+### Useful Commands
+
+```bash
+docker compose up -d
+docker compose down
+docker compose logs -f
+docker compose ps
+docker compose build
+docker compose restart <service>
+```
+
+## References
+
+- [Docker Official Docs](https://docs.docker.com/)
+- [Docker Compose Reference](https://docs.docker.com/compose/)
+- [Docker Documentation](https://docs.docker.com/get-started/)
+- [Podman Documentation](https://podman.io/getting-started/)
+- [Docker Community](https://forums.docker.com/)
 
 ## Contributing
 
-Contributions are welcome.  
+Contributions are welcome.
 If you want to add or improve a stack, open a pull request with a short description of the use case and configuration.
 
 ## License
