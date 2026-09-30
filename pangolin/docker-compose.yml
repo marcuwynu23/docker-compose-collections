@@ -1,0 +1,16 @@
+
+services:
+  pangolin:
+    image: ghcr.io/pangolin-org/pangolin:latest
+    container_name: pangolin-server
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "51820:51820/udp"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - PANGOLIN_DOMAIN=yourdomain.com
+      - PANGOLIN_EMAIL=admin@yourdomain.com
+      - PANGOLIN_SECRET=your_secure_random_secret_string
