@@ -1,0 +1,332 @@
+%YAML 1.1
+---
+
+vars:
+  address-groups:
+    HOME_NET: "[192.168.1.0/24,10.0.0.0/8]"
+    EXTERNAL_NET: "!$HOME_NET"
+    HTTP_SERVERS: "$HOME_NET"
+    SMTP_SERVERS: "$HOME_NET"
+    SQL_SERVERS: "$HOME_NET"
+    DNS_SERVERS: "$HOME_NET"
+    TELNET_SERVERS: "$HOME_NET"
+    AIM_SERVERS: "$EXTERNAL_NET"
+    DNP3_SERVER: "$HOME_NET"
+    DNP3_CLIENT: "$HOME_NET"
+    MODBUS_CLIENT: "$HOME_NET"
+    MODBUS_SERVER: "$HOME_NET"
+    ENIP_CLIENT: "$HOME_NET"
+    ENIP_SERVER: "$HOME_NET"
+
+  port-groups:
+    HTTP_PORTS: "80"
+    SHELLCODE_PORTS: "!80"
+    ORACLE_PORTS: 1521
+    SSH_PORTS: 22
+    DNP3_PORTS: 20000
+    MODBUS_PORTS: 502
+
+default-log-dir: /var/log/suricata/
+
+stats:
+  enabled: yes
+  interval: 8
+
+outputs:
+  - fast:
+      enabled: yes
+      filename: fast.log
+      append: yes
+
+  - eve-log:
+      enabled: yes
+      filetype: regular
+      filename: eve.json
+      pcap-file:
+        check-for-pcap: yes
+      community-id: yes
+      community-id-seed: 0
+      xff:
+        enabled: no
+      types:
+        - alert:
+            tagged-packets: yes
+        - anomaly:
+            enabled: yes
+        - http:
+            extended: yes
+        - dns:
+            query: yes
+            answer: yes
+        - tls:
+            extended: yes
+        - files:
+            force-magic: yes
+        - smtp:
+            extended: yes
+        - ssh
+        - stats:
+            totals: yes
+            deltas: yes
+        - flow
+
+  - unified2-alert:
+      enabled: no
+
+logging:
+  default-log-level: info
+  outputs:
+    - console:
+        enabled: yes
+    - file:
+        enabled: yes
+        level: info
+        filename: /var/log/suricata/suricata.log
+    - syslog:
+        enabled: no
+        facility: local5
+        format: "[%i] <%d{>syslog-pri}> -- "
+
+af-packet:
+  - interface: eth0
+    cluster-id: 99
+    cluster-type: cluster_flow
+    defrag: yes
+    use-mmap: yes
+    tpacket-v3: yes
+    ring-size: 20000
+    block-size: 32768
+    block-timeout: 10
+    use-emergency-flush: yes
+
+  - interface: eth1
+    cluster-id: 98
+    cluster-type: cluster_flow
+    defrag: yes
+    use-mmap: yes
+    tpacket-v3: yes
+    ring-size: 20000
+    block-size: 32768
+    block-timeout: 10
+    use-emergency-flush: yes
+
+default-rule-path: /var/lib/suricata/rules
+
+rule-files:
+  - suricata.rules
+
+classification-file: /etc/suricata/classification.config
+reference-config-file: /etc/suricata/reference.config
+
+threshold-file: /etc/suricata/threshold.conf
+
+app-layer:
+  protocols:
+    http:
+      enabled: yes
+    tls:
+      enabled: yes
+      detection-ports:
+        dp: 443
+    smtp:
+      enabled: yes
+    ssh:
+      enabled: yes
+    dns:
+      enabled: yes
+    ftp:
+      enabled: yes
+    rdp:
+      enabled: yes
+    smb:
+      enabled: yes
+    nfs:
+      enabled: yes
+    tftp:
+      enabled: yes
+    ikev2:
+      enabled: yes
+    krb5:
+      enabled: yes
+    snmp:
+      enabled: yes
+    rfb:
+      enabled: yes
+    mqtt:
+      enabled: yes
+    telnet:
+      enabled: yes
+    http2:
+      enabled: yes
+    modbus:
+      enabled: yes
+      detection-ports:
+        dp: 502
+    dnp3:
+      enabled: yes
+      detection-ports:
+        dp: 20000
+    enip:
+      enabled: yes
+
+stream:
+  memcap: 64mb
+  checksum-validation: yes
+  inline: auto
+  reassembly:
+    memcap: 256mb
+    depth: 1mb
+    toserver-chunk-size: 2560
+    toclient-chunk-size: 2560
+
+host-mode: auto
+
+engine-analysis:
+  rules-fast-pattern: yes
+  rules: yes
+
+pcre:
+  match-limit: 3500
+  match-limit-recursion: 1500
+
+host:
+  hash-size: 4096
+  prealloc: 1000
+  memcap: 32mb
+
+defrag:
+  memcap: 32mb
+  hash-size: 65536
+  trackers: 65535
+  max-frags: 65535
+  prealloc: yes
+  timeout: 60
+
+flow:
+  memcap: 128mb
+  hash-size: 65536
+  prealloc: 10000
+  emergency-recovery: 30
+  managers: 1
+  recyclers: 1
+
+vlan:
+  use-for-tracking: true
+
+flow-timeouts:
+  default:
+    new: 30
+    established: 300
+    closed: 0
+    bypassed: 0
+    emergency-new: 10
+    emergency-established: 100
+    emergency-closed: 0
+    emergency-bypassed: 0
+  tcp:
+    new: 60
+    established: 600
+    closed: 60
+    bypassed: 0
+    emergency-new: 10
+    emergency-established: 100
+    emergency-closed: 0
+    emergency-bypassed: 0
+  udp:
+    new: 30
+    established: 300
+    closed: 0
+    bypassed: 0
+    emergency-new: 10
+    emergency-established: 100
+    emergency-closed: 0
+    emergency-bypassed: 0
+  icmp:
+    new: 30
+    established: 300
+    closed: 0
+    bypassed: 0
+    emergency-new: 10
+    emergency-established: 100
+    emergency-closed: 0
+    emergency-bypassed: 0
+
+stream:
+  tcp:
+    midstream: false
+    async-oneside: false
+
+decoder:
+  erspan:
+    enabled: yes
+
+detect:
+  profile: custom
+  custom-values:
+    toclient-groups: 3
+    toserver-groups: 25
+  sgh-mpm-context: auto
+  inspection-recursion-limit: 3000
+
+mpm-algo: auto
+
+spm-algo: auto
+
+profiling:
+  rules:
+    enabled: yes
+    sort: ticks
+    limit: 10000
+  packets:
+    enabled: yes
+    sort: ticks
+    limit: 100
+  keywords:
+    enabled: yes
+  rulegroups:
+    enabled: yes
+  rule-group:
+    enabled: yes
+
+napatech:
+  hba: -1
+  use-all-streams: yes
+
+action-order:
+  - pass
+  - drop
+  - reject
+  - alert
+
+host-os-policy:
+  windows: [0.0.0.0/0]
+  bsd: []
+  bsd-right: []
+  old-linux: []
+  linux: []
+  old-solaris: []
+  solaris: []
+  hpux10: []
+  hpux11: []
+  irix: []
+  macos: []
+  vista: []
+  windows2k3: []
+
+asn1-max-frames: 2
+
+coredump:
+  max-dump: 0
+
+host:
+  hash-size: 4096
+  prealloc: 1000
+  memcap: 32mb
+
+unix-command:
+  enabled: auto
+
+magic-file: /usr/share/file/magic
+
+legacy:
+  uricontent: enabled

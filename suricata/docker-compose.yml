@@ -1,0 +1,59 @@
+services:
+  suricata:
+    image: jasonish/suricata:latest
+    container_name: suricata
+    restart: unless-stopped
+    network_mode: host
+    cap_add:
+      - NET_ADMIN       # Manage network interfaces
+      - NET_RAW          # Capture raw packets
+      - SYS_NICE         # Set thread priorities
+    volumes:
+      - ./suricata.yaml:/etc/suricata/suricata.yaml:ro
+      - ./rules:/var/lib/suricata/rules
+      - suricata-logs:/var/log/suricata
+      - suricata-run:/var/run/suricata
+    command: -i eth0 --set "vars.address-groups.HOME_NET=[192.168.1.0/24,10.0.0.0/8]"
+
+  # Elasticsearch for storing and searching alerts
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.12.0
+    container_name: suricata-es
+    restart: unless-stopped
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+
+  # Kibana for visualizing Suricata alerts and network data
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.12.0
+    container_name: suricata-kibana
+    restart: unless-stopped
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+
+  # Filebeat ships Suricata logs to Elasticsearch
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:8.12.0
+    container_name: suricata-filebeat
+    restart: unless-stopped
+    user: root
+    volumes:
+      - ./filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - suricata-logs:/var/log/suricata:ro
+    depends_on:
+      - elasticsearch
+
+volumes:
+  suricata-logs:
+  suricata-run:
+  es-data:

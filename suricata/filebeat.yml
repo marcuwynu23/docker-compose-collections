@@ -1,0 +1,43 @@
+filebeat.inputs:
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/suricata/eve.json
+    json.keys_under_root: true
+    json.add_error_key: true
+    fields:
+      log_type: suricata
+    fields_under_root: true
+
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/suricata/fast.log
+    fields:
+      log_type: suricata_fast
+    fields_under_root: true
+
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+  index: "suricata-%{+yyyy.MM.dd}"
+
+setup.template.name: "suricata"
+setup.template.pattern: "suricata-*"
+setup.template.enabled: true
+setup.template.overwrite: false
+
+setup.kibana:
+  host: "http://kibana:5601"
+
+logging.level: info
+logging.to_files: true
+logging.files:
+  path: /var/log/filebeat
+  name: filebeat
+  keepfiles: 7
+  permissions: 0644
+
+processors:
+  - add_host_metadata: ~
+  - add_cloud_metadata: ~
+  - add_docker_metadata: ~
