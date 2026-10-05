@@ -1,0 +1,13 @@
+name: sonatype-nexus
+services:
+  nexus:
+    container_name: nexus
+    image: docker.io/sonatype/nexus3:latest
+    restart: always
+    ports:
+      - "8081:8081"
+    volumes:
+      - nexus-data:/nexus-data
+
+volumes:
+  nexus-data:
