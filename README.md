@@ -249,6 +249,10 @@ flowchart TD
 - [mailpit](./mailpit)
 - [custom-linux-distr-base-arch](./custom-linux-distr-base-arch)
 
+### Search Engines
+
+- [searxng](./searxng)
+
 ## Quick Start
 
 1. Clone the repository:
