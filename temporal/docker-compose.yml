@@ -1,0 +1,47 @@
+name: temporal
+services:
+  postgresql:
+    container_name: temporal-postgresql
+    image: docker.io/postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: temporal
+      POSTGRES_USER: temporal
+    expose:
+      - 5432
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  temporal:
+    container_name: temporal
+    image: docker.io/temporalio/auto-setup:1.29.1
+    restart: unless-stopped
+    depends_on:
+      - postgresql
+    environment:
+      - DB=postgres12
+      - DB_PORT=5432
+      - POSTGRES_USER=temporal
+      - POSTGRES_PWD=temporal
+      - POSTGRES_SEEDS=postgresql
+      - DYNAMIC_CONFIG_FILE_PATH=config/dynamicconfig/development-sql.yaml
+      - ENABLE_ES=false
+      - TEMPORAL_ADDRESS=temporal:7233
+      - TEMPORAL_CLI_ADDRESS=temporal:7233
+    ports:
+      - "7233:7233"
+
+  temporal-ui:
+    container_name: temporal-ui
+    image: docker.io/temporalio/ui:2.34.0
+    restart: unless-stopped
+    depends_on:
+      - temporal
+    environment:
+      - TEMPORAL_ADDRESS=temporal:7233
+      - TEMPORAL_CORS_ORIGINS=http://localhost:8080
+    ports:
+      - "8080:8080"
+
+volumes:
+  postgres-data:
