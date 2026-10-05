@@ -74,6 +74,11 @@ flowchart TD
 - [n8n](./n8n)
 - [n8n+postgresql](./n8n+postgresql)
 - [openclaw](./openclaw)
+- [windmill](./windmill)
+
+### Workflow Orchestration
+
+- [temporal](./temporal)
 
 ### Alerts & Notifications
 
@@ -91,6 +96,7 @@ flowchart TD
 - [gitlab](./gitlab)
 - [gitea](./gitea)
 - [gitea+jenkins](./gitea+jenkins)
+- [harness](./harness)
 - [jenkins](./jenkins)
 - [semaphore](./semaphore)
 - [sonarqube](./sonarqube)
@@ -162,6 +168,7 @@ flowchart TD
 - [portabase](./portabase)
 - [registry](./registry)
 - [scalar](./scalar)
+- [sonatype-nexus](./sonatype-nexus)
 - [swaggerui-openapi](./swaggerui-openapi)
 - [verdaccio](./verdaccio)
 - [xampp](./xampp)
