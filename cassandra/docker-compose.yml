@@ -1,3 +1,4 @@
+name: cassandra
 services:
   cassandra:
     image: cassandra:latest
