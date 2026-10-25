@@ -1,3 +1,4 @@
+name: chef
 services:
   chef-server:
     image: chef/chef-server:latest
