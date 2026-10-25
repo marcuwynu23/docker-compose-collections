@@ -1,3 +1,4 @@
+name: bitbucket
 services:
   bitbucket:
     image: atlassian/bitbucket:10.2.2
