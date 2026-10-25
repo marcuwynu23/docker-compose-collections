@@ -1,3 +1,4 @@
+name: automq
 services:
   automq:
     image: automqinc/automq-for-kafka:latest
