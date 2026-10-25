@@ -1,4 +1,5 @@
 name: windmill
+
 services:
   db:
     image: docker.io/postgres:16
