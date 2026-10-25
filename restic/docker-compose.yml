@@ -1,3 +1,5 @@
+name: restic
+
 services:
   restic:
     image: restic/restic:latest
