@@ -1,3 +1,5 @@
+name: scalar
+
 services:
   scalar:
     image: scalarapi/api-reference:latest
