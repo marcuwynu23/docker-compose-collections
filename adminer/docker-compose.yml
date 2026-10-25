@@ -1,3 +1,4 @@
+name: adminer
 services:
   adminer:
     image: adminer:latest
