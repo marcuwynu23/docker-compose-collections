@@ -1,3 +1,5 @@
+name: pulsar
+
 services:
   pulsar:
     image: apachepulsar/pulsar:3.3.0
