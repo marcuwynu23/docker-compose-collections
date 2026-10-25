@@ -1,4 +1,4 @@
-version: "3.8"
+name: immich
 
 # Services required by the Immich stack
 services:
