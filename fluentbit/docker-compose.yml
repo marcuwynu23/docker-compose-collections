@@ -1,3 +1,4 @@
+name: fluent-bit
 services:
   fluent-bit:
     image: fluent/fluent-bit:latest
