@@ -1,3 +1,4 @@
+name: logseq
 services:
   logseq:
     image: ghcr.io/logseq/logseq-webapp:latest
