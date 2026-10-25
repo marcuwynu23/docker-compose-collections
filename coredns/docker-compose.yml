@@ -1,3 +1,4 @@
+name: coredns-server
 services:
   coredns:
     image: coredns/coredns:latest
