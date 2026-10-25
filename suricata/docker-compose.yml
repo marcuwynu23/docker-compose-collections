@@ -1,3 +1,5 @@
+name: suricata
+
 services:
   suricata:
     image: jasonish/suricata:latest
@@ -5,9 +7,9 @@ services:
     restart: unless-stopped
     network_mode: host
     cap_add:
-      - NET_ADMIN       # Manage network interfaces
-      - NET_RAW          # Capture raw packets
-      - SYS_NICE         # Set thread priorities
+      - NET_ADMIN # Manage network interfaces
+      - NET_RAW # Capture raw packets
+      - SYS_NICE # Set thread priorities
     volumes:
       - ./suricata.yaml:/etc/suricata/suricata.yaml:ro
       - ./rules:/var/lib/suricata/rules
