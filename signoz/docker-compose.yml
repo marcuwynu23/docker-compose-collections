@@ -1,3 +1,5 @@
+name: signoz
+
 services:
   app:
     build:
@@ -39,7 +41,17 @@ services:
     image: clickhouse/clickhouse-keeper:25.12.5
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "clickhouse-keeper-client", "-h", "localhost", "-p", "9181", "-q", "ls"]
+      test:
+        [
+          "CMD",
+          "clickhouse-keeper-client",
+          "-h",
+          "localhost",
+          "-p",
+          "9181",
+          "-q",
+          "ls",
+        ]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -128,7 +140,8 @@ services:
       SIGNOZ_TELEMETRYSTORE_PROVIDER: ${SIGNOZ_TELEMETRYSTORE_PROVIDER:-clickhouse}
       SIGNOZ_TELEMETRYSTORE_CLICKHOUSE_DSN: tcp://signoz-telemetrystore-clickhouse-0-0:9000
     healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8080/api/v1/health"]
+      test:
+        ["CMD", "wget", "--spider", "-q", "http://localhost:8080/api/v1/health"]
       interval: 30s
       timeout: 10s
       retries: 3
