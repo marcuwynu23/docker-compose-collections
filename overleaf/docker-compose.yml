@@ -1,3 +1,4 @@
+name: overleaf
 services:
   overleaf:
     image: overleaf/overleaf:${OVERLEAF_REVISION:-latest}
