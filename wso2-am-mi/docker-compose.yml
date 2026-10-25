@@ -1,3 +1,5 @@
+name: wso2-am-mi
+
 services:
   app:
     build: ./app
