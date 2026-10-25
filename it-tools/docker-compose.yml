@@ -1,3 +1,4 @@
+name: it-tools
 services:
   it-tools:
     image: ghcr.io/corentinth/it-tools:latest
