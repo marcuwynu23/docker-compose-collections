@@ -1,3 +1,4 @@
+name: backstage
 services:
   backstage:
     image: backstage/backstage:latest
