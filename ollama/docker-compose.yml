@@ -3,21 +3,21 @@
 #   docker exec -it ollama-ollama-1 /bin/sh
 #   ollama pull <model-name>
 
-    # API endpoints:
-    # POST http://localhost:11434/api/chat
-    # {
-    #   "model": "<model-name>",
-    #   "prompt": "Hello, Ollama!",
-    #   "stream": false
-    # }
-    #
-    # POST http://localhost:11434/api/generate
-    # {
-    #   "model": "<model-name>",
-    #   "prompt": "Write a short poem",
-    #   "stream": true
-    # }
-
+# API endpoints:
+# POST http://localhost:11434/api/chat
+# {
+#   "model": "<model-name>",
+#   "prompt": "Hello, Ollama!",
+#   "stream": false
+# }
+#
+# POST http://localhost:11434/api/generate
+# {
+#   "model": "<model-name>",
+#   "prompt": "Write a short poem",
+#   "stream": true
+# }
+name: ollama
 services:
   ollama:
     image: ollama/ollama
@@ -45,8 +45,6 @@ services:
     restart: unless-stopped
     networks:
       - ollama_network
-
-
 
 networks:
   ollama_network:
