@@ -1,3 +1,4 @@
+name: gitea-server
 services:
   gitea-server:
     image: gitea/gitea:latest
@@ -12,4 +13,3 @@ services:
     volumes:
       - "./data/gitea:/data"
     restart: always
-
