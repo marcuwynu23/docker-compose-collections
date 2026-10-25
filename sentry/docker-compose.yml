@@ -1,3 +1,4 @@
+name: sentry
 services:
   sentry-db:
     image: postgres:16
@@ -10,7 +11,11 @@ services:
     volumes:
       - sentry_db_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${SENTRY_DB_USER:-sentry} -d ${SENTRY_DB_NAME:-sentry}"]
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${SENTRY_DB_USER:-sentry} -d ${SENTRY_DB_NAME:-sentry}",
+        ]
       interval: 10s
       timeout: 5s
       retries: 10
