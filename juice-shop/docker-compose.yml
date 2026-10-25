@@ -1,3 +1,5 @@
+name: juice-shop
+
 services:
   juice-shop:
     image: bkimminich/juice-shop:latest
