@@ -1,9 +1,4 @@
-networks:
-  penpot:
-
-volumes:
-  penpot_postgres_v15:
-  penpot_assets:
+name: penpot-server
 
 services:
   penpot-frontend:
@@ -130,3 +125,10 @@ services:
       - "${MAILCATCHER_PORT:-1080}:1080"
     networks:
       - penpot
+
+networks:
+  penpot:
+
+volumes:
+  penpot_postgres_v15:
+  penpot_assets:
