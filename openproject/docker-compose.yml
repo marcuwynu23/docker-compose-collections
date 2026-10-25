@@ -1,3 +1,4 @@
+name: openproject
 services:
   db:
     image: postgres:17
