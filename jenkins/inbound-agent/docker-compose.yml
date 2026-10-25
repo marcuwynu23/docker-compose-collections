@@ -1,3 +1,4 @@
+name: jenkins-agent
 services:
   jenkins-agent:
     build: .
