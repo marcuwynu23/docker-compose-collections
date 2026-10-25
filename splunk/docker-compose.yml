@@ -1,3 +1,5 @@
+name: splunk
+
 services:
   splunk:
     container_name: splunk
