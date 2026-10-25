@@ -1,3 +1,5 @@
+name: snyk
+
 services:
   snyk:
     image: snyk/snyk:docker
