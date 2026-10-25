@@ -1,3 +1,4 @@
+name: mixpost
 services:
   mixpost:
     image: inovector/mixpost:latest
