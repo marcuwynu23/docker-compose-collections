@@ -1,3 +1,5 @@
+name: wso2-am-gateway
+
 services:
   app:
     build: ./app
