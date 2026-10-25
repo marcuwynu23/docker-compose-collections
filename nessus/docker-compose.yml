@@ -1,3 +1,4 @@
+name: nessus
 services:
   nessus:
     image: tenable/nessus:10.7.0-ubuntu
