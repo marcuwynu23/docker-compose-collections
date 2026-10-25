@@ -1,3 +1,5 @@
+name: taiga
+
 services:
   taiga-db:
     image: postgres:13
