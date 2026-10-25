@@ -1,3 +1,4 @@
+name: devpi
 services:
   devpi:
     image: muccg/devpi:latest
