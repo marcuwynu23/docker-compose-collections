@@ -1,3 +1,5 @@
+name: trivy
+
 services:
   trivy:
     image: aquasec/trivy:0.56.2
