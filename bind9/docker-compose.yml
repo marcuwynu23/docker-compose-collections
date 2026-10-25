@@ -1,3 +1,4 @@
+name: bind9
 services:
   bind9:
     image: ubuntu/bind9:latest
