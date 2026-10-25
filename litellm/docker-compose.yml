@@ -1,4 +1,4 @@
-
+name: litellm
 services:
   litellm:
     image: ghcr.io/berriai/litellm:main-latest
