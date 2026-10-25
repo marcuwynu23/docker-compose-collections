@@ -1,3 +1,4 @@
+name: ansible
 services:
   ansible:
     image: ansible/ansible:latest
