@@ -1,3 +1,5 @@
+name: puppet
+
 services:
   puppetdb-postgres:
     image: postgres:15
