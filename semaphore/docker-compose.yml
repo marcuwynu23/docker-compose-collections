@@ -1,3 +1,4 @@
+name: semaphore
 services:
   semaphore-db:
     image: postgres:16
@@ -10,7 +11,11 @@ services:
     volumes:
       - semaphore_db_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${SEMAPHORE_DB_USER:-semaphore} -d ${SEMAPHORE_DB_NAME:-semaphore}"]
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${SEMAPHORE_DB_USER:-semaphore} -d ${SEMAPHORE_DB_NAME:-semaphore}",
+        ]
       interval: 10s
       timeout: 5s
       retries: 10
