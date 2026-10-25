@@ -1,3 +1,4 @@
+name: alertmanager
 services:
   alertmanager:
     image: prom/alertmanager:latest
