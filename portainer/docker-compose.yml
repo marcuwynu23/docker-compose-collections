@@ -1,3 +1,5 @@
+name: portainer
+
 services:
   portainer:
     container_name: portainer
@@ -13,7 +15,7 @@ services:
       - portainer_data:/data
     ports:
       - "9000:9000"
-      - "8000:8000"  # Remove if you do not intend to use Edge Agents
+      - "8000:8000" # Remove if you do not intend to use Edge Agents
 
 volumes:
   portainer_data:
