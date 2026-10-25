@@ -1,3 +1,5 @@
+name: wso2-mi
+
 services:
   wso2-mi:
     image: wso2/wso2mi:4.5.0
