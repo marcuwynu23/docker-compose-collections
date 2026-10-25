@@ -3,6 +3,7 @@
 # Body (multipart/form-data):
 #   - file: <image-file> (e.g. image.png)
 #   - options: {"languages":["eng"]} (optional JSON string)
+name: tesseract
 
 services:
   tesseract:
