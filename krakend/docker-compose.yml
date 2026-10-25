@@ -1,4 +1,4 @@
-
+name: krakend
 services:
   krakend:
     image: devopsfaith/krakend:latest
