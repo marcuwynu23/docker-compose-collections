@@ -1,3 +1,4 @@
+name: couchdb
 services:
   couchdb:
     image: couchdb:latest
@@ -5,7 +6,7 @@ services:
     restart: unless-stopped
     ports:
       - "5984:5984"
-    environment:                 # <--- Corrected from 'environments'
+    environment: # <--- Corrected from 'environments'
       - COUCHDB_USER=admin
       - COUCHDB_PASSWORD=password
     volumes:
