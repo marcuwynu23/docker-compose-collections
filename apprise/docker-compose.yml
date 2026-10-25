@@ -1,3 +1,4 @@
+name: apprise
 services:
   apprise:
     image: caronc/apprise:latest
