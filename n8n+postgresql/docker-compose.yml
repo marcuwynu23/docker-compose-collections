@@ -1,3 +1,4 @@
+name: n8n+postgresql
 services:
   postgres:
     image: postgres:15
