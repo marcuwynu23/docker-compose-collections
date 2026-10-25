@@ -1,3 +1,4 @@
+name: miniio
 services:
   minio:
     image: minio/minio:latest
