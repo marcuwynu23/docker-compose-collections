@@ -1,3 +1,4 @@
+name: dbx-server
 services:
   dbx:
     image: t8y2/dbx
