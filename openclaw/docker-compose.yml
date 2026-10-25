@@ -1,3 +1,4 @@
+name: openclaw
 services:
   openclaw:
     image: ghcr.io/openclaw/openclaw:main-slim-amd64
