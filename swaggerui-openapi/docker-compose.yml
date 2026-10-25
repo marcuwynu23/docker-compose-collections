@@ -1,4 +1,4 @@
-
+name: swaggerui-openapi
 services:
   fileuploader:
     image: ghcr.io/marcuwynu23/bucket-fileuploader:latest
