@@ -1,3 +1,4 @@
+name: bugzilla
 services:
   bugzilla:
     image: nasqueron/bugzilla:latest
@@ -6,10 +7,10 @@ services:
     environment:
       - DB_TYPE=mysql
       - DB_HOST=db
-      - DB_DATABASE=bugzilla   # ✅ FIXED
+      - DB_DATABASE=bugzilla # ✅ FIXED
       - DB_USER=bugzilla
       - DB_PASSWORD=bugzilla
-      - BUGZILLA_URL=http://localhost:8080  # ✅ REQUIRED
+      - BUGZILLA_URL=http://localhost:8080 # ✅ REQUIRED
     depends_on:
       - db
 
