@@ -1,3 +1,4 @@
+name: freeipa
 services:
   freeipa:
     image: freeipa/freeipa-server:almalinux-10
