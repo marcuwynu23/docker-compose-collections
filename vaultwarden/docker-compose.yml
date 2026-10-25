@@ -1,11 +1,13 @@
+name: vaultwarden
+
 services:
   vaultwarden:
     image: vaultwarden/server:latest
     container_name: vaultwarden
     restart: always
     environment:
-      - WEBSOCKET_ENABLED=true  # Enables real-time sync for mobile and browser clients
-      - SIGNUPS_ALLOWED=true    # Set to false after creating your account to block public signups
+      - WEBSOCKET_ENABLED=true # Enables real-time sync for mobile and browser clients
+      - SIGNUPS_ALLOWED=true # Set to false after creating your account to block public signups
     volumes:
       - ./vw-data:/data
     ports:
