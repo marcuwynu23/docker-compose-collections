@@ -1,3 +1,4 @@
+name: kafka-server
 services:
   kafka:
     image: apache/kafka:3.8.0
