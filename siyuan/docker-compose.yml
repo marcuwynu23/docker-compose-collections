@@ -1,3 +1,5 @@
+name: siyuan
+
 services:
   siyuan:
     image: b3log/siyuan:latest
