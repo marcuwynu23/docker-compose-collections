@@ -1,3 +1,4 @@
+name: parse-server
 services:
   parse-db:
     image: mongo:7
@@ -9,7 +10,11 @@ services:
     volumes:
       - parse_db_data:/data/db
     healthcheck:
-      test: ["CMD-SHELL", "echo 'db.runCommand({ ping: 1 })' | mongosh mongodb://${MONGO_ROOT_USERNAME:-root}:${MONGO_ROOT_PASSWORD:-root}@localhost:27017/admin --quiet"]
+      test:
+        [
+          "CMD-SHELL",
+          "echo 'db.runCommand({ ping: 1 })' | mongosh mongodb://${MONGO_ROOT_USERNAME:-root}:${MONGO_ROOT_PASSWORD:-root}@localhost:27017/admin --quiet",
+        ]
       interval: 15s
       timeout: 10s
       retries: 10
