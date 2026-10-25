@@ -1,9 +1,10 @@
+name: portabase
 services:
   application:
     image: portabase/portabase:latest
     container_name: application
     ports:
-      - '8887:80'
+      - "8887:80"
     environment:
       TZ: "Asia/Manila"
     env_file:
@@ -32,7 +33,7 @@ services:
       - POSTGRES_USER=devuser
       - POSTGRES_PASSWORD=changeme
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U devuser -d devdb" ]
+      test: ["CMD-SHELL", "pg_isready -U devuser -d devdb"]
       interval: 10s
       timeout: 5s
       retries: 5
