@@ -1,3 +1,4 @@
+name: postgrest
 services:
   db:
     image: postgres:16-alpine
@@ -9,7 +10,7 @@ services:
       POSTGRES_PASSWORD: your_password
     volumes:
       - pgdata:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # optional seed file
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql # optional seed file
     ports:
       - "5432:5432"
     healthcheck:
@@ -27,8 +28,8 @@ services:
         condition: service_healthy
     environment:
       PGRST_DB_URI: postgres://postgres:your_password@db:5432/app_db
-      PGRST_DB_SCHEMA: api          # schema to expose as REST
-      PGRST_DB_ANON_ROLE: anon     # role for unauthenticated requests
+      PGRST_DB_SCHEMA: api # schema to expose as REST
+      PGRST_DB_ANON_ROLE: anon # role for unauthenticated requests
       PGRST_OPENAPI_SERVER_PROXY_URI: http://localhost:3000
       PGRST_DB_POOL: 10
     ports:
