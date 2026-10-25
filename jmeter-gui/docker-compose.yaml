@@ -1,3 +1,4 @@
+name: jmeter-gui
 services:
   jmeter:
     container_name: jmeter-gui
