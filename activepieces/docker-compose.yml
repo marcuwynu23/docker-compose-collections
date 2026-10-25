@@ -1,3 +1,4 @@
+name: activepieces
 services:
   redis:
     image: redis:7
