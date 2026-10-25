@@ -1,3 +1,5 @@
+name: woodpecker
+
 services:
   woodpecker-server:
     image: woodpeckerci/woodpecker-server:next-6e6e9c4166
