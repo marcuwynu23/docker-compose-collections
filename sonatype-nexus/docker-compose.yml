@@ -1,4 +1,5 @@
 name: sonatype-nexus
+
 services:
   nexus:
     container_name: nexus
