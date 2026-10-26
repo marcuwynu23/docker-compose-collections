@@ -1,0 +1,87 @@
+name: openrepo
+
+services:
+  nginx:
+    image: ghcr.io/openkilt/openrepo:latest
+    command: nginx
+    restart: unless-stopped
+    ports:
+      - "7376:8080"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health/"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    depends_on:
+      django:
+        condition: service_healthy
+    volumes:
+      - ./openrepo-data:/var/lib/openrepo
+
+  django:
+    image: ghcr.io/openkilt/openrepo:latest
+    command: run_openrepoweb
+    restart: unless-stopped
+    expose:
+      - "8000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/admin/login/"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    volumes:
+      - ./openrepo-data:/var/lib/openrepo
+    environment:
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:?Set DJANGO_SECRET_KEY in .env}
+      OPENREPO_DB_TYPE: postgresql
+      OPENREPO_PG_DATABASE: openrepo
+      OPENREPO_PG_USERNAME: postgres
+      OPENREPO_PG_PASSWORD: ${OPENREPO_PG_PASSWORD:?Set OPENREPO_PG_PASSWORD in .env}
+      OPENREPO_PG_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+
+  worker:
+    image: ghcr.io/openkilt/openrepo:latest
+    command: ./django/manage.py runworker
+    restart: unless-stopped
+    volumes:
+      - ./openrepo-data:/var/lib/openrepo
+    environment:
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:?Set DJANGO_SECRET_KEY in .env}
+      OPENREPO_DB_TYPE: postgresql
+      OPENREPO_PG_DATABASE: openrepo
+      OPENREPO_PG_USERNAME: postgres
+      OPENREPO_PG_PASSWORD: ${OPENREPO_PG_PASSWORD:?Set OPENREPO_PG_PASSWORD in .env}
+      OPENREPO_PG_HOSTNAME: db
+    depends_on:
+      db:
+        condition: service_healthy
+      django:
+        condition: service_started
+    healthcheck:
+      test: ["CMD-SHELL", "pgrep -f 'manage.py runworker' || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    expose:
+      - "5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${OPENREPO_PG_PASSWORD:?Set OPENREPO_PG_PASSWORD in .env}
+      POSTGRES_DB: openrepo
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d openrepo"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - ./openrepo-data/postgres:/var/lib/postgresql/data
