@@ -165,6 +165,7 @@ flowchart TD
 - [jmeter](./jmeter)
 - [jmeter-gui](./jmeter-gui)
 - [localstack](./localstack)
+- [openrepo](./openrepo)
 - [portabase](./portabase)
 - [registry](./registry)
 - [scalar](./scalar)
