@@ -1,0 +1,10 @@
+name: lightpanda-browser
+services:
+  lightpanda:
+    image: lightpanda/browser:latest
+    container_name: lightpanda-browser
+    ports:
+      - "127.0.0.1:${LIGHTPANDA_PORT:-9222}:9222"
+    environment:
+      - LIGHTPANDA_DISABLE_TELEMETRY=${LIGHTPANDA_DISABLE_TELEMETRY:-true}
+    restart: unless-stopped
