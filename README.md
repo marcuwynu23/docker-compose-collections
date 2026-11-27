@@ -238,6 +238,7 @@ flowchart TD
 - [grafana-prometheus-opentelemetry-jaegerui](./grafana-prometheus-opentelemetry-jaegerui)
 - [grafana-prometheus-proxmox](./grafana-prometheus-proxmox)
 - [uptime-kuma](./uptime-kuma)
+- [sitewatcher](./sitewatcher)
 - [sentry](./sentry)
 - [signoz](./signoz)
 - [splunk](./splunk)
